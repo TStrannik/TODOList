@@ -125,18 +125,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="frmMain.cpp" />
+    <ClCompile Include="pnlTask.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Logic.h" />
+    <ClInclude Include="pnlTask.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="STimer.h" />
     <ClInclude Include="sugar.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pnlTask.resx">
+      <DependentUpon>pnlTask.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

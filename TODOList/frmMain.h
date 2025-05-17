@@ -7,6 +7,7 @@
 #include <iostream>
 #include <msclr\marshal_cppstd.h>
 
+#include "pnlTask.h"
 
 
 std::string		sts(System::String^ text) {
@@ -37,7 +38,7 @@ namespace TODOList {
 
 	public:		frmMain(void) { InitializeComponent(); }
 	protected:  ~frmMain() { if (components) delete components; }
-	private: System::Windows::Forms::CheckBox^ checkBox1;
+
 	protected:
 	private: System::ComponentModel::Container ^components;
 	private: System::Windows::Forms::ListBox^ listBox1;
@@ -54,6 +55,7 @@ namespace TODOList {
 
 
 
+
 	private: System::Windows::Forms::TextBox^ textBox1;
 
 
@@ -61,7 +63,6 @@ namespace TODOList {
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
 		{
-			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pnlTasks = (gcnew System::Windows::Forms::Panel());
@@ -73,21 +74,10 @@ namespace TODOList {
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// checkBox1
-			// 
-			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(162, 18);
-			this->checkBox1->Name = L"checkBox1";
-			this->checkBox1->Size = System::Drawing::Size(80, 17);
-			this->checkBox1->TabIndex = 0;
-			this->checkBox1->Text = L"checkBox1";
-			this->checkBox1->UseVisualStyleBackColor = true;
-			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &frmMain::checkBox1_CheckedChanged);
-			// 
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(312, 108);
+			this->listBox1->Location = System::Drawing::Point(482, 165);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(106, 69);
 			this->listBox1->TabIndex = 1;
@@ -95,7 +85,7 @@ namespace TODOList {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(424, 54);
+			this->button1->Location = System::Drawing::Point(594, 111);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 2;
@@ -109,19 +99,19 @@ namespace TODOList {
 			this->pnlTasks->Dock = System::Windows::Forms::DockStyle::Left;
 			this->pnlTasks->Location = System::Drawing::Point(0, 0);
 			this->pnlTasks->Name = L"pnlTasks";
-			this->pnlTasks->Size = System::Drawing::Size(140, 366);
+			this->pnlTasks->Size = System::Drawing::Size(235, 546);
 			this->pnlTasks->TabIndex = 3;
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(312, 56);
+			this->textBox1->Location = System::Drawing::Point(482, 113);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(106, 20);
 			this->textBox1->TabIndex = 4;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(312, 12);
+			this->button2->Location = System::Drawing::Point(482, 69);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(122, 23);
 			this->button2->TabIndex = 5;
@@ -132,21 +122,21 @@ namespace TODOList {
 			// lbxSub
 			// 
 			this->lbxSub->FormattingEnabled = true;
-			this->lbxSub->Location = System::Drawing::Point(424, 108);
+			this->lbxSub->Location = System::Drawing::Point(594, 165);
 			this->lbxSub->Name = L"lbxSub";
 			this->lbxSub->Size = System::Drawing::Size(106, 69);
 			this->lbxSub->TabIndex = 6;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(424, 82);
+			this->textBox2->Location = System::Drawing::Point(594, 139);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(106, 20);
 			this->textBox2->TabIndex = 7;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(536, 79);
+			this->button3->Location = System::Drawing::Point(706, 136);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(114, 23);
 			this->button3->TabIndex = 8;
@@ -156,7 +146,7 @@ namespace TODOList {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(147, 249);
+			this->button4->Location = System::Drawing::Point(269, 34);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 9;
@@ -168,9 +158,8 @@ namespace TODOList {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(659, 366);
+			this->ClientSize = System::Drawing::Size(959, 546);
 			this->Controls->Add(this->button4);
-			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->lbxSub);
@@ -204,16 +193,16 @@ namespace TODOList {
 	int		   oleg_selected = -1;
 
 
-	///  DELETE // Experemental
-	Windows::Forms::Panel^ oleg = gcnew Windows::Forms::Panel();
+	// Experemental
+	Windows::Forms::Panel^ oleg = gcnew pnlTask();
 	inline void make_oleg() {
 
 		oleg_counter++;
 
-		this->oleg = (gcnew System::Windows::Forms::Panel());
+		this->oleg = (gcnew pnlTask());
 
 		this->oleg->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-		this->oleg->BackColor = System::Drawing::SystemColors::ButtonShadow;
+		//this->oleg->BackColor = System::Drawing::SystemColors::ButtonShadow;
 		this->oleg->Dock = System::Windows::Forms::DockStyle::Top;
 		this->oleg->Location = System::Drawing::Point(0, 0);
 		this->oleg->Name = L"pnlOleg " + sts(std::to_string(oleg_counter));
