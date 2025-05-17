@@ -1,19 +1,20 @@
-
 #include "frmMain.h"
 
 #include <Windows.h>
 #include <iostream>
-#include <array>
 
-//#include "Logic.h"
 #include "sugar.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
 
 [STAThreadAttribute]
+
+
 void CODE() {
+
 	wl("\tВедётся ярая разработка TODOList");
+
 }
 
 void APPLICATION_START() {
