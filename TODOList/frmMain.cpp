@@ -34,7 +34,7 @@ void APPLICATION_END() {
 	system("pause");
 }
 
-/// ver 0.1.0
+/// ver 0.1.1
 int main(array<String^>^ args) {
 	_CrtSetDbgFlag(
 		_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) |
