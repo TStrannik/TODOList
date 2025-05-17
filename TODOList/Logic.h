@@ -49,10 +49,35 @@ private:
 };
 
 
+struct Subtask {
+
+	Subtask(const std::string& text)
+		: _text(text)
+	{}
+	~Subtask() {}
+
+	std::string			   get_text() {
+
+		return _text;
+
+	}
+	void				   set_text(const std::string& text) {
+
+		_text = text;
+
+	}
+
+private:
+	std::string			   _text;
+	//int				   _id;
+
+};
+
+
 
 struct Task {
 
-	Task(const std::string& text = "Task")
+	Task(const std::string& text)
 		: _text(text)
 	{
 
@@ -65,44 +90,38 @@ struct Task {
 
 	}
 
-	std::string get_text() {
+	std::string			   get_text() {
 
 		return _text;
 
 	}
-	void set_text(const std::string& text) {
+	void				   set_text(const std::string& text) {
 
 		_text = text;
 
 	}
+	Subtask*			   get_subtask(const int& ind) {
+
+		return _subtasks.at(ind);
+
+	}
+	void				   new_subtask(const std::string& text) {
+
+		_subtasks.push_back(new Subtask(text));
+
+	}
+	std::vector <Subtask*> get_subtasks_vector() {
+
+		return _subtasks;
+
+	}
 
 private:
-	std::string _text;
+	std::string			   _text;
 	std::vector <Subtask*> _subtasks;
+	//int				   _id;
 
 };
 
 
 
-struct Subtask {		//}; : public Task {
-
-	Subtask(const std::string& text)
-		: _text(text)
-	{}
-	~Subtask() {}
-
-	std::string get_text() {
-	
-		return _text;
-
-	}
-	void set_text(const std::string& text) {
-
-		_text = text;
-
-	}
-
-private:
-	std::string _text;
-
-};
