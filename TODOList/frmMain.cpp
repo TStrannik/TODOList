@@ -1,24 +1,29 @@
+
 #include "frmMain.h"
 
 #include <Windows.h>
 #include <iostream>
+#include <array>
+
+//#include "Logic.h"
+#include "sugar.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
 
 [STAThreadAttribute]
 void CODE() {
-
+	wl("\tВедётся ярая разработка TODOList");
 }
 
 void APPLICATION_START() {
 	setlocale(LC_ALL, "RU_ru");
 	system("color 70");
 	std::cout << "\n APPLICATION START\n\n";
-	std::cout << "\tStatistic:\n\n";
+	//std::cout << "\tStatistic:\n\n";
 
 	// Let's code
-	std::cout << "\tInfo of Application here =/\n";
+	//wl("\tВедётся ярая разработка TODOList");
 	CODE();
 
 	std::cout << "\n\n";
@@ -35,7 +40,7 @@ void APPLICATION_END() {
 }
 
 /// ver 0.1.1
-int main(array<String^>^ args) {
+int main(array <String^>^ args) {
 	_CrtSetDbgFlag(
 		_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) |
 		_CRTDBG_LEAK_CHECK_DF);
