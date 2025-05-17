@@ -26,27 +26,6 @@ inline void cwl(std::string msg) {
 
 
 
-struct Subtask;
-struct Task;
-
-
-struct Logic {		// singletone?
-
-	Logic() {
-		
-		wl("\tLogic ctor()");
-	
-	}
-	~Logic() {
-		
-		wl("\t~Logic");
-	
-	}
-
-private:
-
-
-};
 
 
 struct Subtask {
@@ -142,3 +121,20 @@ private:
 
 
 
+struct Logic {		// singletone?
+
+	Logic() {
+
+		wl("\tLogic ctor()");
+
+	}
+	~Logic() {
+
+		wl("\t~Logic");
+
+	}
+
+private:
+
+
+};
