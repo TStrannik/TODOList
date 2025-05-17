@@ -51,6 +51,9 @@ namespace TODOList {
 	private: System::Windows::Forms::Button^ button4;
 
 
+
+
+
 	private: System::Windows::Forms::TextBox^ textBox1;
 
 
@@ -202,30 +205,32 @@ namespace TODOList {
 
 
 	///  DELETE // Experemental
-	Windows::Forms::Button^ oleg = gcnew Windows::Forms::Button();
+	Windows::Forms::Panel^ oleg = gcnew Windows::Forms::Panel();
 	inline void make_oleg() {
 
 		oleg_counter++;
 
-		this->oleg = (gcnew System::Windows::Forms::Button());
+		this->oleg = (gcnew System::Windows::Forms::Panel());
 
+		this->oleg->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		this->oleg->BackColor = System::Drawing::SystemColors::ButtonShadow;
 		this->oleg->Dock = System::Windows::Forms::DockStyle::Top;
-		this->oleg->Location = System::Drawing::Point(204, 54);
-		this->oleg->Name = L"btnOleg " + sts(std::to_string(oleg_counter));
-		this->oleg->Size = System::Drawing::Size(75, 23);
-		this->oleg->TabIndex = 2;
-		this->oleg->Text = L"Î Ë Å Ã " + sts(std::to_string(oleg_counter));
-		this->oleg->UseVisualStyleBackColor = true;
-		//this->oleg->Click += gcnew System::EventHandler(this, &frmMain::oleg_Click, const int& oleg_counter);
+		this->oleg->Location = System::Drawing::Point(0, 0);
+		this->oleg->Name = L"pnlOleg " + sts(std::to_string(oleg_counter));
+		this->oleg->Size = System::Drawing::Size(140, 44);
+		this->oleg->TabIndex = 0;
+		this->oleg->Click += gcnew System::EventHandler(this, &frmMain::oleg_Click);
 
 		this->pnlTasks->Controls->Add(oleg);
 
 	}
-	//Void oleg_Click(Object^ sender, EventArgs^ e, const int& ind) {
-	//
-	//
-	//
-	//}
+	Void oleg_Click(Object^ sender, EventArgs^ e) {
+	
+		Windows::Forms::Panel^ oleg = (Panel^)sender;
+
+		w('\t'); wl(sts(oleg->Name));
+
+	}
 
 	Void frmMain_Load(Object^ sender, EventArgs^ e) {
 
@@ -344,6 +349,7 @@ namespace TODOList {
 #pragma region }
 
 	
+
 
 
 }; }
