@@ -53,8 +53,16 @@ struct Subtask {
 
 	Subtask(const std::string& text)
 		: _text(text)
-	{}
-	~Subtask() {}
+	{
+
+		w("\t+Subtask( "); w(_text); wl(" )");
+
+	}
+	~Subtask() {
+		
+		w("\t~Subtask( "); w(_text); wl(" )");		
+	
+	}
 
 	std::string			   get_text() {
 
@@ -87,6 +95,7 @@ struct Task {
 	~Task() {
 
 		w("\t~Task( "); w(_text); wl(" )");
+		_delete_subtasks();
 
 	}
 
@@ -120,6 +129,14 @@ private:
 	std::string			   _text;
 	std::vector <Subtask*> _subtasks;
 	//int				   _id;
+
+private:
+	void				   _delete_subtasks() {
+
+		for (const auto& st : _subtasks)
+			delete st;
+
+	}
 
 };
 
