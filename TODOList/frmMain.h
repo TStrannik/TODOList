@@ -1,19 +1,27 @@
 #pragma once
+#include "sugar.h"
 #include "Logic.h"
-#include <utility>
+
+#include <vector>
 #include <string>
 #include <iostream>
 #include <msclr\marshal_cppstd.h>
 
 
-std::string sts(System::String^ string) {
+std::string		sts(System::String^ text) {
 
-	return msclr::interop::marshal_as<std::string>(string);
+	return msclr::interop::marshal_as <std::string> (text);
+
+}
+System::String^ sts(std::string text) {
+
+	return gcnew String(text.c_str());
 
 }
 
 
-#pragma region Kernel
+
+#pragma region void
 
 namespace TODOList {
 
@@ -35,9 +43,10 @@ namespace TODOList {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::ListBox^ lbxSub;
 	private: System::Windows::Forms::TextBox^ textBox1;
 
-#pragma endregion Kernel
+
 
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
@@ -48,13 +57,14 @@ namespace TODOList {
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->lbxSub = (gcnew System::Windows::Forms::ListBox());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(15, 13);
+			this->checkBox1->Location = System::Drawing::Point(15, 6);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(80, 17);
 			this->checkBox1->TabIndex = 0;
@@ -64,14 +74,14 @@ namespace TODOList {
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(242, 131);
+			this->listBox1->Location = System::Drawing::Point(242, 170);
 			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(311, 108);
+			this->listBox1->Size = System::Drawing::Size(106, 69);
 			this->listBox1->TabIndex = 1;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(478, 84);
+			this->button1->Location = System::Drawing::Point(475, 56);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 2;
@@ -89,7 +99,7 @@ namespace TODOList {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(242, 87);
+			this->textBox1->Location = System::Drawing::Point(242, 58);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(237, 20);
 			this->textBox1->TabIndex = 4;
@@ -104,11 +114,20 @@ namespace TODOList {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &frmMain::button2_Click);
 			// 
+			// lbxSub
+			// 
+			this->lbxSub->FormattingEnabled = true;
+			this->lbxSub->Location = System::Drawing::Point(402, 94);
+			this->lbxSub->Name = L"lbxSub";
+			this->lbxSub->Size = System::Drawing::Size(106, 69);
+			this->lbxSub->TabIndex = 6;
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(659, 292);
+			this->Controls->Add(this->lbxSub);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->panel1);
@@ -126,36 +145,61 @@ namespace TODOList {
 		}
 #pragma endregion
 
-	private:
-		Logic*				 logic;
-		std::vector <Task*>* tasks = new std::vector <Task*>();
+		private:
 
+#pragma endregion main {
 
-
-		Void frmMain_Load(System::Object^ sender, System::EventArgs^ e) {
+	Logic*				 logic;
+	std::vector <Task*>* tasks = new std::vector <Task*>();
+	
+	
+	
+	Void frmMain_Load(Object^ sender, EventArgs^ e) {
 
 			logic = new Logic();
 
 		}
-		Void frmMain_FormClosed(System::Object^ sender, System::Windows::Forms::FormClosedEventArgs^ e) {
+	Void frmMain_FormClosed(Object^ sender, Windows::Forms::FormClosedEventArgs^ e) {
 
+			task_delete_all();
+			delete logic;
 
-			for (int i = 0; i < tasks->size(); ++i)
-				delete tasks->at(i);
+		}
+	
+	Void button1_Click(Object^ sender, EventArgs^ e) {
+			
+			task_add_1(textBox1->Text);
+			task_to_list(listBox1);
+		
+		}
+	Void button2_Click(Object^ sender, EventArgs^ e) {
+			
+			task_show();
+		
+		}
+	
+	
+	
+	inline void task_to_list(Windows::Forms::ListBox^ lbx) {
+
+			lbx->Items->Clear();
+
+			for (const auto& el : *tasks)
+				lbx->Items->Add(sts(el->get_text()));
+
+		}
+	inline void task_delete_all() {
+
+			for (const auto& el : *tasks)
+				delete el;
 
 			tasks->clear();
 			delete tasks;
 
-
-			delete logic;
-
 		}
+	inline void task_add_1(String^ string) {
 
-
-
-		Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
-			std::string* str = new std::string (sts(textBox1->Text));
+			std::string* str = new std::string(sts(textBox1->Text));
 
 			if (!(str->empty()))
 				tasks->push_back(new Task{ *str });
@@ -163,22 +207,20 @@ namespace TODOList {
 			delete str;
 
 		}
+	inline void task_show() {
 
+			wl(); wl("tasks: ");
 
-
-		Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-
-			std::cout << std::endl << "tasks:" << std::endl;
-
-			for (int i = 0; i < tasks->size(); ++i) {
-
-				std::cout << '\t' << tasks->at(i)->get_text() << std::endl;
-
+			for (const auto& el : *tasks) {
+				w("\t"); wl(el->get_text());
 			}
 
-			std::cout << std::endl;
+			wl();
 
 		}
 
-	};// frmMain
-}
+#pragma region }
+
+};}
+
+#pragma endregion

@@ -3,8 +3,6 @@
 #include <Windows.h>
 #include <iostream>
 
-#include "sugar.h"
-
 using namespace System;
 using namespace System::Windows::Forms;
 

@@ -4,8 +4,8 @@
 #include <string>
 using namespace System;
 
-
-inline void w(std::string msg) {
+/// DELETE
+inline void cw(std::string msg) {
 
 	String^ str = gcnew String(msg.c_str());
 
@@ -14,7 +14,7 @@ inline void w(std::string msg) {
 	delete str;
 
 }
-inline void wl(std::string msg) {
+inline void cwl(std::string msg) {
 
 	String^ str = gcnew String(msg.c_str());
 
@@ -30,9 +30,7 @@ struct Subtask;
 struct Task;
 
 
-
-// singletone?
-struct Logic {
+struct Logic {		// singletone?
 
 	Logic() {
 		
