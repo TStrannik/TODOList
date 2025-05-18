@@ -21,7 +21,6 @@ namespace TODOList {
 
 
 	private:	lineTask^				  lneTask;
-	//private:	Windows::Forms::TextBox^  txtTask;
 	private:	Windows::Forms::Panel^	  pnlSubtasks;
 	protected:
 
@@ -35,19 +34,25 @@ namespace TODOList {
 			SuspendLayout();
 			
 
-			// THIS (pnlTask)
+
+
+
 			// 
+			// THIS (pnlTask)
 			//
-			Name							 = name;		// L"pnlOleg ";
+
+			Name							 = name;
 			BackColor						 = Drawing::SystemColors::ButtonHighlight;
 			BorderStyle						 = Windows::Forms::BorderStyle::FixedSingle;								 
 			Dock							 = Windows::Forms::DockStyle::Top;
 			Size							 = Drawing::Size(140, 44);
 
 
-			// [ lneTask ]
+
 			// 
+			// [ lneTask ]
 			//
+
 			lneTask->header					 = this->header;
 			lneTask->Text					 = this->header;
 			lneTask->AutoSize				 = true;
@@ -59,23 +64,26 @@ namespace TODOList {
 			lneTask->BackColor				 = Color::FromArgb(255, 0, 128);
 			lneTask->ForeColor				 = Color::White;
 
+			
 
 
+
 			//	[]	pnlSubtasks
 			//	[]	pnlSubtasks
 			//	[]	pnlSubtasks
-			//
+			
 			pnlSubtasks->Name				 = L"pnlSubtask";
 			pnlSubtasks->Location			 = Drawing::Point(0, 0);
 			pnlSubtasks->Size				 = Drawing::Size(140, 250);
 			pnlSubtasks->Dock				 = Windows::Forms::DockStyle::Top;
 			pnlSubtasks->TabIndex			 = 0;
 
-			this->Controls->Add(pnlSubtasks);
 
 
 
+			Controls->Add(pnlSubtasks);
 			Controls->Add(this->lneTask);
+
 			ResumeLayout(false);
 			PerformLayout();
 
@@ -92,10 +100,9 @@ namespace TODOList {
 
 
 public:
-	bool    start  = false;
-	String^ header = gcnew String ("");
-	String^ name   = gcnew String ("");
-
+	bool      start    = false;
+	String^   header   = gcnew String ("");
+	String^   name     = gcnew String ("");
 
 
 public:
@@ -115,7 +122,6 @@ public:
 		cbxSubtask->TabIndex  = 0;
 		//cbxSubtask->Click   += gcnew System::EventHandler(this, &frmMain::task_Click);
 
-		//Controls->Add(cbxSubtask);
 		pnlSubtasks->Controls->Add(cbxSubtask);
 
 		update_state();
@@ -123,7 +129,6 @@ public:
 	}
 	void		update_state() {
 
-		//this->Name		= header;
 		lneTask->Name	= L"lne" + header;
 		lneTask->Text	= header;
 		lneTask->header = header;

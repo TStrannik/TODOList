@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 #pragma region void
 
 using namespace System;
@@ -32,19 +33,23 @@ namespace TODOList {
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void) {
 
-			cbx		= (gcnew System::Windows::Forms::CheckBox());
-			txt		= (gcnew System::Windows::Forms::TextBox());
-			btnX	= (gcnew System::Windows::Forms::Button());
+			cbx		= (gcnew Windows::Forms::CheckBox());
+			txt		= (gcnew Windows::Forms::TextBox());
+			btnX	= (gcnew Windows::Forms::Button());
 			SuspendLayout();
 
 
 
 
+			// 
 			// THIS (lineTask)
 			// 
-			// 
-			Size						 = System::Drawing::Size(200, 48);
-			MouseDown					+= gcnew System::Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseDown);
+			Size						 = Drawing::Size(200, 48);
+			MouseDown					+= gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseDown);
+			MouseMove					+= gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseMove);
+			MouseUp						+= gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseUp);
+
+
 
 
 
@@ -54,8 +59,8 @@ namespace TODOList {
 			cbx->Name					 = L"cbx";
 			cbx->Text					 = this->header;
 			cbx->AutoSize				 = true;
-			cbx->Location				 = System::Drawing::Point(10, 15);
-			cbx->Size					 = System::Drawing::Size(43, 17);
+			cbx->Location				 = Drawing::Point(10, 15);
+			cbx->Size					 = Drawing::Size(43, 17);
 			cbx->TabIndex				 = 0;
 			cbx->UseVisualStyleBackColor = true;
 			//cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
@@ -66,8 +71,8 @@ namespace TODOList {
 			// [_________]
 			// 
 			txt->Name					 = L"txt";
-			txt->Location				 = System::Drawing::Point(60, 12);
-			txt->Size					 = System::Drawing::Size(50, 20);
+			txt->Location				 = Drawing::Point(60, 12);
+			txt->Size					 = Drawing::Size(50, 20);
 			txt->TabIndex				 = 1;
 
 
@@ -78,9 +83,9 @@ namespace TODOList {
 			// 
 			btnX->Text					  = L"X";
 			btnX->Name					  = L"btnX";
-			btnX->Location				  = System::Drawing::Point(168, 11);
-			btnX->Size					  = System::Drawing::Size(23, 23);
-			btnX->TextAlign				  = System::Drawing::ContentAlignment::MiddleCenter;
+			btnX->Location				  = Drawing::Point(168, 11);
+			btnX->Size					  = Drawing::Size(23, 23);
+			btnX->TextAlign				  = Drawing::ContentAlignment::MiddleCenter;
 			btnX->TabIndex				  = 2;
 			btnX->UseVisualStyleBackColor = true;
 
@@ -102,18 +107,58 @@ namespace TODOList {
 
 
 	private:
-		Void this_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 
-			lineTask^ lneTask = (lineTask^)sender;
-			Console::WriteLine(this->Name);
+		int posX	= 0;
+		int posY	= 0;
+		int offsetX = 0;
+		int offsetY = 0;
+
+		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
+
+			
+			posX = e->X;
+			posY = e->Y;
+
+			Console::Write(posX);
+			Console::Write(" : ");
+			Console::WriteLine(posY);
+
+
+			Parent->Size = Drawing::Size(Parent->Parent->Width, Parent->Height);
+			Parent->Dock = Windows::Forms::DockStyle::None;
+
+
+			/*
+			//lineTask^ lneTask = (lineTask^)sender;
+
+			Console::Write("\t");
+			Console::Write(this->Parent->Name);
+			Console::Write(" [");
+			Console::Write(this->Name);
+			Console::Write("]");
+			Console::WriteLine();
+			*/
+		}
+		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
+
+			
+
+		}
+		Void this_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
+
+
+			Parent->Dock = Windows::Forms::DockStyle::Top;
 
 		}
 
 
 
-	public:
-		String^ header = gcnew String("");
 
+	public:
+		String^  header = gcnew String("");
+
+
+	public:
 		void		update_state() {
 
 			cbx->Text = header;
