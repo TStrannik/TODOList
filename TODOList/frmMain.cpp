@@ -59,9 +59,12 @@ int main(array <String^>^ args) {
 // (+) GIT Connection
 // (+) GIT Make "Develop" branch
 // 
+// (+) pnlTask
+// (+) lineTask
+// -------------------
+// ( ) Drag&Drop
 // -------------------
 // ( ) Логика компонента
-// -------------------
 // ( ) Перемещение компонента
 // ( ) Идентификаторы Subtask
 // ( ) Task

@@ -79,6 +79,7 @@ struct Subtask {
 
 #pragma region fields
 private:
+	static int			   _counter;
 	std::string			   _text;
 	int					   _id;
 #pragma endregion
@@ -86,7 +87,7 @@ private:
 
 
 };
-
+int Subtask::_counter = -1;
 
 
 

@@ -18,7 +18,8 @@ namespace TODOList {
 	public:		pnlTask(void) { InitializeComponent();			   }
 	protected: ~pnlTask()	  { if (components) delete components; }
 
-	//private:	Windows::Forms::CheckBox^ cbxTask;
+
+
 	private:	lineTask^				  lneTask;
 	//private:	Windows::Forms::TextBox^  txtTask;
 	private:	Windows::Forms::Panel^	  pnlSubtasks;
@@ -30,49 +31,51 @@ namespace TODOList {
 		void InitializeComponent(void)
 		{
 			lneTask		= (gcnew lineTask());
-			//txtTask		= (gcnew Windows::Forms::TextBox());
 			pnlSubtasks = (gcnew Windows::Forms::Panel());
 			SuspendLayout();
 			
-			// pnlTask
+
+			// THIS (pnlTask)
 			// 
 			//
-			//Name							 = L"pnlOleg ";
+			Name							 = name;		// L"pnlOleg ";
 			BackColor						 = Drawing::SystemColors::ButtonHighlight;
 			BorderStyle						 = Windows::Forms::BorderStyle::FixedSingle;								 
 			Dock							 = Windows::Forms::DockStyle::Top;
 			Size							 = Drawing::Size(140, 44);
 
-			// pnlSubtasks
-			// 
-			//
-			pnlSubtasks->Name	  = L"pnlSubtask";
-			pnlSubtasks->Location = Drawing::Point(0, 0);
-			pnlSubtasks->Size	  = Drawing::Size(140, 250);
-			pnlSubtasks->Dock	  = Windows::Forms::DockStyle::Top;
-			pnlSubtasks->TabIndex = 0;
 
-			this->Controls->Add(pnlSubtasks);
-
-			// lneTask
+			// [ lneTask ]
 			// 
 			//
 			lneTask->header					 = this->header;
-			lneTask->Name					 = this->Name; //L"lneTask";
+			lneTask->Text					 = this->header;
 			lneTask->AutoSize				 = true;
 			lneTask->Location				 = Drawing::Point(10, 10);
 			lneTask->Size					 = Drawing::Size(140, 48);
 			lneTask->Padding				 = Windows::Forms::Padding(15);
 			lneTask->TabIndex				 = 0;
-			lneTask->Text					 = this->Name;
 			lneTask->Dock					 = Windows::Forms::DockStyle::Top;
 			lneTask->BackColor				 = Color::FromArgb(255, 0, 128);
 			lneTask->ForeColor				 = Color::White;
-			//lneTask->UseVisualStyleBackColor = true;
-			//lneTask->CheckedChanged			+= gcnew System::EventHandler(this, &pnlTask::cbxTask_CheckedChanged);
-			 
+
+
+
+			//	[]	pnlSubtasks
+			//	[]	pnlSubtasks
+			//	[]	pnlSubtasks
+			//
+			pnlSubtasks->Name				 = L"pnlSubtask";
+			pnlSubtasks->Location			 = Drawing::Point(0, 0);
+			pnlSubtasks->Size				 = Drawing::Size(140, 250);
+			pnlSubtasks->Dock				 = Windows::Forms::DockStyle::Top;
+			pnlSubtasks->TabIndex			 = 0;
+
+			this->Controls->Add(pnlSubtasks);
+
+
+
 			Controls->Add(this->lneTask);
-			//Controls->Add(this->txtTask);
 			ResumeLayout(false);
 			PerformLayout();
 
@@ -88,23 +91,12 @@ namespace TODOList {
 
 
 
-
-		//Void txtTask_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e) {
-		//
-		//	//if (e->KeyChar == 13) {
-		//	//	cbxTask->Text	 = txtTask->Text;
-		//	//	txtTask->Visible = false;
-		//	//}
-		//
-		//}
-
-
-
-
 public:
 	bool    start  = false;
 	String^ header = gcnew String ("");
-	//std::vector <String^>* subs = new std::vector <String^>();
+	String^ name   = gcnew String ("");
+
+
 
 public:
 	inline void subtask_add(String^ name) {
@@ -131,10 +123,12 @@ public:
 	}
 	void		update_state() {
 
-		lneTask->Text	= header; /// DELETE
+		//this->Name		= header;
+		lneTask->Name	= L"lne" + header;
+		lneTask->Text	= header;
 		lneTask->header = header;
-
 		lneTask->update_state();
+
 
 		// Пересчёт размера
 		this->Height = (subtask_counter) * 20 + 48;

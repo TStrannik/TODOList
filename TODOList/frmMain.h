@@ -56,6 +56,7 @@ namespace TODOList {
 	private: Windows::Forms::Button^  button6;
 	private: Windows::Forms::Button^  btnRemTask;
 	private: Windows::Forms::Button^  btnRemSub;
+	private: System::Windows::Forms::Button^ button7;
 
 
 
@@ -84,6 +85,7 @@ namespace TODOList {
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->btnRemTask = (gcnew System::Windows::Forms::Button());
 			this->btnRemSub = (gcnew System::Windows::Forms::Button());
+			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// listBox1
@@ -178,7 +180,6 @@ namespace TODOList {
 			this->button5->Text = L"Посмотреть";
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &frmMain::button5_Click);
-			this->button5->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmMain::button5_Paint);
 			// 
 			// button6
 			// 
@@ -210,11 +211,22 @@ namespace TODOList {
 			this->btnRemSub->UseVisualStyleBackColor = true;
 			this->btnRemSub->Click += gcnew System::EventHandler(this, &frmMain::btnRemSub_Click);
 			// 
+			// button7
+			// 
+			this->button7->Location = System::Drawing::Point(431, 336);
+			this->button7->Name = L"button7";
+			this->button7->Size = System::Drawing::Size(75, 23);
+			this->button7->TabIndex = 14;
+			this->button7->Text = L"button7";
+			this->button7->UseVisualStyleBackColor = true;
+			this->button7->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::button7_MouseDown);
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(959, 546);
+			this->Controls->Add(this->button7);
 			this->Controls->Add(this->btnRemSub);
 			this->Controls->Add(this->btnRemTask);
 			this->Controls->Add(this->button6);
@@ -268,7 +280,8 @@ namespace TODOList {
 		if (!name.empty()) ptask->header = sts(name);
 		else			   ptask->header = L"noname";
 
-		ptask->Name		   = L"pnlTask_" + sts(std::to_string(ptask_counter));
+		ptask->name		   = L"pnlTask_" + ptask_counter.ToString();
+		ptask->Name		   = L"pnlTask_" + ptask_counter.ToString();
 		ptask->Location	   = System::Drawing::Point(0, 0);
 		ptask->Size		   = System::Drawing::Size(140, 100);		
 		ptask->Dock		   = System::Windows::Forms::DockStyle::Top;
@@ -333,7 +346,9 @@ namespace TODOList {
 			for (const auto& st : t->get_subtasks_vector())
 				ptask->subtask_add(sts(st->get_text()));
 						
-		}		
+		}
+
+		ptask->update_state();
 
 	}
 	Void button6_Click(Object^ sender, EventArgs^ e) {
@@ -514,11 +529,10 @@ namespace TODOList {
 
 #pragma region }
 
+private: System::Void button7_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+}
 
-private: System::Void button5_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+
 }; }
 
 #pragma endregion

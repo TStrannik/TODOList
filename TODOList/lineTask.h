@@ -18,52 +18,73 @@ namespace TODOList {
 	
 
 #pragma region ctors/destr
-	public:	
-		lineTask(void) {
-			
-			InitializeComponent();
+	public:		lineTask(void)  { InitializeComponent(); }
+	protected: ~lineTask()		{ if (components) delete components; }
+#pragma endregion
+
+
+
+	private: System::Windows::Forms::TextBox^	txt;
+	private: System::Windows::Forms::Button^	btnX;
+	private: System::Windows::Forms::CheckBox^	cbx;
+	private: System::ComponentModel::Container^ components;
+
+#pragma region Windows Form Designer generated code
+		void InitializeComponent(void) {
+
 			cbx		= (gcnew System::Windows::Forms::CheckBox());
 			txt		= (gcnew System::Windows::Forms::TextBox());
 			btnX	= (gcnew System::Windows::Forms::Button());
 			SuspendLayout();
-			
-			// lineTask
+
+
+
+
+			// THIS (lineTask)
 			// 
 			// 
-			//Name = L"lineTask";
-			Size = System::Drawing::Size(200, 48);
+			Size						 = System::Drawing::Size(200, 48);
+			MouseDown					+= gcnew System::Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseDown);
 
-			// cbx
-			//
-			//
-			cbx->Name					  = L"cbx";
-			cbx->Text					  = this->header;
-			cbx->AutoSize				  = true;
-			cbx->Location				  = System::Drawing::Point(10, 15);
-			cbx->Size					  = System::Drawing::Size(43, 17);
-			cbx->TabIndex				  = 0;			
-			cbx->UseVisualStyleBackColor  = true;
 
+
+			// 
+			// [v]
+			//
+			cbx->Name					 = L"cbx";
+			cbx->Text					 = this->header;
+			cbx->AutoSize				 = true;
+			cbx->Location				 = System::Drawing::Point(10, 15);
+			cbx->Size					 = System::Drawing::Size(43, 17);
+			cbx->TabIndex				 = 0;
+			cbx->UseVisualStyleBackColor = true;
 			//cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
-			
-			// txt
+
+
+
 			// 
+			// [_________]
 			// 
-			txt->Name					  = L"txt";
-			txt->Location				  = System::Drawing::Point(60, 12);
-			txt->Size					  = System::Drawing::Size(50, 20);
-			txt->TabIndex				  = 1;
-			
-			// btnX
+			txt->Name					 = L"txt";
+			txt->Location				 = System::Drawing::Point(60, 12);
+			txt->Size					 = System::Drawing::Size(50, 20);
+			txt->TabIndex				 = 1;
+
+
+
+
 			// 
+			// [X]
 			// 
-			btnX->Text = L"X";
-			btnX->Name = L"btnX";
-			btnX->Location				  = System::Drawing::Point(168, 11);			
+			btnX->Text					  = L"X";
+			btnX->Name					  = L"btnX";
+			btnX->Location				  = System::Drawing::Point(168, 11);
 			btnX->Size					  = System::Drawing::Size(23, 23);
 			btnX->TextAlign				  = System::Drawing::ContentAlignment::MiddleCenter;
-			btnX->TabIndex				  = 2;			
+			btnX->TabIndex				  = 2;
 			btnX->UseVisualStyleBackColor = true;
+
+
 
 
 
@@ -73,32 +94,22 @@ namespace TODOList {
 
 			ResumeLayout(false);
 			PerformLayout();
-		
-		}
 
-	protected:
-		~lineTask() {
-
-			if (components) delete components;
-		
-		}
-#pragma endregion
-
-
-
-	private: System::Windows::Forms::TextBox^ txt;
-	private: System::Windows::Forms::Button^ btnX;
-	private: System::Windows::Forms::CheckBox^ cbx;
-	private:	System::ComponentModel::Container^  components;
-
-#pragma region Windows Form Designer generated code
-		void InitializeComponent(void)
-		{
-			
 		}
 #pragma endregion
 
 #pragma endregion main {
+
+
+	private:
+		Void this_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+
+			lineTask^ lneTask = (lineTask^)sender;
+			Console::WriteLine(this->Name);
+
+		}
+
+
 
 	public:
 		String^ header = gcnew String("");
@@ -109,8 +120,6 @@ namespace TODOList {
 
 		}
 
-	private:
-		
 
 #pragma region }
 	}; }
