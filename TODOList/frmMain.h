@@ -44,18 +44,18 @@ namespace TODOList {
 	protected:
 	private: System::ComponentModel::Container ^components;
 	private: Windows::Forms::ListBox^ listBox1;
-	private: Windows::Forms::Button^ button1;
-	private: Windows::Forms::Panel^ pnlTasks;
+	private: Windows::Forms::Button^  button1;
+	private: Windows::Forms::Panel^   pnlTasks;
 
-	private: Windows::Forms::Button^ button2;
+	private: Windows::Forms::Button^  button2;
 	private: Windows::Forms::ListBox^ lbxSub;
 	private: Windows::Forms::TextBox^ textBox2;
-	private: Windows::Forms::Button^ button3;
-	private: Windows::Forms::Button^ button4;
-	private: Windows::Forms::Button^ button5;
-	private: System::Windows::Forms::Button^ button6;
-	private: System::Windows::Forms::Button^ btnRemTask;
-	private: System::Windows::Forms::Button^ btnRemSub;
+	private: Windows::Forms::Button^  button3;
+	private: Windows::Forms::Button^  button4;
+	private: Windows::Forms::Button^  button5;
+	private: Windows::Forms::Button^  button6;
+	private: Windows::Forms::Button^  btnRemTask;
+	private: Windows::Forms::Button^  btnRemSub;
 
 
 
@@ -123,7 +123,7 @@ namespace TODOList {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(653, 279);
+			this->button2->Location = System::Drawing::Point(765, 250);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 53);
 			this->button2->TabIndex = 5;
@@ -139,6 +139,7 @@ namespace TODOList {
 			this->lbxSub->Size = System::Drawing::Size(106, 108);
 			this->lbxSub->TabIndex = 6;
 			this->lbxSub->SelectedIndexChanged += gcnew System::EventHandler(this, &frmMain::lbxSub_SelectedIndexChanged);
+			this->lbxSub->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::lbxSub_MouseDoubleClick);
 			// 
 			// textBox2
 			// 
@@ -363,12 +364,18 @@ namespace TODOList {
 	}
 	Void listBox1_MouseDoubleClick(Object^ sender, MouseEventArgs^ e) {
 
-		w("\t#id^ "); wl(tasks->at(task_selected)->);
+		w("\t#id^ "); wl(tasks->at(task_selected)->get_id());
 
 	}
 	Void lbxSub_SelectedIndexChanged(Object^ sender, EventArgs^ e) {
 
 		subtask_selection(lbxSub->SelectedIndex);
+
+	}
+	Void lbxSub_MouseDoubleClick(Object^ sender, MouseEventArgs^ e) {
+
+		w("\t#id^ "); w(tasks->at(task_selected)->get_id());
+		w(" sub^"); wl(tasks->at(task_selected)->get_subtasks_vector().at(subtask_selected)->get_id());
 
 	}
 #pragma endregion	
@@ -508,7 +515,6 @@ namespace TODOList {
 
 
 #pragma region }
-
 
 }; }
 

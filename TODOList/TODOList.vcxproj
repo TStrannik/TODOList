@@ -125,11 +125,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="frmMain.cpp" />
+    <ClCompile Include="lineTask.cpp" />
     <ClCompile Include="pnlTask.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmMain.h">
       <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="lineTask.h">
+      <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="Logic.h" />
     <ClInclude Include="pnlTask.h">
@@ -141,6 +145,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lineTask.resx">
+      <DependentUpon>lineTask.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pnlTask.resx">
       <DependentUpon>pnlTask.h</DependentUpon>

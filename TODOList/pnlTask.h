@@ -1,5 +1,5 @@
 #pragma once
-
+#include "lineTask.h"
 
 
 #pragma region void
@@ -13,14 +13,14 @@ using namespace System::Drawing;
 
 
 namespace TODOList {
-
 	public ref class pnlTask : public System::Windows::Forms::Panel {
 
-	public:		pnlTask(void) { InitializeComponent(); }
-	protected: ~pnlTask() { if (components) delete components; }
+	public:		pnlTask(void) { InitializeComponent();			   }
+	protected: ~pnlTask()	  { if (components) delete components; }
 
-	private:	Windows::Forms::CheckBox^ cbxTask;
-	private:	Windows::Forms::TextBox^  txtTask;
+	//private:	Windows::Forms::CheckBox^ cbxTask;
+	private:	lineTask^				  lneTask;
+	//private:	Windows::Forms::TextBox^  txtTask;
 	private:	Windows::Forms::Panel^	  pnlSubtasks;
 	protected:
 
@@ -29,8 +29,9 @@ namespace TODOList {
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
 		{
-			cbxTask		= (gcnew Windows::Forms::CheckBox());
-			txtTask		= (gcnew Windows::Forms::TextBox());
+			//cbxTask		= (gcnew Windows::Forms::CheckBox());
+			lneTask		= (gcnew lineTask());
+			//txtTask		= (gcnew Windows::Forms::TextBox());
 			pnlSubtasks = (gcnew Windows::Forms::Panel());
 			SuspendLayout();
 			
@@ -57,31 +58,47 @@ namespace TODOList {
 			// cbxTask
 			// 
 			//
-			cbxTask->Name					 = L"cbxTask";
-			cbxTask->AutoSize				 = true;
-			cbxTask->Location				 = Drawing::Point(10, 10);
-			cbxTask->Size					 = Drawing::Size(67, 20);
-			cbxTask->Padding				 = Windows::Forms::Padding(15);
-			cbxTask->TabIndex				 = 0;
-			cbxTask->Text					 = this->Name;
-			cbxTask->Dock					 = Windows::Forms::DockStyle::Top;
-			cbxTask->BackColor				 = Color::FromArgb(255, 0, 128);
-			cbxTask->ForeColor				 = Color::White;
-			cbxTask->UseVisualStyleBackColor = true;
-			cbxTask->CheckedChanged			+= gcnew System::EventHandler(this, &pnlTask::cbxTask_CheckedChanged);
+			//cbxTask->Name					 = L"cbxTask";
+			//cbxTask->AutoSize				 = true;
+			//cbxTask->Location				 = Drawing::Point(10, 10);
+			//cbxTask->Size					 = Drawing::Size(67, 20);
+			//cbxTask->Padding				 = Windows::Forms::Padding(15);
+			//cbxTask->TabIndex				 = 0;
+			//cbxTask->Text					 = this->Name;
+			//cbxTask->Dock					 = Windows::Forms::DockStyle::Top;
+			//cbxTask->BackColor				 = Color::FromArgb(255, 0, 128);
+			//cbxTask->ForeColor				 = Color::White;
+			//cbxTask->UseVisualStyleBackColor = true;
+			//cbxTask->CheckedChanged			+= gcnew System::EventHandler(this, &pnlTask::cbxTask_CheckedChanged);
+			// lneTask
+			// 
+			//
+			lneTask->Name					 = L"lneTask";
+			lneTask->AutoSize				 = true;
+			lneTask->Location				 = Drawing::Point(10, 10);
+			lneTask->Size					 = Drawing::Size(140, 48);
+			lneTask->Padding				 = Windows::Forms::Padding(15);
+			lneTask->TabIndex				 = 0;
+			lneTask->Text					 = this->Name;
+			lneTask->Dock					 = Windows::Forms::DockStyle::Top;
+			lneTask->BackColor				 = Color::FromArgb(255, 0, 128);
+			lneTask->ForeColor				 = Color::White;
+			//lneTask->UseVisualStyleBackColor = true;
+			//lneTask->CheckedChanged			+= gcnew System::EventHandler(this, &pnlTask::cbxTask_CheckedChanged);
 			 
 			// txtTask
 			//
 			//
-			txtTask->Visible				 = false;
-			txtTask->Name					 = L"txtTask";
-			txtTask->Location				 = Drawing::Point(30, cbxTask->Padding.Top - 3);
-			txtTask->Size					 = Drawing::Size(100, 20);
-			txtTask->TabIndex				 = 0;			
-			txtTask->KeyPress				+= gcnew System::Windows::Forms::KeyPressEventHandler(this, &pnlTask::txtTask_KeyPress);
+			//txtTask->Visible				 = false;
+			//txtTask->Name					 = L"txtTask";
+			//txtTask->Location				 = Drawing::Point(30, lneTask->Padding.Top - 3);
+			//txtTask->Size					 = Drawing::Size(100, 20);
+			//txtTask->TabIndex				 = 0;			
+			//txtTask->KeyPress				+= gcnew System::Windows::Forms::KeyPressEventHandler(this, &pnlTask::txtTask_KeyPress);
 
-			Controls->Add(this->cbxTask);
-			Controls->Add(this->txtTask);
+			//Controls->Add(this->cbxTask);
+			Controls->Add(this->lneTask);
+			//Controls->Add(this->txtTask);
 			ResumeLayout(false);
 			PerformLayout();
 
@@ -98,18 +115,18 @@ namespace TODOList {
 
 
 
-		Void txtTask_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e) {
-
-			//if (e->KeyChar == 13) {
-			//	cbxTask->Text	 = txtTask->Text;
-			//	txtTask->Visible = false;
-			//}
-
-		}
+		//Void txtTask_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e) {
+		//
+		//	//if (e->KeyChar == 13) {
+		//	//	cbxTask->Text	 = txtTask->Text;
+		//	//	txtTask->Visible = false;
+		//	//}
+		//
+		//}
 		Void cbxTask_CheckedChanged(Object^ sender, EventArgs^ e) {
 
-			txtTask->Visible = !txtTask->Visible;
-			txtTask->BringToFront();
+			//txtTask->Visible = !txtTask->Visible;
+			//txtTask->BringToFront();
 
 		}
 
@@ -146,10 +163,12 @@ public:
 	}
 	void		update_state() {
 
-		cbxTask->Text = header;
-		this->Height = (subtask_counter) * 20 + 48;\
+		//cbxTask->Text = header;
+		lneTask->Text = header;
+		this->Height = (subtask_counter) * 20 + 48;
 
 	}
+
 #pragma region }
 
 

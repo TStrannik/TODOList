@@ -62,6 +62,12 @@ struct Subtask {
 
 	}
 
+	int					   get_id() {
+
+		return _id;
+
+	}
+
 	void				   remove() {
 		
 		this->~Subtask();		// nel'za
@@ -73,15 +79,13 @@ struct Subtask {
 
 #pragma region fields
 private:
-	static int			   _counter;
 	std::string			   _text;
-	int					   _id = ++_counter;
+	int					   _id;
 #pragma endregion
 
 
 
 };
-int Subtask::_counter = 0;
 
 
 
@@ -192,7 +196,7 @@ private:
 
 
 };
-int Task::_counter = 0;
+int Task::_counter = -1;
 
 
 
