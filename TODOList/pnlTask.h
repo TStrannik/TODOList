@@ -19,38 +19,54 @@ namespace TODOList {
 	public:		pnlTask(void) { InitializeComponent(); }
 	protected: ~pnlTask() { if (components) delete components; }
 
-	private:	System::Windows::Forms::CheckBox^ cbxTask;
-	private:	System::Windows::Forms::TextBox^ txtTask;
+	private:	Windows::Forms::CheckBox^ cbxTask;
+	private:	Windows::Forms::TextBox^  txtTask;
+	private:	Windows::Forms::Panel^	  pnlSubtasks;
 	protected:
 
-	private:
-		System::ComponentModel::Container^ components;
+	private:	System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
 		{
-			cbxTask = (gcnew System::Windows::Forms::CheckBox());
-			txtTask = (gcnew System::Windows::Forms::TextBox());
+			cbxTask		= (gcnew Windows::Forms::CheckBox());
+			txtTask		= (gcnew Windows::Forms::TextBox());
+			pnlSubtasks = (gcnew Windows::Forms::Panel());
 			SuspendLayout();
 			
 			// pnlTask
 			// 
 			//
 			//Name							 = L"pnlOleg ";
-			BackColor						 = System::Drawing::SystemColors::ButtonHighlight;
-			BorderStyle						 = System::Windows::Forms::BorderStyle::FixedSingle;								 
-			Dock							 = System::Windows::Forms::DockStyle::Top;
-			Size							 = System::Drawing::Size(140, 44);
+			BackColor						 = Drawing::SystemColors::ButtonHighlight;
+			BorderStyle						 = Windows::Forms::BorderStyle::FixedSingle;								 
+			Dock							 = Windows::Forms::DockStyle::Top;
+			Size							 = Drawing::Size(140, 44);
+
+			// pnlSubtasks
+			// 
+			//
+			pnlSubtasks->Name	  = L"pnlSubtask";
+			pnlSubtasks->Location = Drawing::Point(0, 0);
+			pnlSubtasks->Size	  = Drawing::Size(140, 250);
+			pnlSubtasks->Dock	  = Windows::Forms::DockStyle::Top;
+			pnlSubtasks->TabIndex = 0;
+
+			this->Controls->Add(pnlSubtasks);
 
 			// cbxTask
 			// 
 			//
 			cbxTask->Name					 = L"cbxTask";
 			cbxTask->AutoSize				 = true;
-			cbxTask->Location				 = System::Drawing::Point(10, 10);
-			cbxTask->Size					 = System::Drawing::Size(67, 17);
+			cbxTask->Location				 = Drawing::Point(10, 10);
+			cbxTask->Size					 = Drawing::Size(67, 20);
+			cbxTask->Padding				 = Windows::Forms::Padding(15);
 			cbxTask->TabIndex				 = 0;
 			cbxTask->Text					 = this->Name;
+			cbxTask->Dock					 = Windows::Forms::DockStyle::Top;
+			cbxTask->BackColor				 = Color::FromArgb(255, 0, 128);
+			cbxTask->ForeColor				 = Color::White;
 			cbxTask->UseVisualStyleBackColor = true;
 			cbxTask->CheckedChanged			+= gcnew System::EventHandler(this, &pnlTask::cbxTask_CheckedChanged);
 			 
@@ -59,8 +75,8 @@ namespace TODOList {
 			//
 			txtTask->Visible				 = false;
 			txtTask->Name					 = L"txtTask";
-			txtTask->Location				 = System::Drawing::Point(25, 7);
-			txtTask->Size					 = System::Drawing::Size(100, 20);
+			txtTask->Location				 = Drawing::Point(30, cbxTask->Padding.Top - 3);
+			txtTask->Size					 = Drawing::Size(100, 20);
 			txtTask->TabIndex				 = 0;			
 			txtTask->KeyPress				+= gcnew System::Windows::Forms::KeyPressEventHandler(this, &pnlTask::txtTask_KeyPress);
 
@@ -77,7 +93,7 @@ namespace TODOList {
 	private:
 
 		int						  subtask_counter = 0;
-		Windows::Forms::CheckBox^ cbxSubtask	  = gcnew CheckBox();
+		Windows::Forms::CheckBox^ cbxSubtask = gcnew CheckBox();
 
 
 
@@ -110,24 +126,28 @@ public:
 
 		subtask_counter++;
 
-		cbxSubtask			 = (gcnew CheckBox());
+		cbxSubtask			  = (gcnew CheckBox());
 
-		cbxSubtask->Name	 = L"cbxSubtask " + subtask_counter.ToString();
-		cbxSubtask->Text	 = name;
-		cbxSubtask->Size	 = System::Drawing::Size(140, 44);
-		cbxSubtask->Dock	 = System::Windows::Forms::DockStyle::Top;
-		cbxSubtask->TabIndex = 0;
+		cbxSubtask->Name	  = L"cbxSubtask " + subtask_counter.ToString();
+		cbxSubtask->Text	  = name;
+		cbxSubtask->Size	  = Drawing::Size(140, 20);
+		cbxSubtask->Dock	  = Windows::Forms::DockStyle::Top;
+		cbxSubtask->BackColor = Color::FromArgb(255 - 8 * subtask_counter, 8 * subtask_counter, 128);
+		cbxSubtask->ForeColor = Color::White;
+		cbxSubtask->Padding   = Windows::Forms::Padding(25, 15, 0, 15);		
+		cbxSubtask->TabIndex  = 0;
 		//cbxSubtask->Click   += gcnew System::EventHandler(this, &frmMain::task_Click);
 
-		Controls->Add(cbxSubtask);
+		//Controls->Add(cbxSubtask);
+		pnlSubtasks->Controls->Add(cbxSubtask);
 
+		update_state();
 
 	}
 	void		update_state() {
 
 		cbxTask->Text = header;
-
-		Console::WriteLine("\tU P D A T E ");
+		this->Height = (subtask_counter) * 20 + 48;\
 
 	}
 #pragma region }

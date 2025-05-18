@@ -41,23 +41,24 @@ namespace TODOList {
 
 	protected:
 	private: System::ComponentModel::Container ^components;
-	private: System::Windows::Forms::ListBox^ listBox1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Panel^ pnlTasks;
+	private: Windows::Forms::ListBox^ listBox1;
+	private: Windows::Forms::Button^ button1;
+	private: Windows::Forms::Panel^ pnlTasks;
 
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::ListBox^ lbxSub;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button5;
-
-
+	private: Windows::Forms::Button^ button2;
+	private: Windows::Forms::ListBox^ lbxSub;
+	private: Windows::Forms::TextBox^ textBox2;
+	private: Windows::Forms::Button^ button3;
+	private: Windows::Forms::Button^ button4;
+	private: Windows::Forms::Button^ button5;
 
 
 
 
-	private: System::Windows::Forms::TextBox^ textBox1;
+
+
+
+	private: Windows::Forms::TextBox^ textBox1;
 
 
 
@@ -220,7 +221,7 @@ namespace TODOList {
 
 		ptask->Name		   = L"pnlTask_" + sts(std::to_string(ptask_counter));
 		ptask->Location	   = System::Drawing::Point(0, 0);
-		ptask->Size		   = System::Drawing::Size(140, 150);		
+		ptask->Size		   = System::Drawing::Size(140, 100);		
 		ptask->Dock		   = System::Windows::Forms::DockStyle::Top;
 		ptask->TabIndex	   = 0;
 		ptask->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
