@@ -29,7 +29,6 @@ namespace TODOList {
 #pragma region Windows Form Designer generated code
 		void InitializeComponent(void)
 		{
-			//cbxTask		= (gcnew Windows::Forms::CheckBox());
 			lneTask		= (gcnew lineTask());
 			//txtTask		= (gcnew Windows::Forms::TextBox());
 			pnlSubtasks = (gcnew Windows::Forms::Panel());
@@ -55,25 +54,11 @@ namespace TODOList {
 
 			this->Controls->Add(pnlSubtasks);
 
-			// cbxTask
-			// 
-			//
-			//cbxTask->Name					 = L"cbxTask";
-			//cbxTask->AutoSize				 = true;
-			//cbxTask->Location				 = Drawing::Point(10, 10);
-			//cbxTask->Size					 = Drawing::Size(67, 20);
-			//cbxTask->Padding				 = Windows::Forms::Padding(15);
-			//cbxTask->TabIndex				 = 0;
-			//cbxTask->Text					 = this->Name;
-			//cbxTask->Dock					 = Windows::Forms::DockStyle::Top;
-			//cbxTask->BackColor				 = Color::FromArgb(255, 0, 128);
-			//cbxTask->ForeColor				 = Color::White;
-			//cbxTask->UseVisualStyleBackColor = true;
-			//cbxTask->CheckedChanged			+= gcnew System::EventHandler(this, &pnlTask::cbxTask_CheckedChanged);
 			// lneTask
 			// 
 			//
-			lneTask->Name					 = L"lneTask";
+			lneTask->header					 = this->header;
+			lneTask->Name					 = this->Name; //L"lneTask";
 			lneTask->AutoSize				 = true;
 			lneTask->Location				 = Drawing::Point(10, 10);
 			lneTask->Size					 = Drawing::Size(140, 48);
@@ -86,17 +71,6 @@ namespace TODOList {
 			//lneTask->UseVisualStyleBackColor = true;
 			//lneTask->CheckedChanged			+= gcnew System::EventHandler(this, &pnlTask::cbxTask_CheckedChanged);
 			 
-			// txtTask
-			//
-			//
-			//txtTask->Visible				 = false;
-			//txtTask->Name					 = L"txtTask";
-			//txtTask->Location				 = Drawing::Point(30, lneTask->Padding.Top - 3);
-			//txtTask->Size					 = Drawing::Size(100, 20);
-			//txtTask->TabIndex				 = 0;			
-			//txtTask->KeyPress				+= gcnew System::Windows::Forms::KeyPressEventHandler(this, &pnlTask::txtTask_KeyPress);
-
-			//Controls->Add(this->cbxTask);
 			Controls->Add(this->lneTask);
 			//Controls->Add(this->txtTask);
 			ResumeLayout(false);
@@ -123,12 +97,6 @@ namespace TODOList {
 		//	//}
 		//
 		//}
-		Void cbxTask_CheckedChanged(Object^ sender, EventArgs^ e) {
-
-			//txtTask->Visible = !txtTask->Visible;
-			//txtTask->BringToFront();
-
-		}
 
 
 
@@ -163,8 +131,12 @@ public:
 	}
 	void		update_state() {
 
-		//cbxTask->Text = header;
-		lneTask->Text = header;
+		lneTask->Text	= header; /// DELETE
+		lneTask->header = header;
+
+		lneTask->update_state();
+
+		// Пересчёт размера
 		this->Height = (subtask_counter) * 20 + 48;
 
 	}

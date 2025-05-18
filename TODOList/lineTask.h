@@ -22,47 +22,57 @@ namespace TODOList {
 		lineTask(void) {
 			
 			InitializeComponent();
-			this->cbx	= (gcnew System::Windows::Forms::CheckBox());
-			this->txt	= (gcnew System::Windows::Forms::TextBox());
-			this->btnX	= (gcnew System::Windows::Forms::Button());
-			this->SuspendLayout();
-			// 
-			// cbx
-			// 
-			this->cbx->AutoSize = true;
-			this->cbx->Location = System::Drawing::Point(10, 15);
-			this->cbx->Name = L"cbx";
-			this->cbx->Size = System::Drawing::Size(43, 17);
-			this->cbx->TabIndex = 0;
-			this->cbx->Text = L"cbx";
-			this->cbx->UseVisualStyleBackColor = true;
-			// 
-			// txt
-			// 
-			this->txt->Location = System::Drawing::Point(49, 12);
-			this->txt->Name = L"txt";
-			this->txt->Size = System::Drawing::Size(100, 20);
-			this->txt->TabIndex = 1;
-			// 
-			// btnX
-			// 
-			this->btnX->Location = System::Drawing::Point(168, 11);
-			this->btnX->Name = L"btnX";
-			this->btnX->Size = System::Drawing::Size(20, 23);
-			this->btnX->TabIndex = 2;
-			this->btnX->Text = L"X";
-			this->btnX->UseVisualStyleBackColor = true;
-			// 
+			cbx		= (gcnew System::Windows::Forms::CheckBox());
+			txt		= (gcnew System::Windows::Forms::TextBox());
+			btnX	= (gcnew System::Windows::Forms::Button());
+			SuspendLayout();
+			
 			// lineTask
 			// 
-			this->Controls->Add(this->btnX);
-			this->Controls->Add(this->txt);
-			this->Controls->Add(this->cbx);
-			this->Name = L"lineTask";
-			this->Size = System::Drawing::Size(200, 48);
-			this->ResumeLayout(false);
-			this->PerformLayout();
+			// 
+			//Name = L"lineTask";
+			Size = System::Drawing::Size(200, 48);
 
+			// cbx
+			//
+			//
+			cbx->Name					  = L"cbx";
+			cbx->Text					  = this->header;
+			cbx->AutoSize				  = true;
+			cbx->Location				  = System::Drawing::Point(10, 15);
+			cbx->Size					  = System::Drawing::Size(43, 17);
+			cbx->TabIndex				  = 0;			
+			cbx->UseVisualStyleBackColor  = true;
+
+			//cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
+			
+			// txt
+			// 
+			// 
+			txt->Name					  = L"txt";
+			txt->Location				  = System::Drawing::Point(60, 12);
+			txt->Size					  = System::Drawing::Size(50, 20);
+			txt->TabIndex				  = 1;
+			
+			// btnX
+			// 
+			// 
+			btnX->Text = L"X";
+			btnX->Name = L"btnX";
+			btnX->Location				  = System::Drawing::Point(168, 11);			
+			btnX->Size					  = System::Drawing::Size(23, 23);
+			btnX->TextAlign				  = System::Drawing::ContentAlignment::MiddleCenter;
+			btnX->TabIndex				  = 2;			
+			btnX->UseVisualStyleBackColor = true;
+
+
+
+			Controls->Add(btnX);
+			Controls->Add(txt);
+			Controls->Add(cbx);
+
+			ResumeLayout(false);
+			PerformLayout();
 		
 		}
 
@@ -90,8 +100,17 @@ namespace TODOList {
 
 #pragma endregion main {
 
-	private:
+	public:
+		String^ header = gcnew String("");
 
+		void		update_state() {
+
+			cbx->Text = header;
+
+		}
+
+	private:
+		
 
 #pragma region }
 	}; }

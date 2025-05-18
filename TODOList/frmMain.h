@@ -63,6 +63,7 @@ namespace TODOList {
 
 
 
+
 	private: Windows::Forms::TextBox^ textBox1;
 
 
@@ -177,6 +178,7 @@ namespace TODOList {
 			this->button5->Text = L"Посмотреть";
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &frmMain::button5_Click);
+			this->button5->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmMain::button5_Paint);
 			// 
 			// button6
 			// 
@@ -264,7 +266,7 @@ namespace TODOList {
 		ptask			   = (gcnew pnlTask());
 		
 		if (!name.empty()) ptask->header = sts(name);
-		else			   ptask->header = L"";
+		else			   ptask->header = L"noname";
 
 		ptask->Name		   = L"pnlTask_" + sts(std::to_string(ptask_counter));
 		ptask->Location	   = System::Drawing::Point(0, 0);
@@ -325,17 +327,13 @@ namespace TODOList {
 	}
 	Void button5_Click(Object^ sender, EventArgs^ e) {
 
-		ptask_add(tasks->back()->get_text());
+		for (const auto& t : *tasks) {
 
-		for (const auto& t : *tasks)
-		{
-
+			ptask_add(t->get_text());
 			for (const auto& st : t->get_subtasks_vector())
-			{
 				ptask->subtask_add(sts(st->get_text()));
-			}			
-		}
-		
+						
+		}		
 
 	}
 	Void button6_Click(Object^ sender, EventArgs^ e) {
@@ -516,6 +514,11 @@ namespace TODOList {
 
 #pragma region }
 
+
+private: System::Void button5_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 }; }
 
 #pragma endregion
