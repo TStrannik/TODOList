@@ -10,6 +10,8 @@
 #include "pnlTask.h"
 
 
+
+#pragma region methods
 std::string		sts(System::String^ text) {
 
 	return msclr::interop::marshal_as <std::string> (text);
@@ -20,7 +22,7 @@ System::String^ sts(std::string text) {
 	return gcnew String(text.c_str());
 
 }
-
+#pragma endregion
 
 
 #pragma region void
@@ -51,6 +53,9 @@ namespace TODOList {
 	private: Windows::Forms::Button^ button3;
 	private: Windows::Forms::Button^ button4;
 	private: Windows::Forms::Button^ button5;
+	private: System::Windows::Forms::Button^ button6;
+	private: System::Windows::Forms::Button^ btnRemTask;
+	private: System::Windows::Forms::Button^ btnRemSub;
 
 
 
@@ -75,12 +80,15 @@ namespace TODOList {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->button6 = (gcnew System::Windows::Forms::Button());
+			this->btnRemTask = (gcnew System::Windows::Forms::Button());
+			this->btnRemSub = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(430, 135);
+			this->listBox1->Location = System::Drawing::Point(502, 109);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(106, 108);
 			this->listBox1->TabIndex = 1;
@@ -88,7 +96,7 @@ namespace TODOList {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(430, 80);
+			this->button1->Location = System::Drawing::Point(502, 54);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(106, 23);
 			this->button1->TabIndex = 2;
@@ -107,16 +115,16 @@ namespace TODOList {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(430, 109);
+			this->textBox1->Location = System::Drawing::Point(502, 83);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(106, 20);
 			this->textBox1->TabIndex = 4;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(430, 249);
+			this->button2->Location = System::Drawing::Point(502, 268);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(218, 23);
+			this->button2->Size = System::Drawing::Size(75, 53);
 			this->button2->TabIndex = 5;
 			this->button2->Text = L"Отобр структ";
 			this->button2->UseVisualStyleBackColor = true;
@@ -125,21 +133,22 @@ namespace TODOList {
 			// lbxSub
 			// 
 			this->lbxSub->FormattingEnabled = true;
-			this->lbxSub->Location = System::Drawing::Point(542, 135);
+			this->lbxSub->Location = System::Drawing::Point(614, 109);
 			this->lbxSub->Name = L"lbxSub";
 			this->lbxSub->Size = System::Drawing::Size(106, 108);
 			this->lbxSub->TabIndex = 6;
+			this->lbxSub->SelectedIndexChanged += gcnew System::EventHandler(this, &frmMain::lbxSub_SelectedIndexChanged);
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(542, 109);
+			this->textBox2->Location = System::Drawing::Point(614, 83);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(106, 20);
 			this->textBox2->TabIndex = 7;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(542, 80);
+			this->button3->Location = System::Drawing::Point(614, 54);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(106, 23);
 			this->button3->TabIndex = 8;
@@ -167,11 +176,44 @@ namespace TODOList {
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &frmMain::button5_Click);
 			// 
+			// button6
+			// 
+			this->button6->Location = System::Drawing::Point(502, 239);
+			this->button6->Name = L"button6";
+			this->button6->Size = System::Drawing::Size(75, 23);
+			this->button6->TabIndex = 11;
+			this->button6->Text = L"Add_test";
+			this->button6->UseVisualStyleBackColor = true;
+			this->button6->Click += gcnew System::EventHandler(this, &frmMain::button6_Click);
+			// 
+			// btnRemTask
+			// 
+			this->btnRemTask->Location = System::Drawing::Point(421, 109);
+			this->btnRemTask->Name = L"btnRemTask";
+			this->btnRemTask->Size = System::Drawing::Size(75, 23);
+			this->btnRemTask->TabIndex = 12;
+			this->btnRemTask->Text = L"Загубить";
+			this->btnRemTask->UseVisualStyleBackColor = true;
+			this->btnRemTask->Click += gcnew System::EventHandler(this, &frmMain::btnRemTask_Click);
+			// 
+			// btnRemSub
+			// 
+			this->btnRemSub->Location = System::Drawing::Point(726, 109);
+			this->btnRemSub->Name = L"btnRemSub";
+			this->btnRemSub->Size = System::Drawing::Size(75, 23);
+			this->btnRemSub->TabIndex = 13;
+			this->btnRemSub->Text = L"Стереть";
+			this->btnRemSub->UseVisualStyleBackColor = true;
+			this->btnRemSub->Click += gcnew System::EventHandler(this, &frmMain::btnRemSub_Click);
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(959, 546);
+			this->Controls->Add(this->btnRemSub);
+			this->Controls->Add(this->btnRemTask);
+			this->Controls->Add(this->button6);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -197,19 +239,22 @@ namespace TODOList {
 
 #pragma endregion main {
 
+
+
+#pragma region variables
 	Logic*				   logic;
-	std::vector <Task*>*   tasks		 = new std::vector <Task*>();
-	int					   task_selected = 0;  // -1;
+	std::vector <Task*>*   tasks		    = new std::vector <Task*>();
+	int					   task_selected    = 0;  // -1;
+	int					   subtask_selected = 0;	// -1; -> proverka
 	
-	//std::vector <Windows::Forms::Panel^>* drags = 
-	//	new std::vector <Windows::Forms::Panel^>();
+	static int			   ptask_counter	= 0;
+	int					   ptask_selected	= -1;
+	pnlTask^ ptask							= gcnew pnlTask();
+#pragma endregion
 
-	static int			   ptask_counter  = 0;
-	int					   ptask_selected = -1;
-	pnlTask^ ptask						  = gcnew pnlTask();
 
-	
-	
+
+#pragma region events
 	inline void ptask_add(const std::string& name) {
 
 		ptask_counter++;
@@ -267,7 +312,7 @@ namespace TODOList {
 	}
 	Void button3_Click(Object^ sender, EventArgs^ e) {
 
-		tasks->at(task_selected)->new_subtask(sts(textBox2->Text));
+		subtask_add(textBox2->Text);
 		subtask_to_list(lbxSub);
 
 	}
@@ -280,8 +325,33 @@ namespace TODOList {
 
 		ptask_add(tasks->back()->get_text());
 
-		for (const auto& st : tasks->back()->get_subtasks_vector())
-			ptask->subtask_add(sts(st->get_text()));
+		for (const auto& t : *tasks)
+		{
+
+			for (const auto& st : t->get_subtasks_vector())
+			{
+				ptask->subtask_add(sts(st->get_text()));
+			}			
+		}
+		
+
+	}
+	Void button6_Click(Object^ sender, EventArgs^ e) {
+
+		test_tasks();
+
+	}
+	Void btnRemSub_Click(Object^ sender, EventArgs^ e) {
+
+		task_remove(task_selected, subtask_selected);
+		subtask_to_list(lbxSub);
+
+	}
+	Void btnRemTask_Click(Object^ sender, EventArgs^ e) {
+
+		task_remove(task_selected);
+		task_to_list(listBox1);
+		subtask_to_list(lbxSub);
 
 	}
 
@@ -290,12 +360,16 @@ namespace TODOList {
 		task_selection(listBox1->SelectedIndex);
 	
 	}
+	Void lbxSub_SelectedIndexChanged(Object^ sender, EventArgs^ e) {
+
+		subtask_selection(lbxSub->SelectedIndex);
+
+	}
+#pragma endregion	
+
 	
 
-
-	
-
-
+#pragma region operations
 	inline void task_to_list(Windows::Forms::ListBox^ lbx) {
 
 		lbx->Items->Clear();
@@ -344,10 +418,27 @@ namespace TODOList {
 	inline void task_selection(const int& ind) {
 
 		task_selected = ind;
-
-		w(tasks->at(ind)->get_text()); wl(" ->selected");
-
 		subtask_to_list(lbxSub);
+		
+
+		//w(tasks->at(ind)->get_text()); wl(" ->selected");
+
+	}
+	inline void task_remove(int tsk) {
+
+		tasks->at(tsk)->remove();
+
+
+	}
+	inline void task_remove(int tsk, int sub) {
+
+		tasks->at(tsk)->remove(sub);			// remove
+
+	}
+
+	inline void subtask_add(String^ string) {
+
+		tasks->at(task_selected)->new_subtask(sts(string));
 
 	}
 	inline void subtask_to_list(Windows::Forms::ListBox^ lbx) {
@@ -358,6 +449,57 @@ namespace TODOList {
 			lbx->Items->Add(sts(st->get_text()));
 
 	}
+	
+	inline void subtask_selection(const int& ind) {
+
+		subtask_selected = ind;
+
+	}
+
+	inline void test_tasks() {
+
+		tasks->push_back(
+			new Task({
+				"Gavka"
+			})
+		);
+		tasks->push_back(
+			new Task({
+				"Kogtic",
+				{
+					new Subtask("20")
+				}
+			})
+		);
+		tasks->push_back(
+			new Task({
+				"Ebuca",
+				{
+					new Subtask("30"),
+					new Subtask("31"),
+				}
+			})
+		);
+		tasks->push_back(
+			new Task({
+				"Bupca",
+				{
+					new Subtask("40"),
+					new Subtask("41"),
+					new Subtask("42"),
+					new Subtask("43"),
+					new Subtask("44"),
+				}
+				})
+		);
+
+		task_to_list(listBox1);
+		subtask_to_list(lbxSub);
+
+	}
+#pragma endregion 
+
+
 
 #pragma region }
 

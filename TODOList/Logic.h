@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <vector>
 #include <string>
+#include <initializer_list>
 using namespace System;
 
 /// DELETE
@@ -53,6 +54,11 @@ struct Subtask {
 		_text = text;
 
 	}
+	void				   remove() {
+		
+		this->~Subtask();		// nel'za
+
+	}
 
 private:
 	std::string			   _text;
@@ -69,6 +75,14 @@ struct Task {
 	{
 
 		w("\t+Task( "); w(_text); wl(" )");
+
+	}
+	Task(const std::string& text, std::initializer_list <Subtask*> list)
+		: _text(text)
+		, _subtasks(list)
+	{
+	
+		w("\t+Task( "); w(_text); wl(", {...} )");
 
 	}
 	~Task() {
@@ -101,6 +115,25 @@ struct Task {
 	std::vector <Subtask*> get_subtasks_vector() {
 
 		return _subtasks;
+
+	}
+	
+	void				   remove() {
+		// Удалить весь Task
+		
+		for (int i = 0; i < _subtasks.size(); ++i) {
+			_subtasks.at(i)->remove();
+			_subtasks.erase(begin(_subtasks) + i);
+		}
+
+		this->~Task();
+
+	}																		   
+	void				   remove(const int& ind) {
+		// Удалить Subtask(ind)
+		
+		_subtasks.at(ind)->remove();
+		_subtasks.erase(begin(_subtasks) + ind);
 
 	}
 
