@@ -427,7 +427,7 @@ namespace TODOList {
 	inline void task_remove(int tsk) {
 
 		tasks->at(tsk)->remove();
-
+		tasks->erase(tasks->begin() + tsk);
 
 	}
 	inline void task_remove(int tsk, int sub) {
