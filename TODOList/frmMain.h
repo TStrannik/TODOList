@@ -88,15 +88,16 @@ namespace TODOList {
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(502, 109);
+			this->listBox1->Location = System::Drawing::Point(653, 120);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(106, 108);
 			this->listBox1->TabIndex = 1;
 			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmMain::listBox1_SelectedIndexChanged);
+			this->listBox1->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::listBox1_MouseDoubleClick);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(502, 54);
+			this->button1->Location = System::Drawing::Point(653, 65);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(106, 23);
 			this->button1->TabIndex = 2;
@@ -110,19 +111,19 @@ namespace TODOList {
 			this->pnlTasks->Dock = System::Windows::Forms::DockStyle::Left;
 			this->pnlTasks->Location = System::Drawing::Point(0, 0);
 			this->pnlTasks->Name = L"pnlTasks";
-			this->pnlTasks->Size = System::Drawing::Size(235, 546);
+			this->pnlTasks->Size = System::Drawing::Size(380, 546);
 			this->pnlTasks->TabIndex = 3;
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(502, 83);
+			this->textBox1->Location = System::Drawing::Point(653, 94);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(106, 20);
 			this->textBox1->TabIndex = 4;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(502, 268);
+			this->button2->Location = System::Drawing::Point(653, 279);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 53);
 			this->button2->TabIndex = 5;
@@ -133,7 +134,7 @@ namespace TODOList {
 			// lbxSub
 			// 
 			this->lbxSub->FormattingEnabled = true;
-			this->lbxSub->Location = System::Drawing::Point(614, 109);
+			this->lbxSub->Location = System::Drawing::Point(765, 120);
 			this->lbxSub->Name = L"lbxSub";
 			this->lbxSub->Size = System::Drawing::Size(106, 108);
 			this->lbxSub->TabIndex = 6;
@@ -141,14 +142,14 @@ namespace TODOList {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(614, 83);
+			this->textBox2->Location = System::Drawing::Point(765, 94);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(106, 20);
 			this->textBox2->TabIndex = 7;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(614, 54);
+			this->button3->Location = System::Drawing::Point(765, 65);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(106, 23);
 			this->button3->TabIndex = 8;
@@ -158,7 +159,7 @@ namespace TODOList {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(241, 12);
+			this->button4->Location = System::Drawing::Point(386, 31);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 9;
@@ -168,7 +169,7 @@ namespace TODOList {
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(241, 166);
+			this->button5->Location = System::Drawing::Point(386, 170);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(106, 23);
 			this->button5->TabIndex = 10;
@@ -178,7 +179,7 @@ namespace TODOList {
 			// 
 			// button6
 			// 
-			this->button6->Location = System::Drawing::Point(502, 239);
+			this->button6->Location = System::Drawing::Point(653, 250);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 23);
 			this->button6->TabIndex = 11;
@@ -188,7 +189,7 @@ namespace TODOList {
 			// 
 			// btnRemTask
 			// 
-			this->btnRemTask->Location = System::Drawing::Point(421, 109);
+			this->btnRemTask->Location = System::Drawing::Point(572, 120);
 			this->btnRemTask->Name = L"btnRemTask";
 			this->btnRemTask->Size = System::Drawing::Size(75, 23);
 			this->btnRemTask->TabIndex = 12;
@@ -198,7 +199,7 @@ namespace TODOList {
 			// 
 			// btnRemSub
 			// 
-			this->btnRemSub->Location = System::Drawing::Point(726, 109);
+			this->btnRemSub->Location = System::Drawing::Point(877, 120);
 			this->btnRemSub->Name = L"btnRemSub";
 			this->btnRemSub->Size = System::Drawing::Size(75, 23);
 			this->btnRemSub->TabIndex = 13;
@@ -360,6 +361,11 @@ namespace TODOList {
 		task_selection(listBox1->SelectedIndex);
 	
 	}
+	Void listBox1_MouseDoubleClick(Object^ sender, MouseEventArgs^ e) {
+
+		w("\t#id^ "); wl(tasks->at(task_selected)->);
+
+	}
 	Void lbxSub_SelectedIndexChanged(Object^ sender, EventArgs^ e) {
 
 		subtask_selection(lbxSub->SelectedIndex);
@@ -432,7 +438,7 @@ namespace TODOList {
 	}
 	inline void task_remove(int tsk, int sub) {
 
-		tasks->at(tsk)->remove(sub);			// remove
+		tasks->at(tsk)->remove(sub);
 
 	}
 
@@ -502,6 +508,7 @@ namespace TODOList {
 
 
 #pragma region }
+
 
 }; }
 

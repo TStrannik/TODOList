@@ -31,6 +31,9 @@ inline void cwl(std::string msg) {
 
 struct Subtask {
 
+
+
+#pragma region ctors/destr
 	Subtask(const std::string& text)
 		: _text(text)
 	{
@@ -43,7 +46,11 @@ struct Subtask {
 		w("\t~Subtask( "); w(_text); wl(" )");		
 	
 	}
+#pragma endregion
 
+
+
+#pragma region ctors/destr
 	std::string			   get_text() {
 
 		return _text;
@@ -54,22 +61,37 @@ struct Subtask {
 		_text = text;
 
 	}
+
 	void				   remove() {
 		
 		this->~Subtask();		// nel'za
 
 	}
+#pragma endregion
 
+
+
+#pragma region fields
 private:
+	static int			   _counter;
 	std::string			   _text;
-	//int				   _id;
+	int					   _id = ++_counter;
+#pragma endregion
+
+
 
 };
+int Subtask::_counter = 0;
+
+
 
 
 
 struct Task {
 
+
+
+#pragma region ctors/destr
 	Task(const std::string& text)
 		: _text(text)
 	{
@@ -91,7 +113,11 @@ struct Task {
 		_delete_subtasks();
 
 	}
+#pragma endregion
 
+
+
+#pragma region methods
 	std::string			   get_text() {
 
 		return _text;
@@ -102,6 +128,7 @@ struct Task {
 		_text = text;
 
 	}
+
 	Subtask*			   get_subtask(const int& ind) {
 
 		return _subtasks.at(ind);
@@ -115,6 +142,12 @@ struct Task {
 	std::vector <Subtask*> get_subtasks_vector() {
 
 		return _subtasks;
+
+	}
+
+	int					   get_id() {
+
+		return _id;
 
 	}
 	
@@ -138,19 +171,36 @@ struct Task {
 	}
 
 private:
-	std::string			   _text;
-	std::vector <Subtask*> _subtasks;
-	//int				   _id;
-
-private:
 	void				   _delete_subtasks() {
 
 		for (const auto& st : _subtasks)
 			delete st;
 
 	}
+#pragma endregion
+
+
+
+#pragma region fields
+private:
+	static int			   _counter;
+	std::string			   _text;
+	std::vector <Subtask*> _subtasks;
+	int					   _id = ++_counter;
+#pragma endregion
+
+
 
 };
+int Task::_counter = 0;
+
+
+
+
+
+
+
+
 
 
 
