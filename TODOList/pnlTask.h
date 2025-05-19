@@ -27,8 +27,8 @@ namespace TODOList {
 	private:	System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
-		void InitializeComponent(void)
-		{
+		void InitializeComponent(void) {
+
 			lneTask		= (gcnew lineTask());
 			pnlSubtasks = (gcnew Windows::Forms::Panel());
 			SuspendLayout();

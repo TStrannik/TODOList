@@ -4,6 +4,8 @@
 
 #pragma region void
 
+
+
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -27,6 +29,8 @@ namespace TODOList {
 
 	private: System::Windows::Forms::TextBox^	txt;
 	private: System::Windows::Forms::Button^	btnX;
+	private: System::Windows::Forms::Button^	btnU;
+	private: System::Windows::Forms::Button^	btnD;
 	private: System::Windows::Forms::CheckBox^	cbx;
 	private: System::ComponentModel::Container^ components;
 
@@ -36,6 +40,8 @@ namespace TODOList {
 			cbx		= (gcnew Windows::Forms::CheckBox());
 			txt		= (gcnew Windows::Forms::TextBox());
 			btnX	= (gcnew Windows::Forms::Button());
+			btnU	= (gcnew Windows::Forms::Button());
+			btnD	= (gcnew Windows::Forms::Button());
 			SuspendLayout();
 
 
@@ -71,7 +77,7 @@ namespace TODOList {
 			// [_________]
 			// 
 			txt->Name					 = L"txt";
-			txt->Location				 = Drawing::Point(60, 12);
+			txt->Location				 = Drawing::Point(80, 12);
 			txt->Size					 = Drawing::Size(50, 20);
 			txt->TabIndex				 = 1;
 
@@ -86,6 +92,7 @@ namespace TODOList {
 			btnX->Location				  = Drawing::Point(168, 11);
 			btnX->Size					  = Drawing::Size(23, 23);
 			btnX->TextAlign				  = Drawing::ContentAlignment::MiddleCenter;
+			btnX->BackColor				  = Drawing::Color::Transparent;
 			btnX->TabIndex				  = 2;
 			btnX->UseVisualStyleBackColor = true;
 
@@ -93,9 +100,44 @@ namespace TODOList {
 
 
 
-			Controls->Add(btnX);
-			Controls->Add(txt);
-			Controls->Add(cbx);
+			// 
+			// [^]
+			// 
+			btnU->Text					  = L"^";
+			btnU->Name					  = L"btnX";
+			btnU->Location				  = Drawing::Point(188, 11);
+			btnU->Size					  = Drawing::Size(23, 23);
+			btnU->TextAlign				  = Drawing::ContentAlignment::MiddleCenter;
+			btnU->BackColor				  = Drawing::Color::Transparent;
+			btnU->TabIndex				  = 2;
+			btnU->UseVisualStyleBackColor = true;
+			
+			btnU->Click					 += gcnew EventHandler(this, &lineTask::btnU_Click);
+
+
+
+
+
+			// 
+			// [v]
+			// 
+			btnD->Text					  = L"v";
+			btnD->Name					  = L"btnX";
+			btnD->Location				  = Drawing::Point(208, 11);
+			btnD->Size					  = Drawing::Size(23, 23);
+			btnD->TextAlign				  = Drawing::ContentAlignment::MiddleCenter;
+			btnD->BackColor				  = Drawing::Color::Transparent;
+			btnD->TabIndex				  = 2;
+			btnD->UseVisualStyleBackColor = true;
+
+			btnD->Click					 += gcnew EventHandler(this, &lineTask::btnD_Click);
+
+
+
+
+
+			Controls->Add(btnX); Controls->Add(btnU); Controls->Add(btnD);
+			Controls->Add(cbx);  Controls->Add(txt);
 
 			ResumeLayout(false);
 			PerformLayout();
@@ -108,50 +150,74 @@ namespace TODOList {
 
 	private:
 
-		int posX	= 0;
-		int posY	= 0;
-		int offsetX = 0;
-		int offsetY = 0;
+
+		/* D&D 
+		bool _drag_start = false;
+		int  _posX	= 0;
+		int  _posY	= 0;
+		int  _offsetX = 0;
+		int  _offsetY = 0;
+
+		_drag_start = true;
+		_posX = e->X;
+		_posY = e->Y;
+
+		Parent->Size = Drawing::Size(200, 100); //(Parent->Parent->Width, Parent->Height);
+		Parent->Dock = Windows::Forms::DockStyle::None;
+
+		//if (_drag_start) {
+			//	//Parent->Left = _posX + MousePosition.X;
+			//	//Parent->Top  = _posY - MousePosition.Y;
+			//}
+
+		_drag_start = false;
+		Parent->TabIndex = 3;
+		Parent->Dock = Windows::Forms::DockStyle::Top;
+
+		*/
+
 
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			
-			posX = e->X;
-			posY = e->Y;
+			Console::WriteLine(Parent->Parent->TabIndex);
 
-			Console::Write(posX);
-			Console::Write(" : ");
-			Console::WriteLine(posY);
-
-
-			Parent->Size = Drawing::Size(Parent->Parent->Width, Parent->Height);
-			Parent->Dock = Windows::Forms::DockStyle::None;
-
-
-			/*
-			//lineTask^ lneTask = (lineTask^)sender;
-
-			Console::Write("\t");
-			Console::Write(this->Parent->Name);
-			Console::Write(" [");
-			Console::Write(this->Name);
-			Console::Write("]");
-			Console::WriteLine();
-			*/
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			
+
 
 		}
 		Void this_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-
-			Parent->Dock = Windows::Forms::DockStyle::Top;
+			
 
 		}
 
 
+
+
+
+
+
+
+
+		Void btnU_Click(Object^ sender, EventArgs^ e) {
+
+			
+
+			//Console::WriteLine(Parent->Parent->Parent->Name);
+			
+				
+				
+
+		}
+		Void btnD_Click(Object^ sender, EventArgs^ e) {
+
+
+			Console::WriteLine(Parent->Name);
+			
+
+		}
 
 
 	public:
