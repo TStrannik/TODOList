@@ -382,15 +382,7 @@ private:
 	}
 	Void button5_Click(Object^ sender, EventArgs^ e) {
 
-		for (const auto& t : *tasks) {
-
-			ptask_add(t->get_text());
-			for (const auto& st : t->get_subtasks_vector())
-				ptask->subtask_add(sts(st->get_text()));
-						
-		}
-
-		ptask->update_state();
+		ptask_update();
 
 	}
 	Void button6_Click(Object^ sender, EventArgs^ e) {
@@ -404,6 +396,7 @@ private:
 
 		task_to_list(listBox1);
 		subtask_to_list(lbxSub);
+		ptask_update();
 
 	}
 	Void button8_Click(Object^ sender, EventArgs^ e) {
@@ -412,6 +405,7 @@ private:
 
 		task_to_list(listBox1);
 		subtask_to_list(lbxSub);
+		ptask_update();
 
 	}
 	Void button9_Click(Object^ sender, EventArgs^ e) {
@@ -420,6 +414,7 @@ private:
 
 		task_to_list(listBox1);
 		subtask_to_list(lbxSub);
+		ptask_update();
 
 	}
 	Void btnRemSub_Click(Object^ sender, EventArgs^ e) {
@@ -527,7 +522,7 @@ private:
 		tasks->at(tsk)->remove(sub);
 
 	}
-	void		task_swap(int ind, int plc) {
+	inline void	task_swap(int ind, int plc) {
 
 		bool diap_ind = ind >= 0 && ind < tasks->size();
 		bool diap_plc = plc >= 0 && plc < tasks->size();
@@ -535,20 +530,22 @@ private:
 		std::swap(tasks->at(ind), tasks->at(plc));
 
 	}
-	void		task_up(int ind) {
+	inline void	task_up(int ind) {
 
 		bool diap_ind = ind > 0 && ind < tasks->size();
 		if (!diap_ind) return;
 		std::swap(tasks->at(ind), tasks->at(ind - 1));
 
 	}
-	void		task_dn(int ind) {
+	inline void	task_dn(int ind) {
 
 		bool diap_ind = ind >= 0 && ind < tasks->size() - 1;
 		if (!diap_ind) return;
 		std::swap(tasks->at(ind), tasks->at(ind + 1));
 
 	}
+
+
 
 	inline void subtask_add(String^ string) {
 
@@ -569,47 +566,8 @@ private:
 
 	}
 
-	inline void test_tasks() {
 
-		tasks->push_back(
-			new Task({
-				"Gavka"
-			})
-		);
-		tasks->push_back(
-			new Task({
-				"Kogtic",
-				{
-					new Subtask("20")
-				}
-			})
-		);
-		tasks->push_back(
-			new Task({
-				"Ebuca",
-				{
-					new Subtask("30"),
-					new Subtask("31"),
-				}
-			})
-		);
-		tasks->push_back(
-			new Task({
-				"Bupca",
-				{
-					new Subtask("40"),
-					new Subtask("41"),
-					new Subtask("42"),
-					new Subtask("43"),
-					new Subtask("44"),
-				}
-				})
-		);
 
-		task_to_list(listBox1);
-		subtask_to_list(lbxSub);
-
-	}
 	inline void ptask_add(const std::string& name) {
 
 		ptask_counter++;
@@ -631,6 +589,65 @@ private:
 		pnlTasks->Controls->Add(ptask);
 
 		ptask->update_state();
+
+	}
+	inline void ptask_update() {
+
+		pnlTasks->Controls->Clear();
+
+		for (const auto& t : *tasks) {
+
+			ptask_add(t->get_text());
+			for (const auto& st : t->get_subtasks_vector())
+				ptask->subtask_add(sts(st->get_text()));
+
+		}
+
+		ptask->update_state();
+
+	}
+
+
+
+	inline void test_tasks() {
+
+		tasks->push_back(
+			new Task({
+				"Gavka"
+				})
+		);
+		tasks->push_back(
+			new Task({
+				"Kogtic",
+				{
+					new Subtask("20")
+				}
+				})
+		);
+		tasks->push_back(
+			new Task({
+				"Ebuca",
+				{
+					new Subtask("30"),
+					new Subtask("31"),
+				}
+				})
+		);
+		tasks->push_back(
+			new Task({
+				"Bupca",
+				{
+					new Subtask("40"),
+					new Subtask("41"),
+					new Subtask("42"),
+					new Subtask("43"),
+					new Subtask("44"),
+				}
+				})
+		);
+
+		task_to_list(listBox1);
+		subtask_to_list(lbxSub);
 
 	}
 #pragma endregion 
