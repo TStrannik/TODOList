@@ -18,7 +18,8 @@ namespace TODOList {
 	public:		pnlTask(void) { InitializeComponent();			   }
 	protected: ~pnlTask()	  { if (components) delete components; }
 
-
+	public: System::Windows::Forms::Form^ parForm;
+	//public: frmMain^					  owner;
 
 	private:	lineTask^				  lneTask;
 	private:	Windows::Forms::Panel^	  pnlSubtasks;
@@ -46,7 +47,7 @@ namespace TODOList {
 			BorderStyle						 = Windows::Forms::BorderStyle::FixedSingle;								 
 			Dock							 = Windows::Forms::DockStyle::Top;
 			Size							 = Drawing::Size(140, 44);
-
+			
 
 
 			// 
@@ -63,7 +64,7 @@ namespace TODOList {
 			lneTask->Dock					 = Windows::Forms::DockStyle::Top;
 			lneTask->BackColor				 = Color::FromArgb(255, 0, 128);
 			lneTask->ForeColor				 = Color::White;
-
+			lneTask->parForm				 = parForm;
 			
 
 
@@ -92,10 +93,10 @@ namespace TODOList {
 
 #pragma endregion main {
 
-	private:
+private:
 
-		int						  subtask_counter = 0;
-		Windows::Forms::CheckBox^ cbxSubtask = gcnew CheckBox();
+	int						  subtask_counter = 0;
+	Windows::Forms::CheckBox^ cbxSubtask = gcnew CheckBox();
 
 
 
@@ -149,3 +150,9 @@ public:
 }; }
 
 #pragma endregion
+
+
+
+
+
+

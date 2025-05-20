@@ -25,9 +25,17 @@ System::String^ sts(std::string text) {
 #pragma endregion
 
 
+
+
+
 #pragma region void
 
 namespace TODOList {
+
+
+	
+
+	
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -36,7 +44,22 @@ namespace TODOList {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+
+
+
+
 	public ref class frmMain : public System::Windows::Forms::Form {
+
+
+		
+
+	/// DELETE
+	public:   void gavka()	 { Console::WriteLine("GAVKA");  }
+	public:  Void ebuca()	 { Console::WriteLine("EBUCA");  }
+	public: void dodik() { Console::WriteLine("DODIK"); }
+
+
+
 
 	public:		frmMain(void) { InitializeComponent(); }
 	protected:  ~frmMain() { if (components) delete components; }
@@ -63,6 +86,7 @@ namespace TODOList {
 	private: System::Windows::Forms::Button^ button9;
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::TextBox^ textBox6;
+	private: System::Windows::Forms::Button^ button10;
 
 	private: Windows::Forms::TextBox^ textBox1;
 
@@ -91,6 +115,7 @@ namespace TODOList {
 			this->button9 = (gcnew System::Windows::Forms::Button());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->button10 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// listBox1
@@ -101,7 +126,6 @@ namespace TODOList {
 			this->listBox1->Size = System::Drawing::Size(106, 108);
 			this->listBox1->TabIndex = 1;
 			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &frmMain::listBox1_SelectedIndexChanged);
-			this->listBox1->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::listBox1_MouseDoubleClick);
 			// 
 			// button1
 			// 
@@ -131,7 +155,7 @@ namespace TODOList {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(509, 279);
+			this->button2->Location = System::Drawing::Point(521, 295);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 53);
 			this->button2->TabIndex = 5;
@@ -147,7 +171,6 @@ namespace TODOList {
 			this->lbxSub->Size = System::Drawing::Size(106, 108);
 			this->lbxSub->TabIndex = 6;
 			this->lbxSub->SelectedIndexChanged += gcnew System::EventHandler(this, &frmMain::lbxSub_SelectedIndexChanged);
-			this->lbxSub->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::lbxSub_MouseDoubleClick);
 			// 
 			// textBox2
 			// 
@@ -188,7 +211,7 @@ namespace TODOList {
 			// 
 			// button6
 			// 
-			this->button6->Location = System::Drawing::Point(509, 250);
+			this->button6->Location = System::Drawing::Point(521, 266);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 23);
 			this->button6->TabIndex = 11;
@@ -278,11 +301,22 @@ namespace TODOList {
 			this->textBox6->TabIndex = 20;
 			this->textBox6->Text = L"1";
 			// 
+			// button10
+			// 
+			this->button10->Location = System::Drawing::Point(571, 453);
+			this->button10->Name = L"button10";
+			this->button10->Size = System::Drawing::Size(75, 23);
+			this->button10->TabIndex = 21;
+			this->button10->Text = L"button10";
+			this->button10->UseVisualStyleBackColor = true;
+			this->button10->Click += gcnew System::EventHandler(this, &frmMain::button10_Click);
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(959, 546);
+			this->Controls->Add(this->button10);
 			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->button9);
@@ -348,7 +382,13 @@ private:
 
 	Void frmMain_Load(Object^ sender, EventArgs^ e) {
 
-		logic = new Logic();		
+		logic = new Logic();
+
+
+		this->DoubleBuffered = true;				// Двойная буфферизация вкл.
+		SetStyle(ControlStyles::OptimizedDoubleBuffer, true);
+		this->SetStyle(ControlStyles::DoubleBuffer, true);
+		this->SetStyle(ControlStyles::UserPaint, true);
 
 	}
 	Void frmMain_FormClosed(Object^ sender, Windows::Forms::FormClosedEventArgs^ e) {
@@ -417,6 +457,11 @@ private:
 		ptask_update();
 
 	}
+	Void button10_Click(Object^ sender, EventArgs^ e) {
+
+		
+
+	}
 	Void btnRemSub_Click(Object^ sender, EventArgs^ e) {
 
 		task_remove(task_selected, subtask_selected);
@@ -436,20 +481,9 @@ private:
 		task_selection(listBox1->SelectedIndex);
 	
 	}
-	Void listBox1_MouseDoubleClick(Object^ sender, MouseEventArgs^ e) {
-
-		w("\t#id^ "); wl(tasks->at(task_selected)->get_id());
-
-	}
 	Void lbxSub_SelectedIndexChanged(Object^ sender, EventArgs^ e) {
 
 		subtask_selection(lbxSub->SelectedIndex);
-
-	}
-	Void lbxSub_MouseDoubleClick(Object^ sender, MouseEventArgs^ e) {
-
-		w("\t#id^ "); w(tasks->at(task_selected)->get_id());
-		w(" sub^"); wl(tasks->at(task_selected)->get_subtasks_vector().at(subtask_selected)->get_id());
 
 	}
 #pragma endregion	
@@ -486,22 +520,22 @@ private:
 		}
 	inline void task_show() {
 
-			wl(); wl("tasks: ");
+		wl(); wl("tasks: ");
 
-			for (const auto& t : *tasks) {
+		for (const auto& t : *tasks) {
 
-				w("\t"); w(t->get_text()); w("\tid^"); wl(t->get_id());
-				for (const auto& st : t->get_subtasks_vector()) {
+			w("\t"); wl(t->get_text()); //w("\tid^"); wl(t->get_id());
+			for (const auto& st : t->get_subtasks_vector()) {
 
-					w("\t\t"); wl(st->get_text());
+				w("\t\t"); wl(st->get_text());
 
-				}
-				
 			}
-
-			wl();
-
+			
 		}
+
+		wl();
+
+	}
 	inline void task_selection(const int& ind) {
 
 		task_selected = ind;
@@ -522,7 +556,7 @@ private:
 		tasks->at(tsk)->remove(sub);
 
 	}
-	inline void	task_swap(int ind, int plc) {
+	void	task_swap(int ind, int plc) {
 
 		bool diap_ind = ind >= 0 && ind < tasks->size();
 		bool diap_plc = plc >= 0 && plc < tasks->size();
@@ -542,6 +576,13 @@ private:
 		bool diap_ind = ind >= 0 && ind < tasks->size() - 1;
 		if (!diap_ind) return;
 		std::swap(tasks->at(ind), tasks->at(ind + 1));
+
+	}
+
+
+	void svinja(String^ str) {
+
+		Console::WriteLine(str);
 
 	}
 
@@ -574,6 +615,10 @@ private:
 
 		ptask = (gcnew pnlTask());
 
+
+		ptask->parForm = this;
+		//ptask->owner = frmMain;
+
 		if (!name.empty()) ptask->header = sts(name);
 		else			   ptask->header = L"noname";
 
@@ -593,9 +638,13 @@ private:
 	}
 	inline void ptask_update() {
 
+		ptask_counter = 0;
 		pnlTasks->Controls->Clear();
 
+
+		// 
 		for (const auto& t : *tasks) {
+
 
 			ptask_add(t->get_text());
 			for (const auto& st : t->get_subtasks_vector())
@@ -655,6 +704,7 @@ private:
 
 
 #pragma region }
+
 
 }; }
 

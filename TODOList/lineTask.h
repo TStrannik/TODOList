@@ -1,5 +1,5 @@
 #pragma once
-
+#include <array>
 
 
 #pragma region void
@@ -12,146 +12,147 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
+using namespace System::Reflection;
+
 
 
 namespace TODOList {
+
 	public ref struct lineTask : public System::Windows::Forms::Control {
 
 
-	
+
 
 #pragma region ctors/destr
-	public:		lineTask(void)  { InitializeComponent(); }
-	protected: ~lineTask()		{ if (components) delete components; }
+	public:		lineTask(void) { InitializeComponent(); }
+	protected: ~lineTask() { if (components) delete components; }
 #pragma endregion
 
 
 
-	private: System::Windows::Forms::TextBox^	txt;
-	private: System::Windows::Forms::Button^	btnX;
-	private: System::Windows::Forms::Button^	btnU;
-	private: System::Windows::Forms::Button^	btnD;
-	private: System::Windows::Forms::CheckBox^	cbx;
+	private: System::Windows::Forms::TextBox^ txt;
+	private: System::Windows::Forms::Button^ btnX;
+	private: System::Windows::Forms::Button^ btnU;
+	private: System::Windows::Forms::Button^ btnD;
+	private: System::Windows::Forms::CheckBox^ cbx;
 	private: System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
-		void InitializeComponent(void) {
+		   void InitializeComponent(void) {
 
-			cbx		= (gcnew Windows::Forms::CheckBox());
-			txt		= (gcnew Windows::Forms::TextBox());
-			btnX	= (gcnew Windows::Forms::Button());
-			btnU	= (gcnew Windows::Forms::Button());
-			btnD	= (gcnew Windows::Forms::Button());
-			SuspendLayout();
-
-
-
-
-			// 
-			// THIS (lineTask)
-			// 
-			Size						 = Drawing::Size(200, 48);
-			MouseDown					+= gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseDown);
-			MouseMove					+= gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseMove);
-			MouseUp						+= gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseUp);
+			   cbx = (gcnew Windows::Forms::CheckBox());
+			   txt = (gcnew Windows::Forms::TextBox());
+			   btnX = (gcnew Windows::Forms::Button());
+			   btnU = (gcnew Windows::Forms::Button());
+			   btnD = (gcnew Windows::Forms::Button());
+			   SuspendLayout();
 
 
 
 
-
-			// 
-			// [v]
-			//
-			cbx->Name					 = L"cbx";
-			cbx->Text					 = this->header;
-			cbx->AutoSize				 = true;
-			cbx->Location				 = Drawing::Point(10, 15);
-			cbx->Size					 = Drawing::Size(43, 17);
-			cbx->TabIndex				 = 0;
-			cbx->UseVisualStyleBackColor = true;
-			//cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
-
-
-
-			// 
-			// [_________]
-			// 
-			txt->Name					 = L"txt";
-			txt->Location				 = Drawing::Point(80, 12);
-			txt->Size					 = Drawing::Size(50, 20);
-			txt->TabIndex				 = 1;
+			   // 
+			   // THIS (lineTask)
+			   // 
+			   Size = Drawing::Size(200, 48);
+			   MouseDown += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseDown);
+			   MouseMove += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseMove);
+			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseUp);
 
 
 
 
-			// 
-			// [X]
-			// 
-			btnX->Text					  = L"X";
-			btnX->Name					  = L"btnX";
-			btnX->Location				  = Drawing::Point(168, 11);
-			btnX->Size					  = Drawing::Size(23, 23);
-			btnX->TextAlign				  = Drawing::ContentAlignment::MiddleCenter;
-			btnX->BackColor				  = Drawing::Color::Transparent;
-			btnX->TabIndex				  = 2;
-			btnX->UseVisualStyleBackColor = true;
+			   // 
+			   // [v]
+			   //
+			   cbx->Name = L"cbx";
+			   cbx->Text = this->header;
+			   cbx->AutoSize = true;
+			   cbx->Location = Drawing::Point(10, 15);
+			   cbx->Size = Drawing::Size(43, 17);
+			   cbx->TabIndex = 0;
+			   cbx->UseVisualStyleBackColor = true;
+			   //cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
+
+
+
+			   // 
+			   // [_________]
+			   // 
+			   txt->Name = L"txt";
+			   txt->Location = Drawing::Point(80, 12);
+			   txt->Size = Drawing::Size(50, 20);
+			   txt->TabIndex = 1;
 
 
 
 
-
-			// 
-			// [^]
-			// 
-			btnU->Text					  = L"^";
-			btnU->Name					  = L"btnX";
-			btnU->Location				  = Drawing::Point(188, 11);
-			btnU->Size					  = Drawing::Size(23, 23);
-			btnU->TextAlign				  = Drawing::ContentAlignment::MiddleCenter;
-			btnU->BackColor				  = Drawing::Color::Transparent;
-			btnU->TabIndex				  = 2;
-			btnU->UseVisualStyleBackColor = true;
-			
-			btnU->Click					 += gcnew EventHandler(this, &lineTask::btnU_Click);
+			   // 
+			   // [X]
+			   // 
+			   btnX->Text = L"X";
+			   btnX->Name = L"btnX";
+			   btnX->Location = Drawing::Point(168, 11);
+			   btnX->Size = Drawing::Size(23, 23);
+			   btnX->TextAlign = Drawing::ContentAlignment::MiddleCenter;
+			   btnX->BackColor = Drawing::Color::Transparent;
+			   btnX->TabIndex = 2;
+			   btnX->UseVisualStyleBackColor = true;
 
 
 
 
 
-			// 
-			// [v]
-			// 
-			btnD->Text					  = L"v";
-			btnD->Name					  = L"btnX";
-			btnD->Location				  = Drawing::Point(208, 11);
-			btnD->Size					  = Drawing::Size(23, 23);
-			btnD->TextAlign				  = Drawing::ContentAlignment::MiddleCenter;
-			btnD->BackColor				  = Drawing::Color::Transparent;
-			btnD->TabIndex				  = 2;
-			btnD->UseVisualStyleBackColor = true;
+			   // 
+			   // [^]
+			   // 
+			   btnU->Text = L"^";
+			   btnU->Name = L"btnX";
+			   btnU->Location = Drawing::Point(188, 11);
+			   btnU->Size = Drawing::Size(23, 23);
+			   btnU->TextAlign = Drawing::ContentAlignment::MiddleCenter;
+			   btnU->BackColor = Drawing::Color::Transparent;
+			   btnU->TabIndex = 2;
+			   btnU->UseVisualStyleBackColor = true;
 
-			btnD->Click					 += gcnew EventHandler(this, &lineTask::btnD_Click);
-
-
+			   btnU->Click += gcnew EventHandler(this, &lineTask::btnU_Click);
 
 
 
-			Controls->Add(btnX); Controls->Add(btnU); Controls->Add(btnD);
-			Controls->Add(cbx);  Controls->Add(txt);
 
-			ResumeLayout(false);
-			PerformLayout();
 
-		}
+			   // 
+			   // [v]
+			   // 
+			   btnD->Text = L"v";
+			   btnD->Name = L"btnX";
+			   btnD->Location = Drawing::Point(208, 11);
+			   btnD->Size = Drawing::Size(23, 23);
+			   btnD->TextAlign = Drawing::ContentAlignment::MiddleCenter;
+			   btnD->BackColor = Drawing::Color::Transparent;
+			   btnD->TabIndex = 2;
+			   btnD->UseVisualStyleBackColor = true;
+
+			   btnD->Click += gcnew EventHandler(this, &lineTask::btnD_Click);
+
+
+
+
+
+			   Controls->Add(btnX); Controls->Add(btnU); Controls->Add(btnD);
+			   Controls->Add(cbx);  Controls->Add(txt);
+
+			   ResumeLayout(false);
+			   PerformLayout();
+
+		   }
 #pragma endregion
 
 #pragma endregion main {
 
-
 	private:
 
 
-		/* D&D 
+		/* D&D
 		bool _drag_start = false;
 		int  _posX	= 0;
 		int  _posY	= 0;
@@ -189,40 +190,79 @@ namespace TODOList {
 		}
 		Void this_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			
+
 
 		}
-
-
-
-
-
-
 
 
 
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
 
-			
 
-			//Console::WriteLine(Parent->Parent->Parent->Name);
-			
-				
-				
+			call_method("task_up", 2);
+
 
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {
 
 
-			Console::WriteLine(Parent->Name);
-			
+			call_method("task_swap", 1, 3);
+
+
+		}
+
+
+
+		/// DRY
+		void call_method(String^ method_name) {
+
+			Type^ type = Parent->Parent->Parent->GetType();
+
+			MethodInfo^ method = type->GetMethod("task_swap",
+				BindingFlags::NonPublic | BindingFlags::Instance);
+
+			if (method != nullptr)
+				method->Invoke(Parent->Parent->Parent, nullptr);
+
+		}
+		void call_method(String^ method_name, int a) {
+
+			Type^ type = Parent->Parent->Parent->GetType();
+
+			MethodInfo^ method = type->GetMethod(method_name,
+				BindingFlags::NonPublic | BindingFlags::Instance);
+
+			cli::array<Object^>^ args =
+				gcnew cli::array<Object^>(1) { a };
+
+
+			if (method != nullptr)
+				method->Invoke(Parent->Parent->Parent, args);
+
+		}
+		void call_method(String^ method_name, int a, int b) {
+
+			Type^ type = Parent->Parent->Parent->GetType();
+
+			MethodInfo^ method = type->GetMethod(method_name,
+				BindingFlags::NonPublic | BindingFlags::Instance);
+
+			cli::array<Object^>^ args =
+				gcnew cli::array<Object^>(2) { a, b };
+
+
+			if (method != nullptr)
+				method->Invoke(Parent->Parent->Parent, args);
 
 		}
 
 
 	public:
-		String^  header = gcnew String("");
+		String^ header = gcnew String("");
+		int		nomber;
 
+		Windows::Forms::Form^ parForm;
+		//public: frmMain^ owner;
 
 	public:
 		void		update_state() {
@@ -233,5 +273,6 @@ namespace TODOList {
 
 
 #pragma region }
-	}; }
+	};
+}
 #pragma endregion

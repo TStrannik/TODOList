@@ -62,11 +62,11 @@ struct Subtask {
 
 	}
 
-	int					   get_id() {
-
-		return _id;
-
-	}
+	//int					   get_id() {
+	//
+	//	return _id;
+	//
+	//}
 
 	void				   remove() {
 		
@@ -81,13 +81,13 @@ struct Subtask {
 private:
 	static int			   _counter;
 	std::string			   _text;
-	int					   _id;
+	//int					   _id;
 #pragma endregion
 
 
 
 };
-int Subtask::_counter = -1;
+//int Subtask::_counter = -1;
 
 
 
@@ -114,7 +114,7 @@ struct Task {
 	}
 	Task(const Task& othr)
 		: _text(othr._text)
-		, _id(othr._id)
+		//, _id(othr._id)
 	{
 
 		w("\t+Task( "); w(_text); wl(" (copy) )");
@@ -161,11 +161,11 @@ struct Task {
 
 	}
 
-	int					   get_id() {
-
-		return _id;
-
-	}
+	//int					   get_id() {
+	//
+	//	return _id;
+	//
+	//}
 	
 	void				   remove() {
 		// Удалить весь Task
@@ -202,13 +202,13 @@ private:
 	static int			   _counter;
 	std::string			   _text;
 	std::vector <Subtask*> _subtasks;
-	int					   _id = ++_counter;
+	//int					   _id = ++_counter;
 #pragma endregion
 
 
 
 };
-int Task::_counter = -1;
+//int Task::_counter = -1;
 
 
 
