@@ -91,12 +91,13 @@ namespace TODOList {
 			   // 
 			   btnX->Text = L"X";
 			   btnX->Name = L"btnX";
-			   btnX->Location = Drawing::Point(168, 11);
-			   btnX->Size = Drawing::Size(23, 23);
+			   btnX->Location = Drawing::Point(228, 11);
+			   btnX->Size = Drawing::Size(20, 20);
 			   btnX->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnX->BackColor = Drawing::Color::Transparent;
 			   btnX->TabIndex = 2;
 			   btnX->UseVisualStyleBackColor = true;
+			   btnX->Click += gcnew EventHandler(this, &lineTask::btnX_Click);
 
 
 
@@ -108,7 +109,7 @@ namespace TODOList {
 			   btnU->Text = L"^";
 			   btnU->Name = L"btnX";
 			   btnU->Location = Drawing::Point(188, 11);
-			   btnU->Size = Drawing::Size(23, 23);
+			   btnU->Size = Drawing::Size(20, 20);
 			   btnU->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnU->BackColor = Drawing::Color::Transparent;
 			   btnU->TabIndex = 2;
@@ -126,7 +127,7 @@ namespace TODOList {
 			   btnD->Text = L"v";
 			   btnD->Name = L"btnX";
 			   btnD->Location = Drawing::Point(208, 11);
-			   btnD->Size = Drawing::Size(23, 23);
+			   btnD->Size = Drawing::Size(20, 20);
 			   btnD->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnD->BackColor = Drawing::Color::Transparent;
 			   btnD->TabIndex = 2;
@@ -180,7 +181,8 @@ namespace TODOList {
 
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			Console::WriteLine(Parent->Parent->TabIndex);
+			//Console::WriteLine(Parent->Parent->TabIndex);
+			Console::WriteLine(nomber);
 
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
@@ -195,18 +197,26 @@ namespace TODOList {
 		}
 
 
+		Void btnX_Click(Object^ sender, EventArgs^ e) {
+
+
+			call_method_main("task_remove_one", nomber);
+			call_method_main("update_all");
+
+
+		}
 
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
 
-
-			call_method("task_up", 2);
-
+			call_method_main("task_up", nomber);
+			call_method_main("update_all");
 
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {
 
 
-			call_method("task_swap", 1, 3);
+			call_method_main("task_dn", nomber);
+			call_method_main("update_all");
 
 
 		}
@@ -214,18 +224,20 @@ namespace TODOList {
 
 
 		/// DRY
-		void call_method(String^ method_name) {
+		void call_method_main(String^ method_name) {
 
 			Type^ type = Parent->Parent->Parent->GetType();
 
-			MethodInfo^ method = type->GetMethod("task_swap",
+			MethodInfo^ method = type->GetMethod(method_name,
 				BindingFlags::NonPublic | BindingFlags::Instance);
 
 			if (method != nullptr)
 				method->Invoke(Parent->Parent->Parent, nullptr);
+			else
+				Console::WriteLine("call_method_error ");
 
 		}
-		void call_method(String^ method_name, int a) {
+		void call_method_main(String^ method_name, int a) {
 
 			Type^ type = Parent->Parent->Parent->GetType();
 
@@ -238,9 +250,14 @@ namespace TODOList {
 
 			if (method != nullptr)
 				method->Invoke(Parent->Parent->Parent, args);
+			else
+				Console::WriteLine("call_method_error ");
+
 
 		}
-		void call_method(String^ method_name, int a, int b) {
+		void call_method_main(String^ method_name, int a, int b) {
+
+			// call_method("task_swap", 1, 3); // for example
 
 			Type^ type = Parent->Parent->Parent->GetType();
 
@@ -253,13 +270,15 @@ namespace TODOList {
 
 			if (method != nullptr)
 				method->Invoke(Parent->Parent->Parent, args);
+			else
+				Console::WriteLine("call_method_error ");
 
 		}
 
 
 	public:
 		String^ header = gcnew String("");
-		int		nomber;
+		int nomber;
 
 		Windows::Forms::Form^ parForm;
 		//public: frmMain^ owner;

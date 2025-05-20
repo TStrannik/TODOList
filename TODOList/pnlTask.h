@@ -18,8 +18,7 @@ namespace TODOList {
 	public:		pnlTask(void) { InitializeComponent();			   }
 	protected: ~pnlTask()	  { if (components) delete components; }
 
-	public: System::Windows::Forms::Form^ parForm;
-	//public: frmMain^					  owner;
+	
 
 	private:	lineTask^				  lneTask;
 	private:	Windows::Forms::Panel^	  pnlSubtasks;
@@ -104,6 +103,12 @@ public:
 	bool      start    = false;
 	String^   header   = gcnew String ("");
 	String^   name     = gcnew String ("");
+	int		  nomber;
+
+
+	/// DELETE
+	public: System::Windows::Forms::Form^ parForm;
+		  //public: frmMain^					  owner;
 
 
 public:
@@ -133,8 +138,9 @@ public:
 		lneTask->Name	= L"lne" + header;
 		lneTask->Text	= header;
 		lneTask->header = header;
+		lneTask->nomber = nomber;
 		lneTask->update_state();
-
+		
 
 		// Пересчёт размера
 		this->Height = (subtask_counter) * 20 + 48;

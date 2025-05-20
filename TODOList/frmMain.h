@@ -428,24 +428,20 @@ private:
 	Void button6_Click(Object^ sender, EventArgs^ e) {
 
 		test_tasks();
+		task_to_list(listBox1);
+		subtask_to_list(lbxSub);
 
 	}
 	Void button7_Click(Object^ sender, EventArgs^ e) {
 
 		task_up(stoi(sts(textBox3->Text)));
-
-		task_to_list(listBox1);
-		subtask_to_list(lbxSub);
-		ptask_update();
+		update_all();		
 
 	}
 	Void button8_Click(Object^ sender, EventArgs^ e) {
 
 		task_dn(stoi(sts(textBox4->Text)));
-
-		task_to_list(listBox1);
-		subtask_to_list(lbxSub);
-		ptask_update();
+		update_all();
 
 	}
 	Void button9_Click(Object^ sender, EventArgs^ e) {
@@ -458,8 +454,8 @@ private:
 
 	}
 	Void button10_Click(Object^ sender, EventArgs^ e) {
-
 		
+		Console::WriteLine(Random().NextDouble() * 100);
 
 	}
 	Void btnRemSub_Click(Object^ sender, EventArgs^ e) {
@@ -556,7 +552,12 @@ private:
 		tasks->at(tsk)->remove(sub);
 
 	}
-	void	task_swap(int ind, int plc) {
+	inline void task_remove_one(int tsk) {
+
+		task_remove(tsk);
+
+	}
+	inline void	task_swap(int ind, int plc) {
 
 		bool diap_ind = ind >= 0 && ind < tasks->size();
 		bool diap_plc = plc >= 0 && plc < tasks->size();
@@ -580,13 +581,6 @@ private:
 	}
 
 
-	void svinja(String^ str) {
-
-		Console::WriteLine(str);
-
-	}
-
-
 
 	inline void subtask_add(String^ string) {
 
@@ -597,8 +591,9 @@ private:
 
 		lbx->Items->Clear();
 
-		for (const auto& st : tasks->at(task_selected)->get_subtasks_vector())
-			lbx->Items->Add(sts(st->get_text()));
+		if (!tasks->empty())
+			for (const auto& st : tasks->at(task_selected)->get_subtasks_vector())
+				lbx->Items->Add(sts(st->get_text()));
 
 	}
 	inline void subtask_selection(const int& ind) {
@@ -617,7 +612,7 @@ private:
 
 
 		ptask->parForm = this;
-		//ptask->owner = frmMain;
+		ptask->nomber = tasks->size() - ptask_counter;
 
 		if (!name.empty()) ptask->header = sts(name);
 		else			   ptask->header = L"noname";
@@ -642,12 +637,13 @@ private:
 		pnlTasks->Controls->Clear();
 
 
-		// 
-		for (const auto& t : *tasks) {
+		
+		//for (const auto& t : *tasks) {
+		for (int i = tasks->size() - 1; i >= 0; i--) {
 
-
-			ptask_add(t->get_text());
-			for (const auto& st : t->get_subtasks_vector())
+			// Порядок под сомнением
+			ptask_add(tasks->at(i)->get_text());
+			for (const auto& st : tasks->at(i)->get_subtasks_vector())
 				ptask->subtask_add(sts(st->get_text()));
 
 		}
@@ -656,7 +652,13 @@ private:
 
 	}
 
+	inline void update_all() {
 
+		task_to_list(listBox1);
+		subtask_to_list(lbxSub);
+		ptask_update();
+
+	}
 
 	inline void test_tasks() {
 
