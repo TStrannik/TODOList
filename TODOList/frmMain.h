@@ -191,17 +191,17 @@ namespace TODOList {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(386, 31);
+			this->button4->Location = System::Drawing::Point(684, 453);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 9;
-			this->button4->Text = L"заолежить";
+			this->button4->Text = L"Свободно";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &frmMain::button4_Click);
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(386, 170);
+			this->button5->Location = System::Drawing::Point(386, 219);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(106, 23);
 			this->button5->TabIndex = 10;
@@ -417,7 +417,7 @@ private:
 	}
 	Void button4_Click(Object^ sender, EventArgs^ e) {
 
-		ptask_add("O L E G");
+		
 
 	}
 	Void button5_Click(Object^ sender, EventArgs^ e) {
@@ -428,8 +428,11 @@ private:
 	Void button6_Click(Object^ sender, EventArgs^ e) {
 
 		test_tasks();
+
 		task_to_list(listBox1);
 		subtask_to_list(lbxSub);
+
+		//update_all()
 
 	}
 	Void button7_Click(Object^ sender, EventArgs^ e) {

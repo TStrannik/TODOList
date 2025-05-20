@@ -94,7 +94,7 @@ namespace TODOList {
 			   btnX->Location = Drawing::Point(228, 11);
 			   btnX->Size = Drawing::Size(20, 20);
 			   btnX->TextAlign = Drawing::ContentAlignment::MiddleCenter;
-			   btnX->BackColor = Drawing::Color::Transparent;
+			   btnX->BackColor = Color::Black;
 			   btnX->TabIndex = 2;
 			   btnX->UseVisualStyleBackColor = true;
 			   btnX->Click += gcnew EventHandler(this, &lineTask::btnX_Click);
@@ -111,7 +111,7 @@ namespace TODOList {
 			   btnU->Location = Drawing::Point(188, 11);
 			   btnU->Size = Drawing::Size(20, 20);
 			   btnU->TextAlign = Drawing::ContentAlignment::MiddleCenter;
-			   btnU->BackColor = Drawing::Color::Transparent;
+			   btnU->BackColor = Color::FromArgb(255, 0, 128);	
 			   btnU->TabIndex = 2;
 			   btnU->UseVisualStyleBackColor = true;
 
@@ -124,14 +124,14 @@ namespace TODOList {
 			   // 
 			   // [v]
 			   // 
-			   btnD->Text = L"v";
-			   btnD->Name = L"btnX";
-			   btnD->Location = Drawing::Point(208, 11);
-			   btnD->Size = Drawing::Size(20, 20);
-			   btnD->TextAlign = Drawing::ContentAlignment::MiddleCenter;
-			   btnD->BackColor = Drawing::Color::Transparent;
-			   btnD->TabIndex = 2;
-			   btnD->UseVisualStyleBackColor = true;
+			   btnD->Text							= L"v";
+			   btnD->Name							= L"btnX";
+			   btnD->Location						= Drawing::Point(208, 11);
+			   btnD->Size							= Drawing::Size(20, 20);
+			   btnD->TextAlign						= Drawing::ContentAlignment::MiddleCenter;
+			   btnD->BackColor						= Color::FromArgb(255, 0, 128);
+			   btnD->TabIndex						= 2;
+			   btnD->UseVisualStyleBackColor		= true;
 
 			   btnD->Click += gcnew EventHandler(this, &lineTask::btnD_Click);
 
@@ -184,6 +184,7 @@ namespace TODOList {
 			//Console::WriteLine(Parent->Parent->TabIndex);
 			Console::WriteLine(nomber);
 
+
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
@@ -200,80 +201,55 @@ namespace TODOList {
 		Void btnX_Click(Object^ sender, EventArgs^ e) {
 
 
-			call_method_main("task_remove_one", nomber);
-			call_method_main("update_all");
+			call_method_main("task_remove_one", { nomber });
+			call_method_main("update_all", {});
 
 
 		}
-
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
 
-			call_method_main("task_up", nomber);
-			call_method_main("update_all");
+			call_method_main("task_up", { nomber });
+			call_method_main("update_all", {});
 
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {
 
 
-			call_method_main("task_dn", nomber);
-			call_method_main("update_all");
+			call_method_main("task_dn", { nomber });
+			call_method_main("update_all", {});
 
 
 		}
 
 
-
-		/// DRY
-		void call_method_main(String^ method_name) {
-
+		
+	
+		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
+			
 			Type^ type = Parent->Parent->Parent->GetType();
 
 			MethodInfo^ method = type->GetMethod(method_name,
 				BindingFlags::NonPublic | BindingFlags::Instance);
 
-			if (method != nullptr)
-				method->Invoke(Parent->Parent->Parent, nullptr);
-			else
-				Console::WriteLine("call_method_error ");
-
-		}
-		void call_method_main(String^ method_name, int a) {
-
-			Type^ type = Parent->Parent->Parent->GetType();
-
-			MethodInfo^ method = type->GetMethod(method_name,
-				BindingFlags::NonPublic | BindingFlags::Instance);
 
 			cli::array<Object^>^ args =
-				gcnew cli::array<Object^>(1) { a };
+				gcnew cli::array <Object^> (list.size());
 
-
-			if (method != nullptr)
-				method->Invoke(Parent->Parent->Parent, args);
-			else
-				Console::WriteLine("call_method_error ");
-
-
-		}
-		void call_method_main(String^ method_name, int a, int b) {
-
-			// call_method("task_swap", 1, 3); // for example
-
-			Type^ type = Parent->Parent->Parent->GetType();
-
-			MethodInfo^ method = type->GetMethod(method_name,
-				BindingFlags::NonPublic | BindingFlags::Instance);
-
-			cli::array<Object^>^ args =
-				gcnew cli::array<Object^>(2) { a, b };
-
-
+			if (list.size() != 0)
+				for (int i = 0; i < list.size(); ++i) 
+					args[i] = *(list.begin() + i);
+			else 
+				args = nullptr;
+			
+			
 			if (method != nullptr)
 				method->Invoke(Parent->Parent->Parent, args);
 			else
 				Console::WriteLine("call_method_error ");
 
 		}
+
+
 
 
 	public:
