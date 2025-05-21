@@ -135,7 +135,7 @@ public:
 	}
 	void		update_state() {
 
-		lneTask->Name	= L"lne" + header;
+		lneTask->Name	= L"lne_" + header;
 		lneTask->Text	= header;
 		lneTask->header = header;
 		lneTask->nomber = nomber;

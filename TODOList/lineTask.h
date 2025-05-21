@@ -89,7 +89,8 @@ namespace TODOList {
 			   lbl->ForeColor = Color::White;
 			   lbl->AutoSize = true;
 			   lbl->TabIndex = 0;
-			   
+			   lbl->Click += gcnew EventHandler(this, &lineTask::lbl_Click);
+
 
 
 
@@ -98,9 +99,17 @@ namespace TODOList {
 			   // [_________]
 			   // 
 			   txt->Name = L"txt";
-			   txt->Location = Drawing::Point(100, 12);
+			   txt->Visible = false;
+			   txt->Location = Drawing::Point(30, 10);
 			   txt->Size = Drawing::Size(50, 20);
+			   txt->Font = gcnew System::Drawing::Font("Arial", 12);
+			   txt->ForeColor = Color::White;
+			   txt->BackColor = Color::FromArgb(248, 8, 128);
 			   txt->TabIndex = 1;
+			   txt->KeyPress += gcnew Windows::Forms::KeyPressEventHandler(this, &lineTask::txt_KeyPress);
+			   txt->TextChanged += gcnew System::EventHandler(this, &lineTask::txt_TextChanged);
+
+
 
 
 
@@ -110,7 +119,7 @@ namespace TODOList {
 			   // 
 			   btnX->Text = L"X";
 			   btnX->Name = L"btnX";
-			   btnX->Location = Drawing::Point(228, 11);
+			   btnX->Location = Drawing::Point(278, 11);
 			   btnX->Size = Drawing::Size(20, 20);
 			   btnX->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnX->BackColor = Color::Black;
@@ -127,7 +136,7 @@ namespace TODOList {
 			   // 
 			   btnU->Text = L"^";
 			   btnU->Name = L"btnX";
-			   btnU->Location = Drawing::Point(188, 11);
+			   btnU->Location = Drawing::Point(238, 11);
 			   btnU->Size = Drawing::Size(20, 20);
 			   btnU->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnU->BackColor = Color::FromArgb(255, 0, 128);	
@@ -145,13 +154,12 @@ namespace TODOList {
 			   // 
 			   btnD->Text							= L"v";
 			   btnD->Name							= L"btnX";
-			   btnD->Location						= Drawing::Point(208, 11);
+			   btnD->Location						= Drawing::Point(258, 11);
 			   btnD->Size							= Drawing::Size(20, 20);
 			   btnD->TextAlign						= Drawing::ContentAlignment::MiddleCenter;
 			   btnD->BackColor						= Color::FromArgb(255, 0, 128);
 			   btnD->TabIndex						= 2;
 			   btnD->UseVisualStyleBackColor		= true;
-
 			   btnD->Click += gcnew EventHandler(this, &lineTask::btnD_Click);
 
 
@@ -200,9 +208,13 @@ namespace TODOList {
 
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
+			Console::WriteLine(Parent->Name);
 			//Console::WriteLine(Parent->Parent->TabIndex);
-			Console::WriteLine(nomber);
+			//Console::WriteLine(nomber);
 
+
+			
+			txt_append_close();
 
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
@@ -216,6 +228,22 @@ namespace TODOList {
 
 		}
 
+		Void txt_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
+			txt_resize();
+
+		}
+		Void txt_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e) {
+
+			if (e->KeyChar == 13) txt_append_close();
+
+		}
+
+		Void lbl_Click(Object^ sender, EventArgs^ e) {
+
+			txt_open();
+
+		}
 
 		Void btnX_Click(Object^ sender, EventArgs^ e) {
 
@@ -241,10 +269,10 @@ namespace TODOList {
 		}
 
 
-		
-	
+
+
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
-			
+
 			Type^ type = Parent->Parent->Parent->GetType();
 
 			MethodInfo^ method = type->GetMethod(method_name,
@@ -252,15 +280,15 @@ namespace TODOList {
 
 
 			cli::array<Object^>^ args =
-				gcnew cli::array <Object^> (list.size());
+				gcnew cli::array <Object^>(list.size());
 
 			if (list.size() != 0)
-				for (int i = 0; i < list.size(); ++i) 
+				for (int i = 0; i < list.size(); ++i)
 					args[i] = *(list.begin() + i);
-			else 
+			else
 				args = nullptr;
-			
-			
+
+
 			if (method != nullptr)
 				method->Invoke(Parent->Parent->Parent, args);
 			else
@@ -270,6 +298,34 @@ namespace TODOList {
 
 
 
+		inline void txt_open() {
+
+			txt->Text = header;
+			txt_resize();
+			txt->Visible = true;
+			lbl->Visible = false;
+
+		}
+		inline void txt_append_close() {
+
+			//Parent->header = txt->Text;
+
+			header = txt->Text;
+			lbl->Text = header;
+			txt->Visible = false;
+			lbl->Visible = true;
+
+		}
+		inline void txt_resize() {
+
+			if (txt->Text->Length > 5)
+				txt->Width = txt->Text->Length * 8 + 16;
+			else
+				txt->Width = 56;
+
+		}
+
+	
 
 	public:
 		String^ header = gcnew String("");
@@ -283,6 +339,8 @@ namespace TODOList {
 
 			//cbx->Text = header;
 			lbl->Text = header;
+			txt->Text = header;
+			//txt->Visible = text_open;
 
 		}
 

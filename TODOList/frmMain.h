@@ -90,6 +90,7 @@ namespace TODOList {
 	private: System::Windows::Forms::Button^ btnClose;
 
 
+
 	private: Windows::Forms::TextBox^ textBox1;
 
 
@@ -721,6 +722,11 @@ private:
 				}
 				})
 		);
+		tasks->push_back(
+			new Task({
+				"Свистосвинья"
+			})
+		);
 
 		task_to_list(listBox1);
 		subtask_to_list(lbxSub);
@@ -731,6 +737,7 @@ private:
 
 
 #pragma region }
+
 
 
 }; }
