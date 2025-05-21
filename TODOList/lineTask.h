@@ -35,6 +35,7 @@ namespace TODOList {
 	private: System::Windows::Forms::Button^ btnU;
 	private: System::Windows::Forms::Button^ btnD;
 	private: System::Windows::Forms::CheckBox^ cbx;
+	private: System::Windows::Forms::Label^ lbl;
 	private: System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
@@ -42,6 +43,7 @@ namespace TODOList {
 
 			   cbx = (gcnew Windows::Forms::CheckBox());
 			   txt = (gcnew Windows::Forms::TextBox());
+			   lbl = (gcnew Windows::Forms::Label());
 			   btnX = (gcnew Windows::Forms::Button());
 			   btnU = (gcnew Windows::Forms::Button());
 			   btnD = (gcnew Windows::Forms::Button());
@@ -65,7 +67,6 @@ namespace TODOList {
 			   // [v]
 			   //
 			   cbx->Name = L"cbx";
-			   cbx->Text = this->header;
 			   cbx->AutoSize = true;
 			   cbx->Location = Drawing::Point(10, 15);
 			   cbx->Size = Drawing::Size(43, 17);
@@ -75,11 +76,29 @@ namespace TODOList {
 
 
 
+
+
+
+			   // 
+			   // ..label..
+			   //
+			   lbl->Name = L"lbl";
+			   lbl->Size = System::Drawing::Size(35, 13);
+			   lbl->Location = System::Drawing::Point(30, 13);
+			   lbl->Font = gcnew System::Drawing::Font("Arial", 12);
+			   lbl->ForeColor = Color::White;
+			   lbl->AutoSize = true;
+			   lbl->TabIndex = 0;
+			   
+
+
+
+
 			   // 
 			   // [_________]
 			   // 
 			   txt->Name = L"txt";
-			   txt->Location = Drawing::Point(80, 12);
+			   txt->Location = Drawing::Point(100, 12);
 			   txt->Size = Drawing::Size(50, 20);
 			   txt->TabIndex = 1;
 
@@ -140,7 +159,7 @@ namespace TODOList {
 
 
 			   Controls->Add(btnX); Controls->Add(btnU); Controls->Add(btnD);
-			   Controls->Add(cbx);  Controls->Add(txt);
+			   Controls->Add(cbx);  Controls->Add(txt);  Controls->Add(lbl);
 
 			   ResumeLayout(false);
 			   PerformLayout();
@@ -262,7 +281,8 @@ namespace TODOList {
 	public:
 		void		update_state() {
 
-			cbx->Text = header;
+			//cbx->Text = header;
+			lbl->Text = header;
 
 		}
 

@@ -87,6 +87,8 @@ namespace TODOList {
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::TextBox^ textBox6;
 	private: System::Windows::Forms::Button^ button10;
+	private: System::Windows::Forms::Button^ btnClose;
+
 
 	private: Windows::Forms::TextBox^ textBox1;
 
@@ -116,12 +118,13 @@ namespace TODOList {
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->button10 = (gcnew System::Windows::Forms::Button());
+			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(653, 120);
+			this->listBox1->Location = System::Drawing::Point(653, 158);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(106, 108);
 			this->listBox1->TabIndex = 1;
@@ -129,7 +132,7 @@ namespace TODOList {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(653, 65);
+			this->button1->Location = System::Drawing::Point(653, 103);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(106, 23);
 			this->button1->TabIndex = 2;
@@ -139,7 +142,8 @@ namespace TODOList {
 			// 
 			// pnlTasks
 			// 
-			this->pnlTasks->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->pnlTasks->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->pnlTasks->Dock = System::Windows::Forms::DockStyle::Left;
 			this->pnlTasks->Location = System::Drawing::Point(0, 0);
 			this->pnlTasks->Name = L"pnlTasks";
@@ -148,7 +152,7 @@ namespace TODOList {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(653, 94);
+			this->textBox1->Location = System::Drawing::Point(653, 132);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(106, 20);
 			this->textBox1->TabIndex = 4;
@@ -166,7 +170,7 @@ namespace TODOList {
 			// lbxSub
 			// 
 			this->lbxSub->FormattingEnabled = true;
-			this->lbxSub->Location = System::Drawing::Point(765, 120);
+			this->lbxSub->Location = System::Drawing::Point(765, 158);
 			this->lbxSub->Name = L"lbxSub";
 			this->lbxSub->Size = System::Drawing::Size(106, 108);
 			this->lbxSub->TabIndex = 6;
@@ -174,14 +178,14 @@ namespace TODOList {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(765, 94);
+			this->textBox2->Location = System::Drawing::Point(765, 132);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(106, 20);
 			this->textBox2->TabIndex = 7;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(765, 65);
+			this->button3->Location = System::Drawing::Point(765, 103);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(106, 23);
 			this->button3->TabIndex = 8;
@@ -221,7 +225,7 @@ namespace TODOList {
 			// 
 			// btnRemTask
 			// 
-			this->btnRemTask->Location = System::Drawing::Point(623, 120);
+			this->btnRemTask->Location = System::Drawing::Point(623, 158);
 			this->btnRemTask->Name = L"btnRemTask";
 			this->btnRemTask->Size = System::Drawing::Size(24, 23);
 			this->btnRemTask->TabIndex = 12;
@@ -231,7 +235,7 @@ namespace TODOList {
 			// 
 			// btnRemSub
 			// 
-			this->btnRemSub->Location = System::Drawing::Point(877, 120);
+			this->btnRemSub->Location = System::Drawing::Point(877, 158);
 			this->btnRemSub->Name = L"btnRemSub";
 			this->btnRemSub->Size = System::Drawing::Size(25, 23);
 			this->btnRemSub->TabIndex = 13;
@@ -241,7 +245,7 @@ namespace TODOList {
 			// 
 			// button7
 			// 
-			this->button7->Location = System::Drawing::Point(684, 250);
+			this->button7->Location = System::Drawing::Point(684, 288);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(75, 23);
 			this->button7->TabIndex = 14;
@@ -251,7 +255,7 @@ namespace TODOList {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(653, 252);
+			this->textBox3->Location = System::Drawing::Point(653, 290);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(25, 20);
 			this->textBox3->TabIndex = 15;
@@ -259,7 +263,7 @@ namespace TODOList {
 			// 
 			// button8
 			// 
-			this->button8->Location = System::Drawing::Point(684, 279);
+			this->button8->Location = System::Drawing::Point(684, 317);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(75, 23);
 			this->button8->TabIndex = 16;
@@ -269,7 +273,7 @@ namespace TODOList {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(653, 282);
+			this->textBox4->Location = System::Drawing::Point(653, 320);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(25, 20);
 			this->textBox4->TabIndex = 17;
@@ -277,7 +281,7 @@ namespace TODOList {
 			// 
 			// button9
 			// 
-			this->button9->Location = System::Drawing::Point(684, 324);
+			this->button9->Location = System::Drawing::Point(684, 362);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(75, 23);
 			this->button9->TabIndex = 18;
@@ -287,7 +291,7 @@ namespace TODOList {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(653, 312);
+			this->textBox5->Location = System::Drawing::Point(653, 350);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(25, 20);
 			this->textBox5->TabIndex = 19;
@@ -295,7 +299,7 @@ namespace TODOList {
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(653, 338);
+			this->textBox6->Location = System::Drawing::Point(653, 376);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(25, 20);
 			this->textBox6->TabIndex = 20;
@@ -311,11 +315,23 @@ namespace TODOList {
 			this->button10->UseVisualStyleBackColor = true;
 			this->button10->Click += gcnew System::EventHandler(this, &frmMain::button10_Click);
 			// 
+			// btnClose
+			// 
+			this->btnClose->FlatAppearance->BorderColor = System::Drawing::Color::Black;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Location = System::Drawing::Point(920, 12);
+			this->btnClose->Name = L"btnClose";
+			this->btnClose->Size = System::Drawing::Size(27, 26);
+			this->btnClose->TabIndex = 22;
+			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &frmMain::btnClose_Click);
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(959, 546);
+			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->button10);
 			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->textBox5);
@@ -337,6 +353,7 @@ namespace TODOList {
 			this->Controls->Add(this->pnlTasks);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->listBox1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"frmMain";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"frmMain";
@@ -398,6 +415,11 @@ private:
 
 	}
 	
+	Void btnClose_Click(Object^ sender, EventArgs^ e) {
+
+		this->Close();
+
+	}
 	Void button1_Click(Object^ sender, EventArgs^ e) {
 			
 		task_add_1(textBox1->Text);
@@ -622,12 +644,12 @@ private:
 
 		ptask->name = L"pnlTask_" + ptask_counter.ToString();
 		ptask->Name = L"pnlTask_" + ptask_counter.ToString();
-		ptask->Location = System::Drawing::Point(0, 0);
-		ptask->Size = System::Drawing::Size(140, 100);
-		ptask->Dock = System::Windows::Forms::DockStyle::Top;
+		ptask->Location = Drawing::Point(0, 0);
+		ptask->Size = Drawing::Size(140, 100);
+		ptask->Dock = Windows::Forms::DockStyle::Top;
 		ptask->TabIndex = 0;
-		ptask->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-		ptask->Click += gcnew System::EventHandler(this, &frmMain::ptask_click);
+		ptask->BorderStyle = Windows::Forms::BorderStyle::FixedSingle;
+		ptask->Click += gcnew EventHandler(this, &frmMain::ptask_click);
 
 		pnlTasks->Controls->Add(ptask);
 
