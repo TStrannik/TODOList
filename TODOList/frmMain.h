@@ -54,7 +54,7 @@ namespace TODOList {
 		
 
 	/// DELETE
-	public:   void gavka()	 { Console::WriteLine("GAVKA");  }
+	public:   void gavka()	 { Console::WriteLine("GAVKA");}
 	public:  Void ebuca()	 { Console::WriteLine("EBUCA");  }
 	public: void dodik() { Console::WriteLine("DODIK"); }
 
@@ -605,6 +605,11 @@ private:
 		std::swap(tasks->at(ind), tasks->at(ind + 1));
 
 	}
+	inline void	task_set_name(int ind, String^ str) {
+
+		tasks->at(ind)->set_text(sts(str));
+
+	}
 
 
 
@@ -690,12 +695,12 @@ private:
 
 		tasks->push_back(
 			new Task({
-				"Gavka"
+				"Гавка"
 				})
 		);
 		tasks->push_back(
 			new Task({
-				"Kogtic",
+				"Когтик",
 				{
 					new Subtask("20")
 				}
@@ -703,7 +708,7 @@ private:
 		);
 		tasks->push_back(
 			new Task({
-				"Ebuca",
+				"Эбука",
 				{
 					new Subtask("30"),
 					new Subtask("31"),
@@ -712,7 +717,7 @@ private:
 		);
 		tasks->push_back(
 			new Task({
-				"Bupca",
+				"Бупка",
 				{
 					new Subtask("40"),
 					new Subtask("41"),

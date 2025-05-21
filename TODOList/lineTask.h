@@ -108,6 +108,7 @@ namespace TODOList {
 			   txt->TabIndex = 1;
 			   txt->KeyPress += gcnew Windows::Forms::KeyPressEventHandler(this, &lineTask::txt_KeyPress);
 			   txt->TextChanged += gcnew System::EventHandler(this, &lineTask::txt_TextChanged);
+			   txt->AutoSize = false;
 
 
 
@@ -295,7 +296,30 @@ namespace TODOList {
 				Console::WriteLine("call_method_error ");
 
 		}
+		void call_method_parent(String^ method_name, std::initializer_list <Object^> list) {
+		
+			Type^ type = Parent->GetType();
 
+			MethodInfo^ method = type->GetMethod(method_name,
+				BindingFlags::NonPublic | BindingFlags::Instance);
+
+
+			cli::array<Object^>^ args =
+				gcnew cli::array <Object^>(list.size());
+
+			if (list.size() != 0)
+				for (int i = 0; i < list.size(); ++i)
+					args[i] = *(list.begin() + i);
+			else
+				args = nullptr;
+
+
+			if (method != nullptr)
+				method->Invoke(Parent, args);
+			else
+				Console::WriteLine("call_method_error");
+		
+		}
 
 
 		inline void txt_open() {
@@ -304,11 +328,15 @@ namespace TODOList {
 			txt_resize();
 			txt->Visible = true;
 			lbl->Visible = false;
+			txt->Focus();
 
 		}
 		inline void txt_append_close() {
 
-			//Parent->header = txt->Text;
+			//Parent->header = txt->Text;			
+			call_method_parent("set_header", { header });				// Не прёт
+			call_method_main("task_set_name", { nomber, header });
+			
 
 			header = txt->Text;
 			lbl->Text = header;
@@ -319,9 +347,14 @@ namespace TODOList {
 		inline void txt_resize() {
 
 			if (txt->Text->Length > 5)
-				txt->Width = txt->Text->Length * 8 + 16;
-			else
+				txt->Width = TextRenderer::MeasureText(txt->Text, txt->Font).Width + 10;
+			else 
 				txt->Width = 56;
+			
+
+			//txt->AutoSize = false;
+			//txt->Width = (txt->Text->Length * 8) + (20 * (int)(txt->Text->Length * 0.1));
+				//txt->Width = txt->Text->Length * 12 * 0.75;
 
 		}
 
@@ -340,6 +373,7 @@ namespace TODOList {
 			//cbx->Text = header;
 			lbl->Text = header;
 			txt->Text = header;
+			
 			//txt->Visible = text_open;
 
 		}

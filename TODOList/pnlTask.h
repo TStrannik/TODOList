@@ -98,6 +98,12 @@ private:
 	Windows::Forms::CheckBox^ cbxSubtask = gcnew CheckBox();
 
 
+private:
+	void set_header(String^ str) {
+
+		header = str;
+
+	}
 
 public:
 	bool      start    = false;
