@@ -216,12 +216,13 @@ namespace TODOList {
 			// 
 			// button6
 			// 
+			this->button6->BackColor = System::Drawing::SystemColors::ControlDark;
 			this->button6->Location = System::Drawing::Point(521, 266);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 23);
 			this->button6->TabIndex = 11;
 			this->button6->Text = L"Add_test";
-			this->button6->UseVisualStyleBackColor = true;
+			this->button6->UseVisualStyleBackColor = false;
 			this->button6->Click += gcnew System::EventHandler(this, &frmMain::button6_Click);
 			// 
 			// btnRemTask
@@ -318,12 +319,13 @@ namespace TODOList {
 			// 
 			// btnClose
 			// 
-			this->btnClose->FlatAppearance->BorderColor = System::Drawing::Color::Black;
+			this->btnClose->FlatAppearance->BorderColor = System::Drawing::Color::WhiteSmoke;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->btnClose->Location = System::Drawing::Point(920, 12);
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(27, 26);
 			this->btnClose->TabIndex = 22;
+			this->btnClose->Text = L"X";
 			this->btnClose->UseVisualStyleBackColor = true;
 			this->btnClose->Click += gcnew System::EventHandler(this, &frmMain::btnClose_Click);
 			// 

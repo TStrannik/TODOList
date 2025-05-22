@@ -120,10 +120,9 @@ namespace TODOList {
 			   // 
 			   btnX->Text = L"X";
 			   btnX->Name = L"btnX";
-			   btnX->Location = Drawing::Point(278, 11);
-			   btnX->Size = Drawing::Size(20, 20);
+			   btnX->Location = Drawing::Point(328, 11);
+			   btnX->Size = Drawing::Size(20, 20);			   
 			   btnX->TextAlign = Drawing::ContentAlignment::MiddleCenter;
-			   btnX->BackColor = Color::Black;
 			   btnX->TabIndex = 2;
 			   btnX->UseVisualStyleBackColor = true;
 			   btnX->Click += gcnew EventHandler(this, &lineTask::btnX_Click);
@@ -140,10 +139,8 @@ namespace TODOList {
 			   btnU->Location = Drawing::Point(238, 11);
 			   btnU->Size = Drawing::Size(20, 20);
 			   btnU->TextAlign = Drawing::ContentAlignment::MiddleCenter;
-			   btnU->BackColor = Color::FromArgb(255, 0, 128);	
 			   btnU->TabIndex = 2;
 			   btnU->UseVisualStyleBackColor = true;
-
 			   btnU->Click += gcnew EventHandler(this, &lineTask::btnU_Click);
 
 
@@ -158,7 +155,6 @@ namespace TODOList {
 			   btnD->Location						= Drawing::Point(258, 11);
 			   btnD->Size							= Drawing::Size(20, 20);
 			   btnD->TextAlign						= Drawing::ContentAlignment::MiddleCenter;
-			   btnD->BackColor						= Color::FromArgb(255, 0, 128);
 			   btnD->TabIndex						= 2;
 			   btnD->UseVisualStyleBackColor		= true;
 			   btnD->Click += gcnew EventHandler(this, &lineTask::btnD_Click);
@@ -375,6 +371,23 @@ namespace TODOList {
 			txt->Text = header;
 			
 			//txt->Visible = text_open;
+
+			btnU->FlatStyle = FlatStyle::Flat;
+			btnD->FlatStyle = FlatStyle::Flat;
+			btnX->FlatStyle = FlatStyle::Flat;
+
+			btnU->FlatAppearance->BorderSize = 0;
+			btnD->FlatAppearance->BorderSize = 0;
+			btnX->FlatAppearance->BorderSize = 0;
+
+			btnU->BackColor = Color::FromArgb(248, 8, 128);
+			btnD->BackColor = Color::FromArgb(248, 8, 128);
+			btnX->BackColor = Color::FromArgb(248, 8, 128);
+
+			
+			btnX->Location = Drawing::Point(Parent->Width - btnX->Width - 10, 11);
+			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
+			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
 
 		}
 
