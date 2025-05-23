@@ -71,8 +71,9 @@ namespace TODOList {
 			   //
 			   cbx->Name = L"cbx";
 			   cbx->AutoSize = true;
-			   cbx->Location = Drawing::Point(25, 15);
+			   cbx->Location = Drawing::Point(25, 10);
 			   cbx->Size = Drawing::Size(43, 17);
+			   cbx->Padding = Windows::Forms::Padding(0);
 			   cbx->TabIndex = 0;
 			   cbx->UseVisualStyleBackColor = true;
 			   //cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::cbx_Paint);
@@ -87,8 +88,8 @@ namespace TODOList {
 			   //
 			   lbl->Name = L"lbl";
 			   lbl->Size = System::Drawing::Size(35, 13);
-			   lbl->Location = System::Drawing::Point(45, 13);
-			   lbl->Font = gcnew System::Drawing::Font("Arial", 12);
+			   lbl->Location = System::Drawing::Point(45, 7);
+			   lbl->Font = gcnew System::Drawing::Font("Arial", 10);
 			   lbl->ForeColor = Color::White;
 			   lbl->AutoSize = true;
 			   lbl->TabIndex = 0;
@@ -103,9 +104,9 @@ namespace TODOList {
 			   // 
 			   txt->Name = L"txt";
 			   txt->Visible = false;
-			   txt->Location = Drawing::Point(45, 10);
+			   txt->Location = Drawing::Point(45, 4);
 			   txt->Size = Drawing::Size(50, 20);
-			   txt->Font = gcnew System::Drawing::Font("Arial", 12);
+			   txt->Font = lbl->Font;
 			   txt->ForeColor = Color::White;
 			   txt->BackColor = Color::FromArgb(248, 8, 128);
 			   txt->TabIndex = 1;
@@ -123,7 +124,7 @@ namespace TODOList {
 			   // 
 			   btnX->Text = L"X";
 			   btnX->Name = L"btnX";
-			   btnX->Location = Drawing::Point(328, 11);
+			   btnX->Location = Drawing::Point(328, 6);
 			   btnX->Size = Drawing::Size(20, 20);
 			   btnX->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnX->TabIndex = 2;
@@ -139,7 +140,7 @@ namespace TODOList {
 			   // 
 			   btnU->Text = L"^";
 			   btnU->Name = L"btnX";
-			   btnU->Location = Drawing::Point(238, 11);
+			   btnU->Location = Drawing::Point(238, 6);
 			   btnU->Size = Drawing::Size(20, 20);
 			   btnU->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnU->TabIndex = 2;
@@ -155,7 +156,7 @@ namespace TODOList {
 			   // 
 			   btnD->Text = L"v";
 			   btnD->Name = L"btnX";
-			   btnD->Location = Drawing::Point(258, 11);
+			   btnD->Location = Drawing::Point(258, 6);
 			   btnD->Size = Drawing::Size(20, 20);
 			   btnD->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnD->TabIndex = 2;

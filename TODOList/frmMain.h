@@ -628,11 +628,11 @@ private:
 			new Task({
 				"Бупка",
 				{
-					new Subtask("40"),
-					new Subtask("41"),
-					new Subtask("42"),
-					new Subtask("43"),
-					new Subtask("44"),
+					new Subtask("Дышать"),
+					new Subtask("Видеть"),
+					new Subtask("Смотреть"),
+					new Subtask("Держать"),
+					new Subtask("Гнать"),
 				}
 				})
 		);
