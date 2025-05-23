@@ -61,7 +61,9 @@ namespace TODOList {
 			lneTask->Padding				 = Windows::Forms::Padding(15);
 			lneTask->TabIndex				 = 0;
 			lneTask->Dock					 = Windows::Forms::DockStyle::Top;
-			lneTask->BackColor				 = Color::FromArgb(248, 8, 128);
+			//lneTask->BackColor				 = Color::FromArgb(248, 8, 128); 
+			//lneTask->BackColor				 = Color::FromArgb(222, 8, 152);
+			lneTask->BackColor				 = Color::FromArgb(212, 42, 148);
 			lneTask->ForeColor				 = Color::White;
 			lneTask->parForm				 = parForm;
 			
@@ -161,9 +163,12 @@ public:
 		cbxSubtask->Text	  = name;
 		cbxSubtask->Size	  = Drawing::Size(140, 20);
 		cbxSubtask->Dock	  = Windows::Forms::DockStyle::Top;
-		cbxSubtask->BackColor = Color::FromArgb(255 - 8 * subtask_counter, 8 * subtask_counter, 128);
+		//cbxSubtask->BackColor = Color::FromArgb(255 - 2 * subtask_counter, 2 * subtask_counter, 128);
+		cbxSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
+									//212, 42, 148
 		cbxSubtask->ForeColor = Color::White;
-		cbxSubtask->Padding   = Windows::Forms::Padding(25, 15, 0, 15);		
+		//cbxSubtask->Padding   = Windows::Forms::Padding(25, 15, 0, 15);
+		cbxSubtask->Padding = Windows::Forms::Padding(25, 20, 0, 20);
 		cbxSubtask->TabIndex  = 0;
 		//cbxSubtask->Click   += gcnew System::EventHandler(this, &frmMain::task_Click);
 

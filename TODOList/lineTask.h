@@ -382,9 +382,9 @@ namespace TODOList {
 			btnD->FlatAppearance->BorderSize = 0;
 			btnX->FlatAppearance->BorderSize = 0;
 
-			btnU->BackColor = Color::FromArgb(248, 8, 128);
-			btnD->BackColor = Color::FromArgb(248, 8, 128);
-			btnX->BackColor = Color::FromArgb(248, 8, 128);
+			btnU->BackColor = Color::FromArgb(212, 42, 148);
+			btnD->BackColor = Color::FromArgb(212, 42, 148);
+			btnX->BackColor = Color::FromArgb(212, 42, 148);
 
 			
 			btnX->Location = Drawing::Point(Parent->Width - btnX->Width - 10, 11);
