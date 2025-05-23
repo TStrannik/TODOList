@@ -119,7 +119,7 @@ namespace TODOList {
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(674, 411);
+			this->listBox1->Location = System::Drawing::Point(742, 411);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(106, 108);
 			this->listBox1->TabIndex = 1;
@@ -127,7 +127,7 @@ namespace TODOList {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(674, 356);
+			this->button1->Location = System::Drawing::Point(742, 356);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(106, 23);
 			this->button1->TabIndex = 2;
@@ -148,14 +148,14 @@ namespace TODOList {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(674, 385);
+			this->textBox1->Location = System::Drawing::Point(742, 385);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(106, 20);
 			this->textBox1->TabIndex = 4;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(541, 385);
+			this->button2->Location = System::Drawing::Point(609, 385);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 53);
 			this->button2->TabIndex = 5;
@@ -166,7 +166,7 @@ namespace TODOList {
 			// lbxSub
 			// 
 			this->lbxSub->FormattingEnabled = true;
-			this->lbxSub->Location = System::Drawing::Point(786, 411);
+			this->lbxSub->Location = System::Drawing::Point(854, 411);
 			this->lbxSub->Name = L"lbxSub";
 			this->lbxSub->Size = System::Drawing::Size(106, 108);
 			this->lbxSub->TabIndex = 6;
@@ -174,14 +174,14 @@ namespace TODOList {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(786, 385);
+			this->textBox2->Location = System::Drawing::Point(854, 385);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(106, 20);
 			this->textBox2->TabIndex = 7;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(786, 356);
+			this->button3->Location = System::Drawing::Point(854, 356);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(106, 23);
 			this->button3->TabIndex = 8;
@@ -191,7 +191,7 @@ namespace TODOList {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(409, 496);
+			this->button4->Location = System::Drawing::Point(477, 496);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 9;
@@ -201,7 +201,7 @@ namespace TODOList {
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(409, 356);
+			this->button5->Location = System::Drawing::Point(477, 356);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(106, 23);
 			this->button5->TabIndex = 10;
@@ -212,7 +212,7 @@ namespace TODOList {
 			// button6
 			// 
 			this->button6->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->button6->Location = System::Drawing::Point(541, 356);
+			this->button6->Location = System::Drawing::Point(609, 356);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 23);
 			this->button6->TabIndex = 11;
@@ -222,7 +222,7 @@ namespace TODOList {
 			// 
 			// btnRemTask
 			// 
-			this->btnRemTask->Location = System::Drawing::Point(644, 411);
+			this->btnRemTask->Location = System::Drawing::Point(712, 411);
 			this->btnRemTask->Name = L"btnRemTask";
 			this->btnRemTask->Size = System::Drawing::Size(24, 23);
 			this->btnRemTask->TabIndex = 12;
@@ -232,7 +232,7 @@ namespace TODOList {
 			// 
 			// btnRemSub
 			// 
-			this->btnRemSub->Location = System::Drawing::Point(898, 411);
+			this->btnRemSub->Location = System::Drawing::Point(966, 411);
 			this->btnRemSub->Name = L"btnRemSub";
 			this->btnRemSub->Size = System::Drawing::Size(25, 23);
 			this->btnRemSub->TabIndex = 13;
@@ -242,7 +242,7 @@ namespace TODOList {
 			// 
 			// button10
 			// 
-			this->button10->Location = System::Drawing::Point(409, 462);
+			this->button10->Location = System::Drawing::Point(477, 462);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(75, 23);
 			this->button10->TabIndex = 21;
@@ -252,9 +252,10 @@ namespace TODOList {
 			// 
 			// btnClose
 			// 
+			this->btnClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->btnClose->FlatAppearance->BorderColor = System::Drawing::Color::WhiteSmoke;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnClose->Location = System::Drawing::Point(920, 12);
+			this->btnClose->Location = System::Drawing::Point(1011, 12);
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(27, 26);
 			this->btnClose->TabIndex = 22;
@@ -266,7 +267,7 @@ namespace TODOList {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(959, 546);
+			this->ClientSize = System::Drawing::Size(1050, 546);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->button10);
 			this->Controls->Add(this->btnRemSub);
@@ -288,29 +289,42 @@ namespace TODOList {
 			this->Text = L"frmMain";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &frmMain::frmMain_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &frmMain::frmMain_Load);
+			this->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseDoubleClick);
+			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseDown);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseMove);
+			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseUp);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-		private:
+		
 
 #pragma endregion main {
 
 
 
 #pragma region variables
-	Logic*				   logic;
-	std::vector <Task*>*   tasks		    = new std::vector <Task*>();
 
 private:
-	int					   task_selected    = 0;  // -1;
-	int					   subtask_selected = 0;	// -1; -> proverka
-	
-	static int			   ptask_counter	= 0;
-	int					   ptask_selected	= -1;
-	pnlTask^ ptask							= gcnew pnlTask();
+// Tasks & Subtasks
+	Logic*				    logic;			 /// DELETE
+	std::vector <Task*>*    tasks		     = new std::vector <Task*>();
+						    
+	int					    task_selected    = 0;  // -1;
+	int					    subtask_selected = 0;	// -1; -> proverka
+						    
+	static int			    ptask_counter	 = 0;
+	int					    ptask_selected	 = -1;
+	pnlTask^ ptask							 = gcnew pnlTask();
+
+
+// Drag & Drop
+	bool				    _is_mouse_down   = false;
+	int					    _x_offset;
+	int					    _y_offset;
+	System::Drawing::Point^ _mouse_offset;
 #pragma endregion
 
 
@@ -343,6 +357,38 @@ private:
 		delete logic;
 
 	}
+	Void frmMain_MouseDoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
+
+		Width = (Width == 430) ? 1050 : 430;
+
+	}
+	Void frmMain_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+
+		if (e->Button == Windows::Forms::MouseButtons::Left)
+		{
+			_x_offset = -e->X - SystemInformation::FrameBorderSize.Width;
+			_y_offset = -e->Y - SystemInformation::FrameBorderSize.Height;
+			_mouse_offset = System::Drawing::Point(_x_offset, _y_offset);
+			_is_mouse_down = true;
+		}
+
+	}
+	Void frmMain_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+
+		if (_is_mouse_down)
+		{
+			Point mouse_pos = Control::MousePosition;
+			mouse_pos.Offset(_mouse_offset->X, _mouse_offset->Y);
+			Location = mouse_pos;
+		}
+
+	}	
+	Void frmMain_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+
+		if (e->Button == Windows::Forms::MouseButtons::Left) _is_mouse_down = false;
+		
+	}
+	
 	
 	Void btnClose_Click(Object^ sender, EventArgs^ e) {
 
@@ -651,8 +697,6 @@ private:
 
 
 #pragma region }
-
-
 
 }; }
 
