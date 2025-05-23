@@ -60,6 +60,8 @@ namespace TODOList {
 			   MouseMove += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseMove);
 			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseUp);
 			   MouseDoubleClick += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_DoubleClick);
+			   VisibleChanged += gcnew System::EventHandler(this, &lineSubtask::this_VisibleChanged);
+
 
 
 
@@ -178,30 +180,6 @@ namespace TODOList {
 	private:
 
 
-		/* D&D
-		bool _drag_start = false;
-		int  _posX	= 0;
-		int  _posY	= 0;
-		int  _offsetX = 0;
-		int  _offsetY = 0;
-
-		_drag_start = true;
-		_posX = e->X;
-		_posY = e->Y;
-
-		Parent->Size = Drawing::Size(200, 100); //(Parent->Parent->Width, Parent->Height);
-		Parent->Dock = Windows::Forms::DockStyle::None;
-
-		//if (_drag_start) {
-			//	//Parent->Left = _posX + MousePosition.X;
-			//	//Parent->Top  = _posY - MousePosition.Y;
-			//}
-
-		_drag_start = false;
-		Parent->TabIndex = 3;
-		Parent->Dock = Windows::Forms::DockStyle::Top;
-
-		*/
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 			call_method_parent("subtasks_hide_show", {});
@@ -224,6 +202,11 @@ namespace TODOList {
 		Void this_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 
+
+		}
+		Void this_VisibleChanged(Object^ sender, EventArgs^ e) {
+
+			Console::Write(Name); Console::WriteLine(" => Visible Changed");
 
 		}
 
@@ -267,7 +250,7 @@ namespace TODOList {
 
 		}
 
-
+		
 
 
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
@@ -390,7 +373,8 @@ namespace TODOList {
 			btnX->BackColor = BackColor;
 
 
-			btnX->Location = Drawing::Point(Width - btnX->Width - 20, 11);
+			//btnX->Location = Drawing::Point(Width - btnX->Width - 20, 11);
+			btnX->Location = Drawing::Point(310, 11);
 			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
 

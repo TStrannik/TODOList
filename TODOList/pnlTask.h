@@ -113,12 +113,12 @@ private:
 							 // pnlSubtasks->Controls->Count ??
 		for (int i = 1; i <= subtask_counter; ++i) {
 		
-			if (cbxSubtask->Visible) {
-				pnlSubtasks->Controls->Find("cbxSubtask_" + i.ToString(), 0)[0]->Visible = false;
+			if (lneSubtask->Visible) {
+				pnlSubtasks->Controls->Find("lneSubtask_" + i.ToString(), 0)[0]->Visible = false;
 				subtasks_visible_counter = 0;
 			}
 			else {
-				pnlSubtasks->Controls->Find("cbxSubtask_" + i.ToString(), 0)[0]->Visible = true;
+				pnlSubtasks->Controls->Find("lneSubtask_" + i.ToString(), 0)[0]->Visible = true;
 				subtasks_visible_counter = subtask_counter;
 			}
 		
@@ -151,35 +151,34 @@ public:
 		  //public: frmMain^					  owner;
 
 
-public:
-	//std::vector <CheckBox^>^ vec = nullptr;
 
 public:
-	inline void subtask_add(String^ name) {
-
-		subtask_counter++;
-		subtasks_visible_counter = subtask_counter;
-
-		cbxSubtask			  = (gcnew CheckBox());
-
-		cbxSubtask->Name	  = L"cbxSubtask_" + subtask_counter.ToString();
-		cbxSubtask->Text	  = name;
-		cbxSubtask->Size	  = Drawing::Size(140, 20);
-		cbxSubtask->Dock	  = Windows::Forms::DockStyle::Top;
-		//cbxSubtask->BackColor = Color::FromArgb(255 - 2 * subtask_counter, 2 * subtask_counter, 128);
-		cbxSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
-									//212, 42, 148
-		cbxSubtask->ForeColor = Color::White;
-		//cbxSubtask->Padding   = Windows::Forms::Padding(25, 15, 0, 15);
-		cbxSubtask->Padding = Windows::Forms::Padding(25, 20, 0, 20);
-		cbxSubtask->TabIndex  = 0;
-		//cbxSubtask->Click   += gcnew System::EventHandler(this, &frmMain::task_Click);
-
-		pnlSubtasks->Controls->Add(cbxSubtask);
-
-		update_state();
-
-	}
+	/// Delete
+	//inline void subtask_add(String^ name) {
+	//
+	//	subtask_counter++;
+	//	subtasks_visible_counter = subtask_counter;
+	//
+	//	cbxSubtask			  = (gcnew CheckBox());
+	//
+	//	cbxSubtask->Name	  = L"cbxSubtask_" + subtask_counter.ToString();
+	//	cbxSubtask->Text	  = name;
+	//	cbxSubtask->Size	  = Drawing::Size(140, 20);
+	//	cbxSubtask->Dock	  = Windows::Forms::DockStyle::Top;
+	//	//cbxSubtask->BackColor = Color::FromArgb(255 - 2 * subtask_counter, 2 * subtask_counter, 128);
+	//	cbxSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
+	//								//212, 42, 148
+	//	cbxSubtask->ForeColor = Color::White;
+	//	//cbxSubtask->Padding   = Windows::Forms::Padding(25, 15, 0, 15);
+	//	cbxSubtask->Padding = Windows::Forms::Padding(25, 20, 0, 20);
+	//	cbxSubtask->TabIndex  = 0;
+	//	//cbxSubtask->Click   += gcnew System::EventHandler(this, &frmMain::task_Click);
+	//
+	//	pnlSubtasks->Controls->Add(cbxSubtask);
+	//
+	//	update_state();
+	//
+	//}
 	inline void subtask_add_GOAL(String^ name) {
 
 		subtask_counter++;
@@ -189,7 +188,8 @@ public:
 		lneSubtask = (gcnew lineSubtask());
 
 		lneSubtask->Name = L"lneSubtask_" + subtask_counter.ToString();
-		lneSubtask->Text = name;
+		lneSubtask->Text   = name;
+		lneSubtask->header = name->ToString();
 		lneSubtask->Size = Drawing::Size(140, 30);
 		lneSubtask->Dock = Windows::Forms::DockStyle::Top;
 		lneSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
@@ -212,12 +212,11 @@ public:
 		lneTask->nomber = nomber;
 		lneTask->update_state();
 
-		lneSubtask->header = "subtask";
+		//lneSubtask->header = lneSubtask->Name;
+		//lneSubtask->header = 
 		lneSubtask->nomber = subtask_counter;
 		lneSubtask->update_state();
 		
-
-		// Пересчёт размера
 		size_reset();
 
 	}

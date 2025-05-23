@@ -387,7 +387,8 @@ namespace TODOList {
 			btnX->BackColor = Color::FromArgb(212, 42, 148);
 
 			
-			btnX->Location = Drawing::Point(Parent->Width - btnX->Width - 10, 11);
+			//btnX->Location = Drawing::Point(Parent->Width - btnX->Width - 10, 11);
+			btnX->Location = Drawing::Point(330, 11);
 			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
 
