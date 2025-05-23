@@ -59,6 +59,7 @@ namespace TODOList {
 			   MouseDown += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseDown);
 			   MouseMove += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseMove);
 			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseUp);
+			   MouseDoubleClick += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_DoubleClick);
 
 
 
@@ -201,15 +202,16 @@ namespace TODOList {
 		Parent->Dock = Windows::Forms::DockStyle::Top;
 
 		*/
+		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
+			call_method_parent("subtasks_hide_show", {});
 
+		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			Console::WriteLine(Parent->Name);
+			//Console::WriteLine(Parent->Name);
 			//Console::WriteLine(Parent->Parent->TabIndex);
 			//Console::WriteLine(nomber);
-
-
 			
 			txt_append_close();
 

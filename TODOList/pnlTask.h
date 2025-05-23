@@ -93,8 +93,8 @@ namespace TODOList {
 #pragma endregion main {
 
 private:
-
-	int						  subtask_counter = 0;
+	int						  subtasks_visible_counter = 0;
+	int						  subtask_counter		   = 0;
 	Windows::Forms::CheckBox^ cbxSubtask = gcnew CheckBox();
 
 
@@ -104,6 +104,35 @@ private:
 		header = str;
 
 	}
+	inline void subtasks_hide_show() {
+
+							 // pnlSubtasks->Controls->Count ??
+		for (int i = 1; i <= subtask_counter; ++i) {
+		
+			if (cbxSubtask->Visible) {
+				pnlSubtasks->Controls->Find("cbxSubtask_" + i.ToString(), 0)[0]->Visible = false;
+				subtasks_visible_counter = 0;
+			}
+			else {
+				pnlSubtasks->Controls->Find("cbxSubtask_" + i.ToString(), 0)[0]->Visible = true;
+				subtasks_visible_counter = subtask_counter;
+			}
+		
+		}
+
+		size_reset();
+
+	}
+	inline void size_reset() {
+
+						// subtask_counter
+		this->Height = (subtasks_visible_counter) * 20 + 48;
+
+	}
+	
+
+		
+
 
 public:
 	bool      start    = false;
@@ -118,13 +147,17 @@ public:
 
 
 public:
+	//std::vector <CheckBox^>^ vec = nullptr;
+
+public:
 	inline void subtask_add(String^ name) {
 
 		subtask_counter++;
+		subtasks_visible_counter = subtask_counter;
 
 		cbxSubtask			  = (gcnew CheckBox());
 
-		cbxSubtask->Name	  = L"cbxSubtask " + subtask_counter.ToString();
+		cbxSubtask->Name	  = L"cbxSubtask_" + subtask_counter.ToString();
 		cbxSubtask->Text	  = name;
 		cbxSubtask->Size	  = Drawing::Size(140, 20);
 		cbxSubtask->Dock	  = Windows::Forms::DockStyle::Top;
@@ -149,7 +182,7 @@ public:
 		
 
 		// Пересчёт размера
-		this->Height = (subtask_counter) * 20 + 48;
+		size_reset();
 
 	}
 
