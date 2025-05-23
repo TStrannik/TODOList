@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="frmMain.cpp" />
     <ClCompile Include="lineTask.cpp" />
+    <ClCompile Include="lineSubtask.cpp" />
     <ClCompile Include="pnlTask.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +134,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="lineTask.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="lineSubtask.h">
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="Logic.h" />

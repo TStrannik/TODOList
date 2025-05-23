@@ -137,6 +137,7 @@ namespace TODOList {
 			// 
 			// pnlTasks
 			// 
+			this->pnlTasks->AutoScroll = true;
 			this->pnlTasks->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
 				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->pnlTasks->Dock = System::Windows::Forms::DockStyle::Left;
@@ -190,7 +191,7 @@ namespace TODOList {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(386, 496);
+			this->button4->Location = System::Drawing::Point(409, 496);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 9;
@@ -200,7 +201,7 @@ namespace TODOList {
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(386, 356);
+			this->button5->Location = System::Drawing::Point(409, 356);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(106, 23);
 			this->button5->TabIndex = 10;
@@ -241,7 +242,7 @@ namespace TODOList {
 			// 
 			// button10
 			// 
-			this->button10->Location = System::Drawing::Point(386, 462);
+			this->button10->Location = System::Drawing::Point(409, 462);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(75, 23);
 			this->button10->TabIndex = 21;
@@ -582,7 +583,8 @@ private:
 			// Порядок под сомнением
 			ptask_add(tasks->at(i)->get_text());
 			for (const auto& st : tasks->at(i)->get_subtasks_vector())
-				ptask->subtask_add(sts(st->get_text()));
+				ptask->subtask_add_GOAL(sts(st->get_text()));
+				//ptask->subtask_add(sts(st->get_text()));
 
 		}
 

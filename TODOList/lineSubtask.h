@@ -18,14 +18,14 @@ using namespace System::Reflection;
 
 namespace TODOList {
 
-	public ref struct lineTask : public System::Windows::Forms::Control {
+	public ref struct lineSubtask : public System::Windows::Forms::Control {
 
 
 
 
 #pragma region ctors/destr
-	public:		lineTask(void) { InitializeComponent(); }
-	protected: ~lineTask() { if (components) delete components; }
+	public:		lineSubtask(void) { InitializeComponent(); }
+	protected: ~lineSubtask() { if (components) delete components; }
 #pragma endregion
 
 
@@ -53,13 +53,13 @@ namespace TODOList {
 
 
 			   // 
-			   // THIS (lineTask)
+			   // THIS (lineSubtask)
 			   // 
-			   Size = Drawing::Size(200, 48);
-			   MouseDown += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseDown);
-			   MouseMove += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseMove);
-			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseUp);
-			   MouseDoubleClick += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_DoubleClick);
+			   Size = Drawing::Size(200, 30);
+			   MouseDown += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseDown);
+			   MouseMove += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseMove);
+			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseUp);
+			   MouseDoubleClick += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_DoubleClick);
 
 
 
@@ -69,11 +69,11 @@ namespace TODOList {
 			   //
 			   cbx->Name = L"cbx";
 			   cbx->AutoSize = true;
-			   cbx->Location = Drawing::Point(10, 15);
+			   cbx->Location = Drawing::Point(25, 15);
 			   cbx->Size = Drawing::Size(43, 17);
 			   cbx->TabIndex = 0;
 			   cbx->UseVisualStyleBackColor = true;
-			   //cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
+			   //cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::cbx_Paint);
 
 
 
@@ -85,12 +85,12 @@ namespace TODOList {
 			   //
 			   lbl->Name = L"lbl";
 			   lbl->Size = System::Drawing::Size(35, 13);
-			   lbl->Location = System::Drawing::Point(30, 13);
+			   lbl->Location = System::Drawing::Point(45, 13);
 			   lbl->Font = gcnew System::Drawing::Font("Arial", 12);
 			   lbl->ForeColor = Color::White;
 			   lbl->AutoSize = true;
 			   lbl->TabIndex = 0;
-			   lbl->Click += gcnew EventHandler(this, &lineTask::lbl_Click);
+			   lbl->Click += gcnew EventHandler(this, &lineSubtask::lbl_Click);
 
 
 
@@ -101,14 +101,14 @@ namespace TODOList {
 			   // 
 			   txt->Name = L"txt";
 			   txt->Visible = false;
-			   txt->Location = Drawing::Point(30, 10);
+			   txt->Location = Drawing::Point(45, 10);
 			   txt->Size = Drawing::Size(50, 20);
 			   txt->Font = gcnew System::Drawing::Font("Arial", 12);
 			   txt->ForeColor = Color::White;
 			   txt->BackColor = Color::FromArgb(248, 8, 128);
 			   txt->TabIndex = 1;
-			   txt->KeyPress += gcnew Windows::Forms::KeyPressEventHandler(this, &lineTask::txt_KeyPress);
-			   txt->TextChanged += gcnew System::EventHandler(this, &lineTask::txt_TextChanged);
+			   txt->KeyPress += gcnew Windows::Forms::KeyPressEventHandler(this, &lineSubtask::txt_KeyPress);
+			   txt->TextChanged += gcnew System::EventHandler(this, &lineSubtask::txt_TextChanged);
 			   txt->AutoSize = false;
 
 
@@ -122,11 +122,11 @@ namespace TODOList {
 			   btnX->Text = L"X";
 			   btnX->Name = L"btnX";
 			   btnX->Location = Drawing::Point(328, 11);
-			   btnX->Size = Drawing::Size(20, 20);			   
+			   btnX->Size = Drawing::Size(20, 20);
 			   btnX->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnX->TabIndex = 2;
 			   btnX->UseVisualStyleBackColor = true;
-			   btnX->Click += gcnew EventHandler(this, &lineTask::btnX_Click);
+			   btnX->Click += gcnew EventHandler(this, &lineSubtask::btnX_Click);
 
 
 
@@ -142,7 +142,7 @@ namespace TODOList {
 			   btnU->TextAlign = Drawing::ContentAlignment::MiddleCenter;
 			   btnU->TabIndex = 2;
 			   btnU->UseVisualStyleBackColor = true;
-			   btnU->Click += gcnew EventHandler(this, &lineTask::btnU_Click);
+			   btnU->Click += gcnew EventHandler(this, &lineSubtask::btnU_Click);
 
 
 
@@ -151,14 +151,14 @@ namespace TODOList {
 			   // 
 			   // [v]
 			   // 
-			   btnD->Text							= L"v";
-			   btnD->Name							= L"btnX";
-			   btnD->Location						= Drawing::Point(258, 11);
-			   btnD->Size							= Drawing::Size(20, 20);
-			   btnD->TextAlign						= Drawing::ContentAlignment::MiddleCenter;
-			   btnD->TabIndex						= 2;
-			   btnD->UseVisualStyleBackColor		= true;
-			   btnD->Click += gcnew EventHandler(this, &lineTask::btnD_Click);
+			   btnD->Text = L"v";
+			   btnD->Name = L"btnX";
+			   btnD->Location = Drawing::Point(258, 11);
+			   btnD->Size = Drawing::Size(20, 20);
+			   btnD->TextAlign = Drawing::ContentAlignment::MiddleCenter;
+			   btnD->TabIndex = 2;
+			   btnD->UseVisualStyleBackColor = true;
+			   btnD->Click += gcnew EventHandler(this, &lineSubtask::btnD_Click);
 
 
 
@@ -211,9 +211,9 @@ namespace TODOList {
 
 			//Console::WriteLine(Parent->Name);
 			//Console::WriteLine(Parent->Parent->TabIndex);
-			//Console::WriteLine(nomber);
-			
-			txt_append_close();
+			Console::WriteLine(nomber);
+
+			//txt_append_close();
 
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
@@ -295,7 +295,7 @@ namespace TODOList {
 
 		}
 		void call_method_parent(String^ method_name, std::initializer_list <Object^> list) {
-		
+
 			Type^ type = Parent->GetType();
 
 			MethodInfo^ method = type->GetMethod(method_name,
@@ -316,7 +316,7 @@ namespace TODOList {
 				method->Invoke(Parent, args);
 			else
 				Console::WriteLine("call_method_error");
-		
+
 		}
 
 
@@ -331,10 +331,10 @@ namespace TODOList {
 		}
 		inline void txt_append_close() {
 
-			//Parent->header = txt->Text;								/// TODO:
+			//Parent->header = txt->Text;			
 			call_method_parent("set_header", { header });				// Не прёт
 			call_method_main("task_set_name", { nomber, header });
-			
+
 
 			header = txt->Text;
 			lbl->Text = header;
@@ -346,9 +346,9 @@ namespace TODOList {
 
 			if (txt->Text->Length > 5)
 				txt->Width = TextRenderer::MeasureText(txt->Text, txt->Font).Width + 10;
-			else 
+			else
 				txt->Width = 56;
-			
+
 
 			//txt->AutoSize = false;
 			//txt->Width = (txt->Text->Length * 8) + (20 * (int)(txt->Text->Length * 0.1));
@@ -356,7 +356,7 @@ namespace TODOList {
 
 		}
 
-	
+
 
 	public:
 		String^ header = gcnew String("");
@@ -371,8 +371,11 @@ namespace TODOList {
 			//cbx->Text = header;
 			lbl->Text = header;
 			txt->Text = header;
-			
+
 			//txt->Visible = text_open;
+
+
+			BackColor = Color::FromArgb(212 - 8 * nomber, 8 * nomber + 42, 148);
 
 			btnU->FlatStyle = FlatStyle::Flat;
 			btnD->FlatStyle = FlatStyle::Flat;
@@ -382,12 +385,12 @@ namespace TODOList {
 			btnD->FlatAppearance->BorderSize = 0;
 			btnX->FlatAppearance->BorderSize = 0;
 
-			btnU->BackColor = Color::FromArgb(212, 42, 148);
-			btnD->BackColor = Color::FromArgb(212, 42, 148);
-			btnX->BackColor = Color::FromArgb(212, 42, 148);
+			btnU->BackColor = BackColor;
+			btnD->BackColor = BackColor;
+			btnX->BackColor = BackColor;
 
-			
-			btnX->Location = Drawing::Point(Parent->Width - btnX->Width - 10, 11);
+
+			btnX->Location = Drawing::Point(Width - btnX->Width - 20, 11);
 			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
 

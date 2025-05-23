@@ -1,5 +1,6 @@
 #pragma once
 #include "lineTask.h"
+#include "lineSubtask.h"
 
 
 #pragma region void
@@ -98,6 +99,7 @@ private:
 	int						  subtasks_visible_counter = 0;
 	int						  subtask_counter		   = 0;
 	Windows::Forms::CheckBox^ cbxSubtask = gcnew CheckBox();
+	lineSubtask^			  lneSubtask = gcnew lineSubtask();
 
 
 private:
@@ -128,7 +130,8 @@ private:
 	inline void size_reset() {
 
 						// subtask_counter
-		this->Height = (subtasks_visible_counter) * 20 + 48;
+		//this->Height = (subtasks_visible_counter) * 20 + 48;
+		this->Height = (subtasks_visible_counter) * 30 + 48;
 
 	}
 	
@@ -177,6 +180,30 @@ public:
 		update_state();
 
 	}
+	inline void subtask_add_GOAL(String^ name) {
+
+		subtask_counter++;
+		subtasks_visible_counter = subtask_counter;
+
+
+		lneSubtask = (gcnew lineSubtask());
+
+		lneSubtask->Name = L"lneSubtask_" + subtask_counter.ToString();
+		lneSubtask->Text = name;
+		lneSubtask->Size = Drawing::Size(140, 30);
+		lneSubtask->Dock = Windows::Forms::DockStyle::Top;
+		lneSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
+		lneSubtask->ForeColor = Color::White;
+		lneSubtask->TabIndex = 0;
+
+		pnlSubtasks->Controls->Add(lneSubtask);
+
+		update_state();
+
+	}
+
+
+
 	void		update_state() {
 
 		lneTask->Name	= L"lne_" + header;
@@ -184,6 +211,10 @@ public:
 		lneTask->header = header;
 		lneTask->nomber = nomber;
 		lneTask->update_state();
+
+		lneSubtask->header = "subtask";
+		lneSubtask->nomber = subtask_counter;
+		lneSubtask->update_state();
 		
 
 		// Пересчёт размера
