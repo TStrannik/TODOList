@@ -67,7 +67,7 @@ namespace TODOList {
 
 
 			   // 
-			   // [v]
+			   // []
 			   //
 			   cbx->Name = L"cbx";
 			   cbx->AutoSize = true;
@@ -76,7 +76,7 @@ namespace TODOList {
 			   cbx->Padding = Windows::Forms::Padding(0);
 			   cbx->TabIndex = 0;
 			   cbx->UseVisualStyleBackColor = true;
-			   //cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::cbx_Paint);
+			   cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::cbx_Paint);
 
 
 
@@ -251,7 +251,51 @@ namespace TODOList {
 
 		}
 
-		
+		Void cbx_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
+
+			Graphics^ g = e->Graphics;
+			g->Clear(BackColor);
+
+
+
+#pragma region Square
+			Pen^ penSquare = gcnew Pen(Color::White);
+			penSquare->Width = 1;
+
+			g->DrawLine(penSquare, 2, 0, 12, 0);
+
+			g->DrawLine(penSquare, 12, 1, 13, 1);
+			g->DrawLine(penSquare, 13, 2, 14, 2);
+
+			g->DrawLine(penSquare, 14, 2, 14, 11);
+
+			g->DrawLine(penSquare, 14, 11, 13, 11);
+			g->DrawLine(penSquare, 13, 12, 12, 12);
+
+			g->DrawLine(penSquare, 0, 2, 0, 11);
+
+			g->DrawLine(penSquare, 2, 12, 1, 12);
+			g->DrawLine(penSquare, 1, 11, 0, 11);
+
+			g->DrawLine(penSquare, 2, 13, 12, 13);
+
+			g->DrawLine(penSquare, 0, 2, 1, 2);
+			g->DrawLine(penSquare, 1, 1, 2, 1);
+#pragma endregion			
+
+
+
+#pragma region —heckmark
+			if (cbx->Checked) {
+				Pen^ pen—heckmark = gcnew Pen(Color::White);
+				pen—heckmark->Width = 2;
+
+				g->DrawLine(pen—heckmark, 2, 6, 5, 10);
+				g->DrawLine(pen—heckmark, 5, 10, 11, 3);
+			}
+#pragma endregion
+
+		}
 
 
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {

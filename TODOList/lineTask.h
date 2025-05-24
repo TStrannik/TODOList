@@ -208,7 +208,14 @@ namespace TODOList {
 		*/
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			call_method_parent("subtasks_hide_show", {});
+			if (e->Button == Windows::Forms::MouseButtons::Right)
+				call_method_parent("subtasks_hide_show", {});
+
+			if (e->Button == Windows::Forms::MouseButtons::Left)
+				cbx->CheckState =
+					!cbx->Checked ?
+					CheckState::Checked :
+					CheckState::Unchecked;			
 
 		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
