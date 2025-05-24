@@ -33,10 +33,6 @@ System::String^ sts(std::string text) {
 namespace TODOList {
 
 
-	
-
-	
-
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -46,19 +42,7 @@ namespace TODOList {
 
 
 
-
-
 	public ref class frmMain : public System::Windows::Forms::Form {
-
-
-		
-
-	/// DELETE
-	public:   void gavka()	 { Console::WriteLine("GAVKA");}
-	public:  Void ebuca()	 { Console::WriteLine("EBUCA");  }
-	public: void dodik() { Console::WriteLine("DODIK"); }
-
-
 
 
 	public:		frmMain(void) { InitializeComponent(); }
@@ -86,8 +70,14 @@ namespace TODOList {
 
 
 
-	private: System::Windows::Forms::Button^ button10;
+
 	private: System::Windows::Forms::Button^ btnClose;
+	private: System::Windows::Forms::Panel^ pnlBlanket;
+
+
+
+
+
 
 
 
@@ -112,8 +102,8 @@ namespace TODOList {
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->btnRemTask = (gcnew System::Windows::Forms::Button());
 			this->btnRemSub = (gcnew System::Windows::Forms::Button());
-			this->button10 = (gcnew System::Windows::Forms::Button());
 			this->btnClose = (gcnew System::Windows::Forms::Button());
+			this->pnlBlanket = (gcnew System::Windows::Forms::Panel());
 			this->SuspendLayout();
 			// 
 			// listBox1
@@ -143,7 +133,7 @@ namespace TODOList {
 			this->pnlTasks->Dock = System::Windows::Forms::DockStyle::Left;
 			this->pnlTasks->Location = System::Drawing::Point(0, 0);
 			this->pnlTasks->Name = L"pnlTasks";
-			this->pnlTasks->Size = System::Drawing::Size(380, 546);
+			this->pnlTasks->Size = System::Drawing::Size(380, 550);
 			this->pnlTasks->TabIndex = 3;
 			// 
 			// textBox1
@@ -240,16 +230,6 @@ namespace TODOList {
 			this->btnRemSub->UseVisualStyleBackColor = true;
 			this->btnRemSub->Click += gcnew System::EventHandler(this, &frmMain::btnRemSub_Click);
 			// 
-			// button10
-			// 
-			this->button10->Location = System::Drawing::Point(477, 462);
-			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(75, 23);
-			this->button10->TabIndex = 21;
-			this->button10->Text = L"button10";
-			this->button10->UseVisualStyleBackColor = true;
-			this->button10->Click += gcnew System::EventHandler(this, &frmMain::button10_Click);
-			// 
 			// btnClose
 			// 
 			this->btnClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
@@ -263,13 +243,21 @@ namespace TODOList {
 			this->btnClose->UseVisualStyleBackColor = true;
 			this->btnClose->Click += gcnew System::EventHandler(this, &frmMain::btnClose_Click);
 			// 
+			// pnlBlanket
+			// 
+			this->pnlBlanket->Location = System::Drawing::Point(419, 356);
+			this->pnlBlanket->Name = L"pnlBlanket";
+			this->pnlBlanket->Size = System::Drawing::Size(50, 50);
+			this->pnlBlanket->TabIndex = 23;
+			this->pnlBlanket->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::pnlBlanket_MouseDoubleClick);
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1050, 546);
+			this->ClientSize = System::Drawing::Size(1050, 550);
+			this->Controls->Add(this->pnlBlanket);
 			this->Controls->Add(this->btnClose);
-			this->Controls->Add(this->button10);
 			this->Controls->Add(this->btnRemSub);
 			this->Controls->Add(this->btnRemTask);
 			this->Controls->Add(this->button6);
@@ -362,7 +350,7 @@ private:
 		Width = (Width == 430) ? 1050 : 430;
 
 	}
-	Void frmMain_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	Void frmMain_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 		if (e->Button == Windows::Forms::MouseButtons::Left)
 		{
@@ -373,7 +361,7 @@ private:
 		}
 
 	}
-	Void frmMain_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	Void frmMain_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 		if (_is_mouse_down)
 		{
@@ -383,13 +371,12 @@ private:
 		}
 
 	}	
-	Void frmMain_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	Void frmMain_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 		if (e->Button == Windows::Forms::MouseButtons::Left) _is_mouse_down = false;
 		
 	}
-	
-	
+
 	Void btnClose_Click(Object^ sender, EventArgs^ e) {
 
 		this->Close();
@@ -428,15 +415,13 @@ private:
 
 		task_to_list(listBox1);
 		subtask_to_list(lbxSub);
+		ptask_update();
 
 		//update_all()
 
-	}
-	Void button10_Click(Object^ sender, EventArgs^ e) {
-		
-		Console::WriteLine(Random().NextDouble() * 100);
 
 	}
+
 	Void btnRemSub_Click(Object^ sender, EventArgs^ e) {
 
 		task_remove(task_selected, subtask_selected);
@@ -459,6 +444,13 @@ private:
 	Void lbxSub_SelectedIndexChanged(Object^ sender, EventArgs^ e) {
 
 		subtask_selection(lbxSub->SelectedIndex);
+
+	}
+
+	Void pnlBlanket_MouseDoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
+
+		pnlBlanket->Width  = (pnlBlanket->Width  == 50) ? 580 : 50;
+		pnlBlanket->Height = (pnlBlanket->Height == 50) ? 165 : 50;
 
 	}
 #pragma endregion	
@@ -596,7 +588,8 @@ private:
 
 
 		ptask->parForm = this;
-		ptask->nomber = tasks->size() - ptask_counter;
+		//ptask->nomber = tasks->size() - ptask_counter;
+		ptask->nomber = ptask_counter - 1;
 
 		if (!name.empty()) ptask->header = sts(name);
 		else			   ptask->header = L"noname";
@@ -612,6 +605,7 @@ private:
 		ptask->Click += gcnew EventHandler(this, &frmMain::ptask_click);
 
 		pnlTasks->Controls->Add(ptask);
+		ptask->BringToFront();
 
 		ptask->update_state();
 
@@ -622,17 +616,27 @@ private:
 		pnlTasks->Controls->Clear();
 
 
-		
+		/// DELETE
 		//for (const auto& t : *tasks) {
-		for (int i = tasks->size() - 1; i >= 0; i--) {
+		//for (int i = tasks->size() - 1; i >= 0; i--) {
+		//
+		//	// Порядок под сомнением
+		//	ptask_add(tasks->at(i)->get_text());
+		//	for (const auto& st : tasks->at(i)->get_subtasks_vector())
+		//		ptask->subtask_add_GOAL(sts(st->get_text()));
+		//		//ptask->subtask_add(sts(st->get_text()));
+		//
+		//}
 
-			// Порядок под сомнением
-			ptask_add(tasks->at(i)->get_text());
-			for (const auto& st : tasks->at(i)->get_subtasks_vector())
+		for (const auto& t : *tasks) {
+
+			ptask_add(t->get_text());
+			for (const auto& st : t->get_subtasks_vector())
 				ptask->subtask_add_GOAL(sts(st->get_text()));
-				//ptask->subtask_add(sts(st->get_text()));
 
 		}
+
+
 
 		ptask->update_state();
 

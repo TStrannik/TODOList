@@ -86,7 +86,7 @@ namespace TODOList {
 			   lbl->Name = L"lbl";
 			   lbl->Size = System::Drawing::Size(35, 13);
 			   lbl->Location = System::Drawing::Point(30, 13);
-			   lbl->Font = gcnew System::Drawing::Font("Arial", 12);
+			   lbl->Font = gcnew System::Drawing::Font("Roboto", 12);
 			   lbl->ForeColor = Color::White;
 			   lbl->AutoSize = true;
 			   lbl->TabIndex = 0;
@@ -103,7 +103,7 @@ namespace TODOList {
 			   txt->Visible = false;
 			   txt->Location = Drawing::Point(30, 10);
 			   txt->Size = Drawing::Size(50, 20);
-			   txt->Font = gcnew System::Drawing::Font("Arial", 12);
+			   txt->Font = lbl->Font;
 			   txt->ForeColor = Color::White;
 			   txt->BackColor = Color::FromArgb(248, 8, 128);
 			   txt->TabIndex = 1;
@@ -135,7 +135,7 @@ namespace TODOList {
 			   // 
 			   // [^]
 			   // 
-			   btnU->Text = L"^";
+			   btnU->Text = ""; // L"^";;
 			   btnU->Name = L"btnX";
 			   btnU->Location = Drawing::Point(238, 11);
 			   btnU->Size = Drawing::Size(20, 20);
@@ -151,7 +151,7 @@ namespace TODOList {
 			   // 
 			   // [v]
 			   // 
-			   btnD->Text							= L"v";
+			   btnD->Text							= ""; // L"v";;
 			   btnD->Name							= L"btnX";
 			   btnD->Location						= Drawing::Point(258, 11);
 			   btnD->Size							= Drawing::Size(20, 20);
@@ -209,8 +209,8 @@ namespace TODOList {
 		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			//Console::WriteLine(Parent->Name);
-			//Console::WriteLine(Parent->Parent->TabIndex);
+			Console::WriteLine(Parent->Name);
+			Console::WriteLine(Parent->Text);
 			//Console::WriteLine(nomber);
 			
 			txt_append_close();

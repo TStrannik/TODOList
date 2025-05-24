@@ -89,7 +89,7 @@ namespace TODOList {
 			   lbl->Name = L"lbl";
 			   lbl->Size = System::Drawing::Size(35, 13);
 			   lbl->Location = System::Drawing::Point(45, 7);
-			   lbl->Font = gcnew System::Drawing::Font("Arial", 10);
+			   lbl->Font = gcnew System::Drawing::Font("Roboto", 10);
 			   lbl->ForeColor = Color::White;
 			   lbl->AutoSize = true;
 			   lbl->TabIndex = 0;
@@ -138,7 +138,7 @@ namespace TODOList {
 			   // 
 			   // [^]
 			   // 
-			   btnU->Text = L"^";
+			   btnU->Text = ""; // L"^";
 			   btnU->Name = L"btnX";
 			   btnU->Location = Drawing::Point(238, 6);
 			   btnU->Size = Drawing::Size(20, 20);
@@ -154,7 +154,7 @@ namespace TODOList {
 			   // 
 			   // [v]
 			   // 
-			   btnD->Text = L"v";
+			   btnD->Text = ""; // L"v";
 			   btnD->Name = L"btnX";
 			   btnD->Location = Drawing::Point(258, 6);
 			   btnD->Size = Drawing::Size(20, 20);
@@ -359,7 +359,7 @@ namespace TODOList {
 			//txt->Visible = text_open;
 
 
-			BackColor = Color::FromArgb(212 - 8 * nomber, 8 * nomber + 42, 148);
+			BackColor = Color::FromArgb(212 - nomber * 4, nomber * 4 + 42, 148);
 
 			btnU->FlatStyle = FlatStyle::Flat;
 			btnD->FlatStyle = FlatStyle::Flat;

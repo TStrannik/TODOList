@@ -62,8 +62,6 @@ namespace TODOList {
 			lneTask->Padding				 = Windows::Forms::Padding(15);
 			lneTask->TabIndex				 = 0;
 			lneTask->Dock					 = Windows::Forms::DockStyle::Top;
-			//lneTask->BackColor				 = Color::FromArgb(248, 8, 128); 
-			//lneTask->BackColor				 = Color::FromArgb(222, 8, 152);
 			lneTask->BackColor				 = Color::FromArgb(212, 42, 148);
 			lneTask->ForeColor				 = Color::White;
 			lneTask->parForm				 = parForm;
@@ -71,9 +69,9 @@ namespace TODOList {
 
 
 
-			//	[]	pnlSubtasks
-			//	[]	pnlSubtasks
-			//	[]	pnlSubtasks
+			//	|				  |
+			//	|	pnlSubtasks   |
+			//	|_________________|
 			
 			pnlSubtasks->Name				 = L"pnlSubtask";
 			pnlSubtasks->Location			 = Drawing::Point(0, 0);
@@ -195,8 +193,9 @@ public:
 		lneSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
 		lneSubtask->ForeColor = Color::White;
 		lneSubtask->TabIndex = 0;
-
+		
 		pnlSubtasks->Controls->Add(lneSubtask);
+		lneSubtask->BringToFront();
 
 		update_state();
 
