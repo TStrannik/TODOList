@@ -124,12 +124,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBX.cpp" />
     <ClCompile Include="frmMain.cpp" />
     <ClCompile Include="lineTask.cpp" />
     <ClCompile Include="lineSubtask.cpp" />
     <ClCompile Include="pnlTask.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CBX.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="frmMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>

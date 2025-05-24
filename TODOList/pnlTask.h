@@ -1,6 +1,8 @@
 #pragma once
 #include "lineTask.h"
 #include "lineSubtask.h"
+#include "CBX.h"
+
 
 
 #pragma region void

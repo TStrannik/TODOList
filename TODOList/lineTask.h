@@ -1,5 +1,7 @@
 #pragma once
 #include <array>
+#using <system.drawing.dll>
+
 
 
 #pragma region void
@@ -35,6 +37,7 @@ namespace TODOList {
 	private: System::Windows::Forms::Button^ btnU;
 	private: System::Windows::Forms::Button^ btnD;
 	private: System::Windows::Forms::CheckBox^ cbx;
+	//private: CBX^ cbx;
 	private: System::Windows::Forms::Label^ lbl;
 	private: System::ComponentModel::Container^ components;
 
@@ -42,6 +45,7 @@ namespace TODOList {
 		   void InitializeComponent(void) {
 
 			   cbx = (gcnew Windows::Forms::CheckBox());
+			   //cbx = (gcnew CBX());
 			   txt = (gcnew Windows::Forms::TextBox());
 			   lbl = (gcnew Windows::Forms::Label());
 			   btnX = (gcnew Windows::Forms::Button());
@@ -65,15 +69,15 @@ namespace TODOList {
 
 
 			   // 
-			   // [v]
+			   // []
 			   //
 			   cbx->Name = L"cbx";
 			   cbx->AutoSize = true;
-			   cbx->Location = Drawing::Point(10, 15);
+			   cbx->Location = Drawing::Point(10, 16);
 			   cbx->Size = Drawing::Size(43, 17);
 			   cbx->TabIndex = 0;
 			   cbx->UseVisualStyleBackColor = true;
-			   //cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
+			   cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
 
 
 
@@ -268,6 +272,52 @@ namespace TODOList {
 		}
 
 
+		Void cbx_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
+
+			Graphics^ g = e->Graphics;
+			g->Clear(BackColor);
+			
+			
+
+#pragma region Square
+			Pen^ penSquare = gcnew Pen(Color::White);
+			penSquare->Width = 1;
+
+			g->DrawLine(penSquare, 2, 0, 12, 0);
+
+			g->DrawLine(penSquare, 12, 1, 13, 1);
+			g->DrawLine(penSquare, 13, 2, 14, 2);
+
+			g->DrawLine(penSquare, 14, 2, 14, 11);
+
+			g->DrawLine(penSquare, 14, 11, 13, 11);
+			g->DrawLine(penSquare, 13, 12, 12, 12);
+
+			g->DrawLine(penSquare, 0, 2, 0, 11);
+
+			g->DrawLine(penSquare, 2, 12, 1, 12);
+			g->DrawLine(penSquare, 1, 11, 0, 11);
+
+			g->DrawLine(penSquare, 2, 13, 12, 13);
+
+			g->DrawLine(penSquare, 0, 2, 1, 2);
+			g->DrawLine(penSquare, 1, 1, 2, 1);
+#pragma endregion			
+
+
+
+#pragma region —heckmark
+			if (cbx->Checked) {
+				Pen^ pen—heckmark = gcnew Pen(Color::White);
+				pen—heckmark->Width = 2;
+
+				g->DrawLine(pen—heckmark, 2, 6, 5, 10);
+				g->DrawLine(pen—heckmark, 5, 10, 11, 3);
+			}
+#pragma endregion
+
+		}
+
 
 
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
@@ -348,11 +398,6 @@ namespace TODOList {
 				txt->Width = TextRenderer::MeasureText(txt->Text, txt->Font).Width + 10;
 			else 
 				txt->Width = 56;
-			
-
-			//txt->AutoSize = false;
-			//txt->Width = (txt->Text->Length * 8) + (20 * (int)(txt->Text->Length * 0.1));
-				//txt->Width = txt->Text->Length * 12 * 0.75;
 
 		}
 
@@ -368,11 +413,8 @@ namespace TODOList {
 	public:
 		void		update_state() {
 
-			//cbx->Text = header;
 			lbl->Text = header;
 			txt->Text = header;
-			
-			//txt->Visible = text_open;
 
 			btnU->FlatStyle = FlatStyle::Flat;
 			btnD->FlatStyle = FlatStyle::Flat;
@@ -392,6 +434,10 @@ namespace TODOList {
 			btnX->Location = Drawing::Point(330, 11);
 			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
+
+
+			//cbx->Invalidate(); cbx->Update(); cbx->Refresh();
+
 
 		}
 
