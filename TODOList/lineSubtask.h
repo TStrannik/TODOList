@@ -359,7 +359,8 @@ namespace TODOList {
 			//txt->Visible = text_open;
 
 
-			BackColor = Color::FromArgb(212 - nomber * 4, nomber * 4 + 42, 148);
+			//BackColor = Color::FromArgb(212 - nomber * 4, nomber * 4 + 42, 148);
+			BackColor = Color::FromArgb(192, 0, 192);
 
 			btnU->FlatStyle = FlatStyle::Flat;
 			btnD->FlatStyle = FlatStyle::Flat;

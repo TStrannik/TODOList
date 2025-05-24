@@ -62,7 +62,8 @@ namespace TODOList {
 			lneTask->Padding				 = Windows::Forms::Padding(15);
 			lneTask->TabIndex				 = 0;
 			lneTask->Dock					 = Windows::Forms::DockStyle::Top;
-			lneTask->BackColor				 = Color::FromArgb(212, 42, 148);
+			//lneTask->BackColor				 = Color::FromArgb(212, 42, 148);
+			lneTask->BackColor				 = Color::FromArgb(202, 10, 202);
 			lneTask->ForeColor				 = Color::White;
 			lneTask->parForm				 = parForm;
 			
