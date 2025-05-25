@@ -82,6 +82,7 @@ namespace TODOList {
 
 
 
+
 	private: Windows::Forms::TextBox^ textBox1;
 
 
@@ -491,10 +492,10 @@ private:
 
 		for (const auto& t : *tasks) {
 
-			w("\t"); wl(t->get_text()); //w("\tid^"); wl(t->get_id());
+			w("\t"); w(t->get_text()); w("\t\tstt: "); wl(t->get_state());
 			for (const auto& st : t->get_subtasks_vector()) {
 
-				w("\t\t"); wl(st->get_text());
+				w("\t\t"); w(st->get_text()); w("\t\tstt: "); wl(st->get_state());
 
 			}
 			
@@ -555,6 +556,16 @@ private:
 		tasks->at(ind)->set_text(sts(str));
 
 	}
+	inline bool task_get_state(int tsk) {
+
+		return tasks->at(tsk)->get_state();
+
+	}
+	inline void task_set_state(int ind, bool state) {
+
+		tasks->at(ind)->set_state(state);
+
+	}
 
 
 
@@ -577,6 +588,16 @@ private:
 		subtask_selected = ind;
 
 	}
+	inline bool subtask_get_state(int tsk, int sub) {
+
+		return tasks->at(tsk)->get_subtask(sub)->get_state();			
+
+	}
+	inline void subtask_set_state(int tsk, int sub, bool state) {
+
+		tasks->at(tsk)->get_subtask(sub)->set_state(state);
+
+	}
 
 
 
@@ -594,8 +615,10 @@ private:
 		if (!name.empty()) ptask->header = sts(name);
 		else			   ptask->header = L"noname";
 
-		ptask->name = L"pnlTask_" + ptask_counter.ToString();
-		ptask->Name = L"pnlTask_" + ptask_counter.ToString();
+		ptask->name  = L"pnlTask_" + ptask_counter.ToString();
+		ptask->Name  = L"pnlTask_" + ptask_counter.ToString();
+		ptask->state = task_get_state(ptask_counter - 1);
+
 		ptask->Location = Drawing::Point(0, 0);
 		ptask->Size = Drawing::Size(140, 100);
 		ptask->Dock = Windows::Forms::DockStyle::Top;
@@ -615,19 +638,6 @@ private:
 		ptask_counter = 0;
 		pnlTasks->Controls->Clear();
 
-
-		/// DELETE
-		//for (const auto& t : *tasks) {
-		//for (int i = tasks->size() - 1; i >= 0; i--) {
-		//
-		//	// Порядок под сомнением
-		//	ptask_add(tasks->at(i)->get_text());
-		//	for (const auto& st : tasks->at(i)->get_subtasks_vector())
-		//		ptask->subtask_add_GOAL(sts(st->get_text()));
-		//		//ptask->subtask_add(sts(st->get_text()));
-		//
-		//}
-
 		for (const auto& t : *tasks) {
 
 			ptask_add(t->get_text());
@@ -635,8 +645,6 @@ private:
 				ptask->subtask_add_GOAL(sts(st->get_text()));
 
 		}
-
-
 
 		ptask->update_state();
 

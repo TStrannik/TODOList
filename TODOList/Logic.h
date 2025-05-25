@@ -36,6 +36,7 @@ struct Subtask {
 #pragma region ctors/destr
 	Subtask(const std::string& text)
 		: _text(text)
+		, _state(false)
 	{
 
 		w("\t+Subtask( "); w(_text); wl(" )");
@@ -61,6 +62,21 @@ struct Subtask {
 		_text = text;
 
 	}
+	bool				   get_state() const {
+
+		return _state;
+
+	}
+	void				   set_state(const bool& state) {
+
+		_state = state;
+
+	}
+	void				   switch_state() {
+
+		_state = !_state;
+
+	}
 
 	//int					   get_id() {
 	//
@@ -81,6 +97,7 @@ struct Subtask {
 private:
 	static int			   _counter;
 	std::string			   _text;
+	bool				   _state;
 	//int					   _id;
 #pragma endregion
 
@@ -99,6 +116,7 @@ struct Task {
 #pragma region ctors/destr
 	Task(const std::string& text)
 		: _text(text)
+		, _state(false)
 	{
 
 		w("\t+Task( "); w(_text); wl(" )");
@@ -106,6 +124,7 @@ struct Task {
 	}
 	Task(const std::string& text, std::initializer_list <Subtask*> list)
 		: _text(text)
+		, _state(false)
 		, _subtasks(list)
 	{
 	
@@ -114,6 +133,7 @@ struct Task {
 	}
 	Task(const Task& othr)
 		: _text(othr._text)
+		, _state(false)
 		//, _id(othr._id)
 	{
 
@@ -160,6 +180,21 @@ struct Task {
 		return _subtasks;
 
 	}
+	bool				   get_state() const {
+
+		return _state;
+
+	}
+	void				   set_state(const bool& state) {
+
+		_state = state;
+
+	}
+	void				   switch_state() {
+
+		_state = !_state;
+
+	}
 
 	//int					   get_id() {
 	//
@@ -202,6 +237,7 @@ private:
 	static int			   _counter;
 	std::string			   _text;
 	std::vector <Subtask*> _subtasks;
+	bool				   _state;
 	//int					   _id = ++_counter;
 #pragma endregion
 

@@ -78,7 +78,7 @@ namespace TODOList {
 			   cbx->TabIndex = 0;
 			   cbx->UseVisualStyleBackColor = true;
 			   cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
-
+			   cbx->CheckedChanged			 += gcnew System::EventHandler(this, &lineTask::cbx_CheckedChanged);
 
 
 
@@ -212,16 +212,14 @@ namespace TODOList {
 				call_method_parent("subtasks_hide_show", {});
 
 			if (e->Button == Windows::Forms::MouseButtons::Left)
-				cbx->CheckState =
-					!cbx->Checked ?
-					CheckState::Checked :
-					CheckState::Unchecked;			
+				cbx_switch();
+
 
 		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			Console::WriteLine(Parent->Name);
-			Console::WriteLine(Parent->Text);
+			//Console::WriteLine(Parent->Name);
+			//Console::WriteLine(Parent->Text);
 			//Console::WriteLine(nomber);
 			
 			txt_append_close();
@@ -324,7 +322,11 @@ namespace TODOList {
 #pragma endregion
 
 		}
+		Void cbx_CheckedChanged(Object^ sender, EventArgs^ e) {
 
+			call_method_main("task_set_state", { nomber, cbx->Checked });
+
+		}
 
 
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
@@ -408,11 +410,29 @@ namespace TODOList {
 
 		}
 
-	
+		inline void cbx_switch() {
+
+			cbx->CheckState = !cbx->Checked ?
+				CheckState::Checked :
+				CheckState::Unchecked;
+
+			call_method_main("task_set_state", { nomber, cbx->Checked });
+
+		}
+		inline void cbx_switch(bool state) {
+
+			cbx->CheckState = state ?
+				CheckState::Checked :
+				CheckState::Unchecked;
+
+			call_method_main("task_set_state", { nomber, state });
+			
+		}
 
 	public:
 		String^ header = gcnew String("");
-		int nomber;
+		int		nomber;
+		bool	state;
 
 		Windows::Forms::Form^ parForm;
 		//public: frmMain^ owner;
@@ -442,7 +462,7 @@ namespace TODOList {
 			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
 
-
+			cbx->Checked = state;
 			//cbx->Invalidate(); cbx->Update(); cbx->Refresh();
 
 

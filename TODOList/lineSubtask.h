@@ -77,7 +77,7 @@ namespace TODOList {
 			   cbx->TabIndex = 0;
 			   cbx->UseVisualStyleBackColor = true;
 			   cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::cbx_Paint);
-
+			   cbx->CheckedChanged			 += gcnew System::EventHandler(this, &lineSubtask::cbx_CheckedChanged);
 
 
 
@@ -183,7 +183,10 @@ namespace TODOList {
 
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			call_method_parent("subtasks_hide_show", {});
+			//call_method_parent("subtasks_hide_show", {});
+
+			if (e->Button == Windows::Forms::MouseButtons::Left)
+				cbx_switch();
 
 		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
@@ -296,11 +299,15 @@ namespace TODOList {
 #pragma endregion
 
 		}
+		Void cbx_CheckedChanged(Object^ sender, EventArgs^ e) {
 
+			call_method_main("subtask_set_state", { par_nomber, nomber, cbx->Checked });
+
+		}
 
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
 
-			Type^ type = Parent->Parent->Parent->GetType();
+			Type^ type = Parent->Parent->Parent->Parent->GetType();
 
 			MethodInfo^ method = type->GetMethod(method_name,
 				BindingFlags::NonPublic | BindingFlags::Instance);
@@ -317,9 +324,10 @@ namespace TODOList {
 
 
 			if (method != nullptr)
-				method->Invoke(Parent->Parent->Parent, args);
-			else
+				method->Invoke(Parent->Parent->Parent->Parent, args);
+			else				
 				Console::WriteLine("call_method_error ");
+			//Console::WriteLine(Parent->Parent->Parent->Name);
 
 		}
 		void call_method_parent(String^ method_name, std::initializer_list <Object^> list) {
@@ -384,11 +392,34 @@ namespace TODOList {
 
 		}
 
+		inline void cbx_switch() {
+
+			cbx->CheckState = !cbx->Checked ?
+				CheckState::Checked :
+				CheckState::Unchecked;
+
+			call_method_main("subtask_set_state", { par_nomber, nomber, cbx->Checked });
+
+		}
+		inline void cbx_switch(bool state) {
+
+			cbx->CheckState = state ?
+				CheckState::Checked :
+				CheckState::Unchecked;
+
+							// subtask V
+			call_method_main("subtask_set_state", { par_nomber, nomber, cbx->Checked });
+
+		}
+
+
 
 
 	public:
 		String^ header = gcnew String("");
-		int nomber;
+		int		nomber;
+		int		par_nomber;
+		bool	state;
 
 		Windows::Forms::Form^ parForm;
 		//public: frmMain^ owner;

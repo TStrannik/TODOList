@@ -145,41 +145,45 @@ public:
 	String^   header   = gcnew String ("");
 	String^   name     = gcnew String ("");
 	int		  nomber;
+	bool	  state;
 
 
 	/// DELETE
-	public: System::Windows::Forms::Form^ parForm;
+public: System::Windows::Forms::Form^ parForm;
 		  //public: frmMain^					  owner;
 
 
 
-public:
-	/// Delete
-	//inline void subtask_add(String^ name) {
+	//void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
 	//
-	//	subtask_counter++;
-	//	subtasks_visible_counter = subtask_counter;
-	//
-	//	cbxSubtask			  = (gcnew CheckBox());
-	//
-	//	cbxSubtask->Name	  = L"cbxSubtask_" + subtask_counter.ToString();
-	//	cbxSubtask->Text	  = name;
-	//	cbxSubtask->Size	  = Drawing::Size(140, 20);
-	//	cbxSubtask->Dock	  = Windows::Forms::DockStyle::Top;
-	//	//cbxSubtask->BackColor = Color::FromArgb(255 - 2 * subtask_counter, 2 * subtask_counter, 128);
-	//	cbxSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
-	//								//212, 42, 148
-	//	cbxSubtask->ForeColor = Color::White;
-	//	//cbxSubtask->Padding   = Windows::Forms::Padding(25, 15, 0, 15);
-	//	cbxSubtask->Padding = Windows::Forms::Padding(25, 20, 0, 20);
-	//	cbxSubtask->TabIndex  = 0;
-	//	//cbxSubtask->Click   += gcnew System::EventHandler(this, &frmMain::task_Click);
-	//
-	//	pnlSubtasks->Controls->Add(cbxSubtask);
-	//
-	//	update_state();
+	//	Type^ type = Parent->GetType();
+	//	
+	//	MethodInfo^ method = type->GetMethod(method_name,
+	//		BindingFlags::NonPublic | BindingFlags::Instance);
+	//	
+	//	
+	//	cli::array<Object^>^ args =
+	//		gcnew cli::array <Object^>(list.size());
+	//	
+	//	if (list.size() != 0)
+	//		for (int i = 0; i < list.size(); ++i)
+	//			args[i] = *(list.begin() + i);
+	//	else
+	//		args = nullptr;
+	//	
+	//	
+	//	if (method != nullptr)
+	//		method->Invoke(Parent, args);
+	//	else
+	//		Console::WriteLine("call_method_error ");
+	//		//Console::WriteLine(Parent->Parent->Parent->Name);
 	//
 	//}
+
+
+public:
+	
+				/// RENAME
 	inline void subtask_add_GOAL(String^ name) {
 
 		subtask_counter++;
@@ -191,6 +195,15 @@ public:
 		lneSubtask->Name = L"lneSubtask_" + subtask_counter.ToString();
 		lneSubtask->Text   = name;
 		lneSubtask->header = name->ToString();
+		lneSubtask->par_nomber = nomber;
+
+		
+
+		
+		// lneSubtask->state = parForm->subtask_get_state(subtask_counter - 1);
+
+
+
 		lneSubtask->Size = Drawing::Size(140, 30);
 		lneSubtask->Dock = Windows::Forms::DockStyle::Top;
 		lneSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
@@ -212,11 +225,13 @@ public:
 		lneTask->Text	= header;
 		lneTask->header = header;
 		lneTask->nomber = nomber;
+		lneTask->state  = state;
 		lneTask->update_state();
 
 		//lneSubtask->header = lneSubtask->Name;
 		//lneSubtask->header = 
-		lneSubtask->nomber = subtask_counter;
+		lneSubtask->nomber = subtask_counter - 1;
+		lneSubtask->par_nomber = nomber;
 		lneSubtask->update_state();
 		
 		size_reset();
