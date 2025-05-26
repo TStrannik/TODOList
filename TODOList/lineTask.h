@@ -185,8 +185,6 @@ namespace TODOList {
 #pragma endregion main {
 
 	private:
-
-
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 			if (e->Button == Windows::Forms::MouseButtons::Left)
@@ -202,12 +200,8 @@ namespace TODOList {
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 			txt_append_close();
+			call_method_parent("__print_header", {});			/// TEST
 
-			call_method_parent("__print_header", {});
-
-			//Console::WriteLine(Parent->Name);
-			//Console::WriteLine(Parent->Text);
-			//Console::WriteLine(nomber);
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
@@ -314,7 +308,7 @@ namespace TODOList {
 
 
 
-
+	private:
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
 
 			Type^ type = Parent->Parent->Parent->GetType();
@@ -381,11 +375,9 @@ namespace TODOList {
 			txt->Visible = false;
 			lbl->Visible = true;
 
-			//Parent->header = txt->Text;								/// TODO:
-			call_method_parent("set_header", { header });				// Íå ïð¸ò 
+			call_method_parent("set_header", { header });
 			call_method_main("task_set_name", { nomber, header });
 			call_method_main("update_lists", {});						// Äëÿ list'îâ
-
 
 		}
 		inline void txt_resize() {
@@ -422,8 +414,8 @@ namespace TODOList {
 		int		nomber;
 		bool	state;
 
-		Windows::Forms::Form^ parForm;
-		//public: frmMain^ owner;
+		Windows::Forms::Form^ parForm;											/// DELETE ?
+		//public: frmMain^ owner;												/// DELETE ?
 
 	public:
 		void		update_state() {
@@ -431,6 +423,9 @@ namespace TODOList {
 			lbl->Text = header;
 			txt->Text = header;
 
+
+
+			/// Â ÎÄÈÍ ÌÅÒÎÄ
 			btnU->FlatStyle = FlatStyle::Flat;
 			btnD->FlatStyle = FlatStyle::Flat;
 			btnX->FlatStyle = FlatStyle::Flat;
@@ -438,7 +433,6 @@ namespace TODOList {
 			btnU->FlatAppearance->BorderSize = 0;
 			btnD->FlatAppearance->BorderSize = 0;
 			btnX->FlatAppearance->BorderSize = 0;
-
 
 			btnU->BackColor = Color::FromArgb(202, 10, 202);
 			btnD->BackColor = Color::FromArgb(202, 10, 202);
@@ -451,8 +445,6 @@ namespace TODOList {
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
 
 			cbx->Checked = state;
-			//cbx->Invalidate(); cbx->Update(); cbx->Refresh();
-
 
 		}
 

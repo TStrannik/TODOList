@@ -109,48 +109,6 @@ private:
 	lineSubtask^			  lneSubtask = gcnew lineSubtask();
 
 
-private:
-	void set_header(String^ str) {
-
-		header = str;
-
-	}
-	void __print_header() {
-
-		Console::WriteLine(header);
-
-	}
-	inline void subtasks_hide_show() {
-
-							 // pnlSubtasks->Controls->Count ??
-		for (int i = 1; i <= subtask_counter; ++i) {
-		
-			if (lneSubtask->Visible) {
-				pnlSubtasks->Controls->Find("lneSubtask_" + i.ToString(), 0)[0]->Visible = false;
-				subtasks_visible_counter = 0;
-			}
-			else {
-				pnlSubtasks->Controls->Find("lneSubtask_" + i.ToString(), 0)[0]->Visible = true;
-				subtasks_visible_counter = subtask_counter;
-			}
-		
-		}
-
-		size_reset();
-
-	}
-	inline void size_reset() {
-
-						// subtask_counter
-		//this->Height = (subtasks_visible_counter) * 20 + 48;
-		this->Height = (subtasks_visible_counter) * 30 + 48;
-
-	}
-	
-
-		
-
-
 public:
 	bool      start    = false;
 	String^   header   = gcnew String ("");
@@ -158,7 +116,7 @@ public:
 	int		  nomber;
 	bool	  state;
 
-	/// DELETE
+	/// DELETE ?
 public: System::Windows::Forms::Form^ parForm;
 		  //public: frmMain^					  owner;
 
@@ -174,13 +132,13 @@ public:
 		lneSubtask = (gcnew lineSubtask());
 
 		lneSubtask->Name = L"lneSubtask_" + subtask_counter.ToString();
-		lneSubtask->Text   = name;
+		lneSubtask->Text = name;
 		lneSubtask->header = name->ToString();
 		lneSubtask->par_nomber = nomber;
 
-		
 
-		
+
+
 		// lneSubtask->state = parForm->subtask_get_state(subtask_counter - 1);
 
 
@@ -190,7 +148,7 @@ public:
 		lneSubtask->BackColor = Color::FromArgb(212 - 8 * subtask_counter, 8 * subtask_counter + 42, 148);
 		lneSubtask->ForeColor = Color::White;
 		lneSubtask->TabIndex = 0;
-		
+
 		pnlSubtasks->Controls->Add(lneSubtask);
 		lneSubtask->BringToFront();
 
@@ -199,11 +157,11 @@ public:
 	}
 	void		update_state() {
 
-		lneTask->Name	= L"lne_" + header;
-		lneTask->Text	= header;
+		lneTask->Name = L"lne_" + header;
+		lneTask->Text = header;
 		lneTask->header = header;
 		lneTask->nomber = nomber;
-		lneTask->state  = state;
+		lneTask->state = state;
 		lneTask->update_state();
 
 		//lneSubtask->header = lneSubtask->Name;
@@ -211,10 +169,55 @@ public:
 		lneSubtask->nomber = subtask_counter - 1;
 		lneSubtask->par_nomber = nomber;
 		lneSubtask->update_state();
-		
+
 		size_reset();
 
 	}
+
+
+
+
+private:
+	void		set_header(String^ str) {
+
+		header = str;
+
+	}
+	void		__print_header() {
+
+		Console::WriteLine(header);
+
+	}
+
+	inline void subtasks_hide_show() {
+
+		// pnlSubtasks->Controls->Count ??
+		for (int i = 1; i <= subtask_counter; ++i) {
+
+			if (lneSubtask->Visible) {
+				pnlSubtasks->Controls->Find("lneSubtask_" + i.ToString(), 0)[0]->Visible = false;
+				subtasks_visible_counter = 0;
+			}
+			else {
+				pnlSubtasks->Controls->Find("lneSubtask_" + i.ToString(), 0)[0]->Visible = true;
+				subtasks_visible_counter = subtask_counter;
+			}
+
+		}
+
+		size_reset();
+
+	}
+	inline void size_reset() {
+
+		// subtask_counter
+//this->Height = (subtasks_visible_counter) * 20 + 48;
+		this->Height = (subtasks_visible_counter) * 30 + 48;
+
+	}
+
+
+
 
 
 private:

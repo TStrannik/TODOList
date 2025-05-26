@@ -610,9 +610,8 @@ private:
 
 		ptask = (gcnew pnlTask());
 
+		ptask->parForm = this;													/// DELETE ?
 
-		ptask->parForm = this;
-		//ptask->nomber = tasks->size() - ptask_counter;
 		ptask->nomber = ptask_counter - 1;
 
 		if (!name.empty()) ptask->header = sts(name);
@@ -626,14 +625,13 @@ private:
 		ptask->Size = Drawing::Size(140, 100);
 		ptask->Dock = Windows::Forms::DockStyle::Top;
 		ptask->TabIndex = 0;
-		//ptask->BorderStyle = Windows::Forms::BorderStyle::FixedSingle;
-		ptask->BorderStyle = Windows::Forms::BorderStyle::None;
+		ptask->BorderStyle = Windows::Forms::BorderStyle::FixedSingle;
 		ptask->Click += gcnew EventHandler(this, &frmMain::ptask_click);
 
 		pnlTasks->Controls->Add(ptask);
 		ptask->BringToFront();
 
-		ptask->update_state();
+		ptask->update_state();													// Udpdate
 
 	}
 	inline void ptask_update() {

@@ -179,8 +179,6 @@ namespace TODOList {
 #pragma endregion main {
 
 	private:
-
-
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 			//call_method_parent("subtasks_hide_show", {});
@@ -191,8 +189,6 @@ namespace TODOList {
 		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			//Console::WriteLine(Parent->Name);
-			//Console::WriteLine(Parent->Parent->TabIndex);
 			Console::WriteLine(nomber);
 
 			//txt_append_close();
@@ -208,9 +204,11 @@ namespace TODOList {
 
 
 		}
-		Void this_VisibleChanged(Object^ sender, EventArgs^ e) {
+		/// DELETE ?
+		Void this_VisibleChanged(Object^ sender, EventArgs^ e) {				
 
-			Console::Write(Name); Console::WriteLine(" => Visible Changed");
+			/// DELETE ?
+			// Console::Write(Name); Console::WriteLine(" => Visible Changed");
 
 		}
 
@@ -233,10 +231,8 @@ namespace TODOList {
 
 		Void btnX_Click(Object^ sender, EventArgs^ e) {
 
-
 			call_method_main("task_remove_one", { nomber });
 			call_method_main("update_all", {});
-
 
 		}
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
@@ -247,10 +243,8 @@ namespace TODOList {
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {
 
-
 			call_method_main("task_dn", { nomber });
 			call_method_main("update_all", {});
-
 
 		}
 
@@ -305,6 +299,8 @@ namespace TODOList {
 
 		}
 
+
+	private:
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
 
 			Type^ type = Parent->Parent->Parent->Parent->GetType();
@@ -378,7 +374,10 @@ namespace TODOList {
 			lbl->Visible = true;
 
 		}
+		/// ÐÀÁÎÒÀÅÒ ÍÅ Î×ÅÍÜ
 		inline void txt_resize() {
+			/// ÐÀÁÎÒÀÅÒ ÍÅ Î×ÅÍÜ
+
 
 			if (txt->Text->Length > 5)
 				txt->Width = TextRenderer::MeasureText(txt->Text, txt->Font).Width + 10;
@@ -421,8 +420,8 @@ namespace TODOList {
 		int		par_nomber;
 		bool	state;
 
-		Windows::Forms::Form^ parForm;
-		//public: frmMain^ owner;
+		Windows::Forms::Form^ parForm;											/// DELETE ?
+		//public: frmMain^ owner;												/// DELETE ?
 
 	public:
 		void		update_state() {
@@ -434,9 +433,11 @@ namespace TODOList {
 			//txt->Visible = text_open;
 
 
-			//BackColor = Color::FromArgb(212 - nomber * 4, nomber * 4 + 42, 148);
+			
 			BackColor = Color::FromArgb(192, 0, 192);
 
+
+			/// Â ÎÄÈÍ ÌÅÒÎÄ
 			btnU->FlatStyle = FlatStyle::Flat;
 			btnD->FlatStyle = FlatStyle::Flat;
 			btnX->FlatStyle = FlatStyle::Flat;
@@ -449,8 +450,6 @@ namespace TODOList {
 			btnD->BackColor = BackColor;
 			btnX->BackColor = BackColor;
 
-
-			//btnX->Location = Drawing::Point(Width - btnX->Width - 20, 11);
 			btnX->Location = Drawing::Point(310, 11);
 			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
