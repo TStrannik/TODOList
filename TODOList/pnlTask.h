@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "lineTask.h"
 #include "lineSubtask.h"
 #include "CBX.h"
@@ -120,6 +121,8 @@ public:
 public: System::Windows::Forms::Form^ parForm;
 		  //public: frmMain^					  owner;
 
+	  std::vector <bool>* _checks = new std::vector <bool>();
+
 
 
 public:
@@ -140,8 +143,9 @@ public:
 
 
 		// lneSubtask->state = parForm->subtask_get_state(subtask_counter - 1);
+		lneSubtask->state = _checks->at(subtask_counter - 1);
 
-
+		
 
 		lneSubtask->Size = Drawing::Size(140, 30);
 		lneSubtask->Dock = Windows::Forms::DockStyle::Top;

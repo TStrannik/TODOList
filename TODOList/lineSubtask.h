@@ -454,6 +454,8 @@ namespace TODOList {
 			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
 
+			cbx->Checked = state;
+
 		}
 
 

@@ -501,6 +501,7 @@ private:
 				w("\t\t"); w(st->get_text()); w("\t\tstt: "); wl(st->get_state());
 
 			}
+			wl();
 			
 		}
 
@@ -625,8 +626,13 @@ private:
 		ptask->Size = Drawing::Size(140, 100);
 		ptask->Dock = Windows::Forms::DockStyle::Top;
 		ptask->TabIndex = 0;
-		ptask->BorderStyle = Windows::Forms::BorderStyle::FixedSingle;
+		ptask->BorderStyle = Windows::Forms::BorderStyle::None;
 		ptask->Click += gcnew EventHandler(this, &frmMain::ptask_click);
+
+
+		for (auto st : tasks->at(ptask_counter - 1)->get_subtasks_vector())
+			ptask->_checks->push_back(st->get_state());
+
 
 		pnlTasks->Controls->Add(ptask);
 		ptask->BringToFront();
@@ -647,7 +653,7 @@ private:
 
 		}
 
-		ptask->update_state();
+		ptask->update_state();													// Udpdate
 
 	}
 
