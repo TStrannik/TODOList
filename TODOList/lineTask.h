@@ -65,7 +65,7 @@ namespace TODOList {
 			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseUp);
 			   MouseDoubleClick += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_DoubleClick);
 			   MouseClick       += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseClick);
-			   
+			   Paint			+= gcnew Windows::Forms::PaintEventHandler(this, &lineTask::this_Paint);
 			   
 
 
@@ -80,7 +80,7 @@ namespace TODOList {
 			   cbx->TabIndex = 0;
 			   cbx->UseVisualStyleBackColor = true;
 			   cbx->Paint					 += gcnew Windows::Forms::PaintEventHandler(this, &lineTask::cbx_Paint);
-			   cbx->CheckedChanged			 += gcnew System::EventHandler(this, &lineTask::cbx_CheckedChanged);
+			   cbx->CheckedChanged			 += gcnew EventHandler(this, &lineTask::cbx_CheckedChanged);
 
 
 
@@ -202,6 +202,7 @@ namespace TODOList {
 			txt_append_close();
 			call_method_parent("__print_header", {});			/// TEST
 
+
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
@@ -211,6 +212,23 @@ namespace TODOList {
 		Void this_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 
+
+		}
+		Void this_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
+
+			Graphics^ g = e->Graphics;
+			g->Clear(BackColor);
+
+			if (!is_subtasks)	   return;							// Если есть ST
+			if (!is_subtasks_hide) return;							// Если панель скрыта
+		
+			Pen^ pen = gcnew Pen(Color::White);
+			pen->Width = 1;
+
+			g->DrawArc(pen, 35, Height - 12, 2, 2, 180, 360);
+			g->DrawArc(pen, 40, Height - 12, 2, 2, 180, 360);
+			g->DrawArc(pen, 45, Height - 12, 2, 2, 180, 360);
+			
 
 		}
 
@@ -413,6 +431,8 @@ namespace TODOList {
 		String^ header = gcnew String("");
 		int		nomber;
 		bool	state;
+		bool	is_subtasks;
+		bool	is_subtasks_hide;
 
 		Windows::Forms::Form^ parForm;											/// DELETE ?
 		//public: frmMain^ owner;												/// DELETE ?

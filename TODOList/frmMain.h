@@ -580,6 +580,10 @@ private:
 	}
 	inline void subtask_to_list(Windows::Forms::ListBox^ lbx) {
 
+		if (task_selected > tasks->size() - 1)
+			task_selected = tasks->size() - 1;
+		if (task_selected < 0) {};														///?
+
 		lbx->Items->Clear();
 
 		if (!tasks->empty())

@@ -62,6 +62,7 @@ namespace TODOList {
 			lneTask->header					 = this->header;
 			lneTask->Text					 = this->header;
 			lneTask->AutoSize				 = true;
+			lneTask->is_subtasks_hide		 = false;
 			lneTask->Location				 = Drawing::Point(10, 10);
 			lneTask->Size					 = Drawing::Size(140, 48);
 			lneTask->Padding				 = Windows::Forms::Padding(15);
@@ -104,8 +105,8 @@ namespace TODOList {
 private:
 	int						  subtasks_visible_counter = 0;
 	int						  subtask_counter		   = 0;
-	Windows::Forms::CheckBox^ cbxSubtask = gcnew CheckBox();
-	lineSubtask^			  lneSubtask = gcnew lineSubtask();
+	Windows::Forms::CheckBox^ cbxSubtask			   = gcnew CheckBox();
+	lineSubtask^			  lneSubtask			   = gcnew lineSubtask();
 
 
 public:
@@ -163,7 +164,9 @@ public:
 		lneTask->header = header;
 		lneTask->nomber = nomber;
 		lneTask->state = state;
-		lneTask->update_state();
+		lneTask->is_subtasks = (states->empty()) ? false : true;
+		//lneTask->is_subtasks_hide = !lneSubtask->Visible;
+		lneTask->update_state();												// Update
 
 		//lneSubtask->header = lneSubtask->Name;
 		//lneSubtask->header = 
@@ -191,7 +194,7 @@ private:
 	}
 
 	inline void subtasks_hide_show() {
-
+	
 		// pnlSubtasks->Controls->Count ??
 		for (int i = 1; i <= subtask_counter; ++i) {
 
@@ -205,6 +208,9 @@ private:
 			}
 
 		}
+
+		lneTask->is_subtasks_hide = !lneTask->is_subtasks_hide;
+		lneTask->Invalidate();
 
 		size_reset();
 
