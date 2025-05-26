@@ -236,11 +236,10 @@ namespace TODOList {
 			this->btnClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->btnClose->FlatAppearance->BorderColor = System::Drawing::Color::WhiteSmoke;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnClose->Location = System::Drawing::Point(1011, 12);
+			this->btnClose->Location = System::Drawing::Point(1008, 0);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(27, 26);
+			this->btnClose->Size = System::Drawing::Size(42, 42);
 			this->btnClose->TabIndex = 22;
-			this->btnClose->Text = L"X";
 			this->btnClose->UseVisualStyleBackColor = true;
 			this->btnClose->Click += gcnew System::EventHandler(this, &frmMain::btnClose_Click);
 			// 
@@ -278,6 +277,7 @@ namespace TODOList {
 			this->Text = L"frmMain";
 			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &frmMain::frmMain_FormClosed);
 			this->Load += gcnew System::EventHandler(this, &frmMain::frmMain_Load);
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmMain::frmMain_Paint);
 			this->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseDoubleClick);
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseDown);
 			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseMove);
@@ -339,6 +339,8 @@ private:
 		this->SetStyle(ControlStyles::DoubleBuffer, true);
 		this->SetStyle(ControlStyles::UserPaint, true);
 
+
+
 	}
 	Void frmMain_FormClosed(Object^ sender, Windows::Forms::FormClosedEventArgs^ e) {
 
@@ -377,6 +379,23 @@ private:
 		if (e->Button == Windows::Forms::MouseButtons::Left) _is_mouse_down = false;
 		
 	}
+	Void frmMain_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
+
+		//e->Graphics->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
+		e->Graphics->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::HighQuality;
+		System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
+		int r = 20;
+		int w = this->Width;
+		int h = this->Height;
+
+		path->AddArc(0, 0, r, r, 180, 90);
+		path->AddArc(w - r, 0, r, r, 270, 90);
+		path->AddArc(w - r, h - r, r, r, 0, 90);
+		path->AddArc(0, h - r, r, r, 90, 90);
+
+		this->Region = gcnew Drawing::Region(path);
+
+	}
 
 	Void btnClose_Click(Object^ sender, EventArgs^ e) {
 
@@ -414,12 +433,10 @@ private:
 
 		test_tasks();
 
+		//update_all()
 		task_to_list(listBox1);
 		subtask_to_list(lbxSub);
 		ptask_update();
-
-		//update_all()
-
 
 	}
 
@@ -657,6 +674,12 @@ private:
 		ptask_update();
 
 	}
+	inline void update_lists() {
+
+		task_to_list(listBox1);
+		subtask_to_list(lbxSub);
+
+	}
 
 	inline void test_tasks() {
 
@@ -709,6 +732,7 @@ private:
 
 
 #pragma region }
+
 
 }; }
 

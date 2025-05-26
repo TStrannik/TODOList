@@ -5,6 +5,10 @@
 
 
 
+
+
+
+
 #pragma region void
 
 using namespace System;
@@ -237,6 +241,28 @@ public:
 		size_reset();
 
 	}
+	
+
+
+	//#include <string>
+	//inline void cw(std::string msg) {
+	//
+	//	String^ str = gcnew String(msg.c_str());
+	//
+	//	Console::Write((String^)str);
+	//
+	//	delete str;
+	//
+	//}
+	//inline void cwl(std::string msg) {
+	//
+	//	String^ str = gcnew String(msg.c_str());
+	//
+	//	Console::WriteLine((String^)str);
+	//
+	//	delete str;
+	//
+	//};
 
 #pragma region }
 

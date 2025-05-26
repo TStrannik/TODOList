@@ -1,6 +1,6 @@
 #pragma once
 #include <array>
-#using <system.drawing.dll>
+//#using <system.drawing.dll>
 
 
 
@@ -41,7 +41,7 @@ namespace TODOList {
 	private: System::Windows::Forms::Label^ lbl;
 	private: System::ComponentModel::Container^ components;
 
-#pragma region Windows Form Designer generated code
+
 		   void InitializeComponent(void) {
 
 			   cbx = (gcnew Windows::Forms::CheckBox());
@@ -64,7 +64,9 @@ namespace TODOList {
 			   MouseMove += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseMove);
 			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseUp);
 			   MouseDoubleClick += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_DoubleClick);
-
+			   MouseClick       += gcnew Windows::Forms::MouseEventHandler(this, &lineTask::this_MouseClick);
+			   
+			   
 
 
 
@@ -123,7 +125,7 @@ namespace TODOList {
 			   // 
 			   // [X]
 			   // 
-			   btnX->Text = L"X";
+			   btnX->Text = L"";
 			   btnX->Name = L"btnX";
 			   btnX->Location = Drawing::Point(328, 11);
 			   btnX->Size = Drawing::Size(20, 20);			   
@@ -175,7 +177,7 @@ namespace TODOList {
 			   PerformLayout();
 
 		   }
-#pragma endregion
+
 
 #pragma endregion main {
 
@@ -208,26 +210,28 @@ namespace TODOList {
 		*/
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			if (e->Button == Windows::Forms::MouseButtons::Right)
-				call_method_parent("subtasks_hide_show", {});
-
 			if (e->Button == Windows::Forms::MouseButtons::Left)
 				cbx_switch();
 
+		}
+		Void this_MouseClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
+			if (e->Button == Windows::Forms::MouseButtons::Right)
+				call_method_parent("subtasks_hide_show", {});
+		
 		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
+
+			txt_append_close();
 
 			//Console::WriteLine(Parent->Name);
 			//Console::WriteLine(Parent->Text);
 			//Console::WriteLine(nomber);
-			
-			txt_append_close();
 
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-
+			
 
 		}
 		Void this_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
@@ -243,7 +247,7 @@ namespace TODOList {
 		}
 		Void txt_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e) {
 
-			if (e->KeyChar == 13) txt_append_close();
+			if (e->KeyChar == 13) txt_append_close();		
 
 		}
 
@@ -329,6 +333,8 @@ namespace TODOList {
 		}
 
 
+
+
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
 
 			Type^ type = Parent->Parent->Parent->GetType();
@@ -393,12 +399,13 @@ namespace TODOList {
 			//Parent->header = txt->Text;								/// TODO:
 			call_method_parent("set_header", { header });				// Не прёт
 			call_method_main("task_set_name", { nomber, header });
-			
 
 			header = txt->Text;
 			lbl->Text = header;
 			txt->Visible = false;
 			lbl->Visible = true;
+
+			call_method_main("update_lists", {});						// Для list'ов
 
 		}
 		inline void txt_resize() {
@@ -417,6 +424,7 @@ namespace TODOList {
 				CheckState::Unchecked;
 
 			call_method_main("task_set_state", { nomber, cbx->Checked });
+			call_method_main("update_lists", {});
 
 		}
 		inline void cbx_switch(bool state) {

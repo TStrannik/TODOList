@@ -122,7 +122,7 @@ namespace TODOList {
 			   // 
 			   // [X]
 			   // 
-			   btnX->Text = L"X";
+			   btnX->Text = L"";
 			   btnX->Name = L"btnX";
 			   btnX->Location = Drawing::Point(328, 6);
 			   btnX->Size = Drawing::Size(20, 20);
