@@ -608,8 +608,8 @@ private:
 	inline void ptask_add(const std::string& name) {
 
 		ptask_counter++;
-
 		ptask = (gcnew pnlTask());
+
 
 		ptask->parForm = this;													/// DELETE ?
 
@@ -618,9 +618,15 @@ private:
 		if (!name.empty()) ptask->header = sts(name);
 		else			   ptask->header = L"noname";
 
+
+
 		ptask->name  = L"pnlTask_" + ptask_counter.ToString();
 		ptask->Name  = L"pnlTask_" + ptask_counter.ToString();
 		ptask->state = task_get_state(ptask_counter - 1);
+		for (auto st : tasks->at(ptask_counter - 1)->get_subtasks_vector())		// Передача states
+			ptask->states->push_back(st->get_state());
+
+
 
 		ptask->Location = Drawing::Point(0, 0);
 		ptask->Size = Drawing::Size(140, 100);
@@ -629,9 +635,6 @@ private:
 		ptask->BorderStyle = Windows::Forms::BorderStyle::None;
 		ptask->Click += gcnew EventHandler(this, &frmMain::ptask_click);
 
-
-		for (auto st : tasks->at(ptask_counter - 1)->get_subtasks_vector())
-			ptask->_checks->push_back(st->get_state());
 
 
 		pnlTasks->Controls->Add(ptask);

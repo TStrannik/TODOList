@@ -234,22 +234,22 @@ namespace TODOList {
 		Void btnX_Click(Object^ sender, EventArgs^ e) {
 
 
-			call_method_main("task_remove_one", { nomber });
-			call_method_main("update_all", {});
+			//call_method_main("task_remove_one", { nomber });
+			//call_method_main("update_all", {});
 
 
 		}
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
 
-			call_method_main("task_up", { nomber });
-			call_method_main("update_all", {});
+			//call_method_main("task_up", { nomber });
+			//call_method_main("update_all", {});
 
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {
 
 
-			call_method_main("task_dn", { nomber });
-			call_method_main("update_all", {});
+			//call_method_main("task_dn", { nomber });
+			//call_method_main("update_all", {});
 
 
 		}
