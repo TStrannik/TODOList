@@ -83,6 +83,8 @@ namespace TODOList {
 
 
 
+
+
 	private: Windows::Forms::TextBox^ textBox1;
 
 
@@ -132,6 +134,8 @@ namespace TODOList {
 			this->pnlTasks->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
 				static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->pnlTasks->Dock = System::Windows::Forms::DockStyle::Left;
+			this->pnlTasks->Font = (gcnew System::Drawing::Font(L"Bahnschrift Condensed", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->pnlTasks->Location = System::Drawing::Point(0, 0);
 			this->pnlTasks->Name = L"pnlTasks";
 			this->pnlTasks->Size = System::Drawing::Size(380, 550);
@@ -245,9 +249,11 @@ namespace TODOList {
 			// 
 			// pnlBlanket
 			// 
-			this->pnlBlanket->Location = System::Drawing::Point(419, 356);
+			this->pnlBlanket->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->pnlBlanket->Location = System::Drawing::Point(386, 348);
 			this->pnlBlanket->Name = L"pnlBlanket";
-			this->pnlBlanket->Size = System::Drawing::Size(50, 50);
+			this->pnlBlanket->Size = System::Drawing::Size(652, 190);
 			this->pnlBlanket->TabIndex = 23;
 			this->pnlBlanket->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::pnlBlanket_MouseDoubleClick);
 			// 
@@ -256,7 +262,6 @@ namespace TODOList {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1050, 550);
-			this->Controls->Add(this->pnlBlanket);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnRemSub);
 			this->Controls->Add(this->btnRemTask);
@@ -271,6 +276,7 @@ namespace TODOList {
 			this->Controls->Add(this->pnlTasks);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->pnlBlanket);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"frmMain";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -381,8 +387,7 @@ private:
 	}
 	Void frmMain_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
 
-		//e->Graphics->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
-		e->Graphics->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::HighQuality;
+		e->Graphics->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
 		System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
 		int r = 20;
 		int w = this->Width;
@@ -465,10 +470,12 @@ private:
 
 	}
 
+
 	Void pnlBlanket_MouseDoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-		pnlBlanket->Width  = (pnlBlanket->Width  == 50) ? 580 : 50;
-		pnlBlanket->Height = (pnlBlanket->Height == 50) ? 165 : 50;
+		pnlBlanket->Parent->Controls->GetChildIndex(pnlBlanket) == 0 ?
+			pnlBlanket->SendToBack() :
+			pnlBlanket->BringToFront();
 
 	}
 #pragma endregion	

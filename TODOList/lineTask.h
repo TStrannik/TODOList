@@ -91,8 +91,11 @@ namespace TODOList {
 			   //
 			   lbl->Name = L"lbl";
 			   lbl->Size = System::Drawing::Size(35, 13);
-			   lbl->Location = System::Drawing::Point(30, 13);
-			   lbl->Font = gcnew System::Drawing::Font("Roboto", 12);
+			   lbl->Location = System::Drawing::Point(30, 12);
+
+			   lbl->Font = gcnew System::Drawing::Font("Bahnschrift Light", 12);
+			   lbl->Font = gcnew System::Drawing::Font("Bahnschrift", 12, FontStyle::Bold);
+			   
 			   lbl->ForeColor = Color::White;
 			   lbl->AutoSize = true;
 			   lbl->TabIndex = 0;
@@ -184,30 +187,6 @@ namespace TODOList {
 	private:
 
 
-		/* D&D
-		bool _drag_start = false;
-		int  _posX	= 0;
-		int  _posY	= 0;
-		int  _offsetX = 0;
-		int  _offsetY = 0;
-
-		_drag_start = true;
-		_posX = e->X;
-		_posY = e->Y;
-
-		Parent->Size = Drawing::Size(200, 100); //(Parent->Parent->Width, Parent->Height);
-		Parent->Dock = Windows::Forms::DockStyle::None;
-
-		//if (_drag_start) {
-			//	//Parent->Left = _posX + MousePosition.X;
-			//	//Parent->Top  = _posY - MousePosition.Y;
-			//}
-
-		_drag_start = false;
-		Parent->TabIndex = 3;
-		Parent->Dock = Windows::Forms::DockStyle::Top;
-
-		*/
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 			if (e->Button == Windows::Forms::MouseButtons::Left)
@@ -224,10 +203,11 @@ namespace TODOList {
 
 			txt_append_close();
 
+			call_method_parent("print_header", {});
+
 			//Console::WriteLine(Parent->Name);
 			//Console::WriteLine(Parent->Text);
 			//Console::WriteLine(nomber);
-
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
@@ -247,7 +227,7 @@ namespace TODOList {
 		}
 		Void txt_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e) {
 
-			if (e->KeyChar == 13) txt_append_close();		
+			if (e->KeyChar == 13) txt_append_close();			
 
 		}
 
@@ -396,16 +376,16 @@ namespace TODOList {
 		}
 		inline void txt_append_close() {
 
-			//Parent->header = txt->Text;								/// TODO:
-			call_method_parent("set_header", { header });				// Не прёт
-			call_method_main("task_set_name", { nomber, header });
-
 			header = txt->Text;
 			lbl->Text = header;
 			txt->Visible = false;
 			lbl->Visible = true;
 
+			//Parent->header = txt->Text;								/// TODO:
+			call_method_parent("set_header", { header });				// Не прёт 
+			call_method_main("task_set_name", { nomber, header });
 			call_method_main("update_lists", {});						// Для list'ов
+
 
 		}
 		inline void txt_resize() {

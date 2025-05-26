@@ -89,7 +89,7 @@ namespace TODOList {
 			   lbl->Name = L"lbl";
 			   lbl->Size = System::Drawing::Size(35, 13);
 			   lbl->Location = System::Drawing::Point(45, 7);
-			   lbl->Font = gcnew System::Drawing::Font("Roboto", 10);
+			   lbl->Font = gcnew System::Drawing::Font("Bahnschrift Light", 10);
 			   lbl->ForeColor = Color::White;
 			   lbl->AutoSize = true;
 			   lbl->TabIndex = 0;
