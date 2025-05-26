@@ -91,7 +91,7 @@ namespace TODOList {
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(742, 411);
+			this->listBox1->Location = System::Drawing::Point(699, 452);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(106, 108);
 			this->listBox1->TabIndex = 1;
@@ -99,7 +99,7 @@ namespace TODOList {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(742, 356);
+			this->button1->Location = System::Drawing::Point(699, 397);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(106, 23);
 			this->button1->TabIndex = 2;
@@ -117,19 +117,19 @@ namespace TODOList {
 				static_cast<System::Byte>(0)));
 			this->pnlTasks->Location = System::Drawing::Point(0, 0);
 			this->pnlTasks->Name = L"pnlTasks";
-			this->pnlTasks->Size = System::Drawing::Size(380, 550);
+			this->pnlTasks->Size = System::Drawing::Size(380, 600);
 			this->pnlTasks->TabIndex = 3;
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(742, 385);
+			this->textBox1->Location = System::Drawing::Point(699, 426);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(106, 20);
 			this->textBox1->TabIndex = 4;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(609, 385);
+			this->button2->Location = System::Drawing::Point(566, 426);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 53);
 			this->button2->TabIndex = 5;
@@ -140,7 +140,7 @@ namespace TODOList {
 			// lbxSub
 			// 
 			this->lbxSub->FormattingEnabled = true;
-			this->lbxSub->Location = System::Drawing::Point(854, 411);
+			this->lbxSub->Location = System::Drawing::Point(811, 452);
 			this->lbxSub->Name = L"lbxSub";
 			this->lbxSub->Size = System::Drawing::Size(106, 108);
 			this->lbxSub->TabIndex = 6;
@@ -148,14 +148,14 @@ namespace TODOList {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(854, 385);
+			this->textBox2->Location = System::Drawing::Point(811, 426);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(106, 20);
 			this->textBox2->TabIndex = 7;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(854, 356);
+			this->button3->Location = System::Drawing::Point(811, 397);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(106, 23);
 			this->button3->TabIndex = 8;
@@ -165,7 +165,7 @@ namespace TODOList {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(477, 496);
+			this->button4->Location = System::Drawing::Point(434, 537);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(75, 23);
 			this->button4->TabIndex = 9;
@@ -175,7 +175,7 @@ namespace TODOList {
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(477, 356);
+			this->button5->Location = System::Drawing::Point(434, 397);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(106, 23);
 			this->button5->TabIndex = 10;
@@ -186,7 +186,7 @@ namespace TODOList {
 			// button6
 			// 
 			this->button6->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->button6->Location = System::Drawing::Point(609, 356);
+			this->button6->Location = System::Drawing::Point(566, 397);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(75, 23);
 			this->button6->TabIndex = 11;
@@ -196,7 +196,7 @@ namespace TODOList {
 			// 
 			// btnRemTask
 			// 
-			this->btnRemTask->Location = System::Drawing::Point(712, 411);
+			this->btnRemTask->Location = System::Drawing::Point(669, 452);
 			this->btnRemTask->Name = L"btnRemTask";
 			this->btnRemTask->Size = System::Drawing::Size(24, 23);
 			this->btnRemTask->TabIndex = 12;
@@ -206,7 +206,7 @@ namespace TODOList {
 			// 
 			// btnRemSub
 			// 
-			this->btnRemSub->Location = System::Drawing::Point(966, 411);
+			this->btnRemSub->Location = System::Drawing::Point(923, 452);
 			this->btnRemSub->Name = L"btnRemSub";
 			this->btnRemSub->Size = System::Drawing::Size(25, 23);
 			this->btnRemSub->TabIndex = 13;
@@ -219,7 +219,7 @@ namespace TODOList {
 			this->btnClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->btnClose->FlatAppearance->BorderColor = System::Drawing::Color::WhiteSmoke;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnClose->Location = System::Drawing::Point(1008, 0);
+			this->btnClose->Location = System::Drawing::Point(960, 0);
 			this->btnClose->Name = L"btnClose";
 			this->btnClose->Size = System::Drawing::Size(42, 42);
 			this->btnClose->TabIndex = 22;
@@ -230,9 +230,9 @@ namespace TODOList {
 			// 
 			this->pnlBlanket->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->pnlBlanket->Location = System::Drawing::Point(386, 348);
+			this->pnlBlanket->Location = System::Drawing::Point(386, 367);
 			this->pnlBlanket->Name = L"pnlBlanket";
-			this->pnlBlanket->Size = System::Drawing::Size(652, 190);
+			this->pnlBlanket->Size = System::Drawing::Size(602, 221);
 			this->pnlBlanket->TabIndex = 23;
 			this->pnlBlanket->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::pnlBlanket_MouseDoubleClick);
 			// 
@@ -240,7 +240,7 @@ namespace TODOList {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1050, 550);
+			this->ClientSize = System::Drawing::Size(1000, 600);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnRemSub);
 			this->Controls->Add(this->btnRemTask);
