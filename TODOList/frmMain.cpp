@@ -62,14 +62,15 @@ int main(array <String^>^ args) {
 // (+) pnlTask
 // (+) lineTask
 // (+) lineSutbask
-// ( ) Не прёт
-// -------------------
+// (+) Не прёт
 // (+) Логика компонента
 // (+) UI/UX
 // (+) Запоминание state в Task
+// -------------------
 // ( ) Запоминание state в Subask
+// -------------------
 // ( ) 
-// ( ) struct Subtask : public Task { _subtasks = delete; } или наоборот
+// ( ) struct Subtask : public Task { _subtasks = delete; } или наоборот struct Task : public Subtask
 // 
 // ver 0.2.0
 // ( ) Drag&Drop

@@ -100,6 +100,8 @@ namespace TODOList {
 
 #pragma endregion main {
 
+
+
 private:
 	int						  subtasks_visible_counter = 0;
 	int						  subtask_counter		   = 0;
@@ -113,7 +115,7 @@ private:
 		header = str;
 
 	}
-	void print_header() {
+	void __print_header() {
 
 		Console::WriteLine(header);
 
@@ -156,44 +158,14 @@ public:
 	int		  nomber;
 	bool	  state;
 
-
 	/// DELETE
 public: System::Windows::Forms::Form^ parForm;
 		  //public: frmMain^					  owner;
 
 
 
-	//void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
-	//
-	//	Type^ type = Parent->GetType();
-	//	
-	//	MethodInfo^ method = type->GetMethod(method_name,
-	//		BindingFlags::NonPublic | BindingFlags::Instance);
-	//	
-	//	
-	//	cli::array<Object^>^ args =
-	//		gcnew cli::array <Object^>(list.size());
-	//	
-	//	if (list.size() != 0)
-	//		for (int i = 0; i < list.size(); ++i)
-	//			args[i] = *(list.begin() + i);
-	//	else
-	//		args = nullptr;
-	//	
-	//	
-	//	if (method != nullptr)
-	//		method->Invoke(Parent, args);
-	//	else
-	//		Console::WriteLine("call_method_error ");
-	//		//Console::WriteLine(Parent->Parent->Parent->Name);
-	//
-	//}
-
-
 public:
-	
-				/// RENAME
-	inline void subtask_add_GOAL(String^ name) {
+	inline void subtask_add(String^ name) {
 
 		subtask_counter++;
 		subtasks_visible_counter = subtask_counter;
@@ -225,9 +197,6 @@ public:
 		update_state();
 
 	}
-
-
-
 	void		update_state() {
 
 		lneTask->Name	= L"lne_" + header;
@@ -246,6 +215,34 @@ public:
 		size_reset();
 
 	}
+
+
+private:
+	//void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
+	//
+	//	Type^ type = Parent->GetType();
+	//	
+	//	MethodInfo^ method = type->GetMethod(method_name,
+	//		BindingFlags::NonPublic | BindingFlags::Instance);
+	//	
+	//	
+	//	cli::array<Object^>^ args =
+	//		gcnew cli::array <Object^>(list.size());
+	//	
+	//	if (list.size() != 0)
+	//		for (int i = 0; i < list.size(); ++i)
+	//			args[i] = *(list.begin() + i);
+	//	else
+	//		args = nullptr;
+	//	
+	//	
+	//	if (method != nullptr)
+	//		method->Invoke(Parent, args);
+	//	else
+	//		Console::WriteLine("call_method_error ");
+	//		//Console::WriteLine(Parent->Parent->Parent->Name);
+	//
+	//}
 
 
 #pragma region }

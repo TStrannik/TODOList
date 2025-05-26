@@ -203,7 +203,7 @@ namespace TODOList {
 
 			txt_append_close();
 
-			call_method_parent("print_header", {});
+			call_method_parent("__print_header", {});
 
 			//Console::WriteLine(Parent->Name);
 			//Console::WriteLine(Parent->Text);

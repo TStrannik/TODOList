@@ -53,7 +53,6 @@ namespace TODOList {
 	private: Windows::Forms::ListBox^ listBox1;
 	private: Windows::Forms::Button^  button1;
 	private: Windows::Forms::Panel^   pnlTasks;
-
 	private: Windows::Forms::Button^  button2;
 	private: Windows::Forms::ListBox^ lbxSub;
 	private: Windows::Forms::TextBox^ textBox2;
@@ -63,28 +62,8 @@ namespace TODOList {
 	private: Windows::Forms::Button^  button6;
 	private: Windows::Forms::Button^  btnRemTask;
 	private: Windows::Forms::Button^  btnRemSub;
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Button^ btnClose;
 	private: System::Windows::Forms::Panel^ pnlBlanket;
-
-
-
-
-
-
-
-
-
-
-
-
 	private: Windows::Forms::TextBox^ textBox1;
 
 
@@ -666,7 +645,7 @@ private:
 
 			ptask_add(t->get_text());
 			for (const auto& st : t->get_subtasks_vector())
-				ptask->subtask_add_GOAL(sts(st->get_text()));
+				ptask->subtask_add(sts(st->get_text()));
 
 		}
 
