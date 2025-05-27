@@ -51,7 +51,7 @@ struct Subtask {
 
 
 
-#pragma region ctors/destr
+#pragma region methods
 	std::string			   get_text() {
 
 		return _text;

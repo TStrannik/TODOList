@@ -38,7 +38,9 @@ namespace TODOList {
 	private: System::Windows::Forms::Label^ lbl;
 	private: System::ComponentModel::Container^ components;
 
-#pragma region Windows Form Designer generated code
+
+
+
 		   void InitializeComponent(void) {
 
 			   cbx = (gcnew Windows::Forms::CheckBox());
@@ -104,11 +106,11 @@ namespace TODOList {
 			   // 
 			   txt->Name = L"txt";
 			   txt->Visible = false;
-			   txt->Location = Drawing::Point(45, 4);
+			   txt->Location = Drawing::Point(45, 6);
 			   txt->Size = Drawing::Size(50, 20);
 			   txt->Font = lbl->Font;
 			   txt->ForeColor = Color::White;
-			   txt->BackColor = Color::FromArgb(248, 8, 128);
+			   txt->BackColor = Color::FromArgb(202, 10, 202);
 			   txt->TabIndex = 1;
 			   txt->KeyPress += gcnew Windows::Forms::KeyPressEventHandler(this, &lineSubtask::txt_KeyPress);
 			   txt->TextChanged += gcnew System::EventHandler(this, &lineSubtask::txt_TextChanged);
@@ -122,8 +124,9 @@ namespace TODOList {
 			   // 
 			   // [X]
 			   // 
-			   btnX->Text = L"";
+			   btnX->Text = L".";
 			   btnX->Name = L"btnX";
+
 			   btnX->Location = Drawing::Point(328, 6);
 			   btnX->Size = Drawing::Size(20, 20);
 			   btnX->TextAlign = Drawing::ContentAlignment::MiddleCenter;
@@ -174,14 +177,15 @@ namespace TODOList {
 			   PerformLayout();
 
 		   }
-#pragma endregion
+
+
+
+
 
 #pragma endregion main {
 
 	private:
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
-
-			//call_method_parent("subtasks_hide_show", {});
 
 			if (e->Button == Windows::Forms::MouseButtons::Left)
 				cbx_switch();
@@ -189,9 +193,9 @@ namespace TODOList {
 		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			Console::WriteLine(nomber);
-
-			//txt_append_close();
+			txt_append_close();
+			//Console::WriteLine(nomber);											/// TEST
+			//call_method_parent("__print_header", {});								/// TEST
 
 		}
 		Void this_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
@@ -231,8 +235,8 @@ namespace TODOList {
 
 		Void btnX_Click(Object^ sender, EventArgs^ e) {
 
-			// call_method_main("task_remove_one", { nomber });
-			// call_method_main("update_all", {});
+			call_method_main("subtask_remove", { par_nomber, nomber });
+			call_method_main("update_all", {});
 
 		}
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
@@ -300,6 +304,7 @@ namespace TODOList {
 		}
 
 
+
 	private:
 		void call_method_main(String^ method_name, std::initializer_list <Object^> list) {
 
@@ -363,21 +368,16 @@ namespace TODOList {
 		}
 		inline void txt_append_close() {
 
-			//Parent->header = txt->Text;			
-			call_method_parent("set_header", { header });				// Íå ïð¸ò
-			call_method_main("task_set_name", { nomber, header });
-
-
 			header = txt->Text;
 			lbl->Text = header;
 			txt->Visible = false;
 			lbl->Visible = true;
 
-		}
-		/// ÐÀÁÎÒÀÅÒ ÍÅ Î×ÅÍÜ
-		inline void txt_resize() {
-			/// ÐÀÁÎÒÀÅÒ ÍÅ Î×ÅÍÜ
+			call_method_main("subtask_set_name", { par_nomber, nomber, header });
+			call_method_main("update_lists", {});								// Äëÿ list'îâ
 
+		}
+		inline void txt_resize() {
 
 			if (txt->Text->Length > 5)
 				txt->Width = TextRenderer::MeasureText(txt->Text, txt->Font).Width + 10;

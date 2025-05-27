@@ -571,7 +571,7 @@ private:
 
 	}
 
-
+	
 
 	inline void subtask_add(String^ string) {
 
@@ -596,6 +596,11 @@ private:
 		subtask_selected = ind;
 
 	}
+	inline void subtask_remove(int tsk, int sub) {
+
+		task_remove(tsk, sub);
+
+	}
 	inline bool subtask_get_state(int tsk, int sub) {
 
 		return tasks->at(tsk)->get_subtask(sub)->get_state();			
@@ -606,6 +611,12 @@ private:
 		tasks->at(tsk)->get_subtask(sub)->set_state(state);
 
 	}
+	inline void	subtask_set_name(int tsk, int sub, String^ str) {
+
+		tasks->at(tsk)->get_subtasks_vector().at(sub)->set_text(sts(str));
+
+	}
+
 
 
 

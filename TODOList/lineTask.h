@@ -110,11 +110,12 @@ namespace TODOList {
 			   // 
 			   txt->Name = L"txt";
 			   txt->Visible = false;
-			   txt->Location = Drawing::Point(30, 10);
+			   txt->Location = Drawing::Point(30, 12);
 			   txt->Size = Drawing::Size(50, 20);
-			   txt->Font = lbl->Font;
+			   //txt->Font = lbl->Font;
+			   txt->Font = gcnew System::Drawing::Font("Bahnschrift", 10, FontStyle::Bold);
 			   txt->ForeColor = Color::White;
-			   txt->BackColor = Color::FromArgb(248, 8, 128);
+			   txt->BackColor = Color::FromArgb(202, 10, 202);
 			   txt->TabIndex = 1;
 			   txt->KeyPress += gcnew Windows::Forms::KeyPressEventHandler(this, &lineTask::txt_KeyPress);
 			   txt->TextChanged += gcnew System::EventHandler(this, &lineTask::txt_TextChanged);
