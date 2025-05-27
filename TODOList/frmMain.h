@@ -219,9 +219,9 @@ namespace TODOList {
 			this->btnClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->btnClose->FlatAppearance->BorderColor = System::Drawing::Color::WhiteSmoke;
 			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->btnClose->Location = System::Drawing::Point(960, 0);
+			this->btnClose->Location = System::Drawing::Point(923, 0);
 			this->btnClose->Name = L"btnClose";
-			this->btnClose->Size = System::Drawing::Size(42, 42);
+			this->btnClose->Size = System::Drawing::Size(79, 50);
 			this->btnClose->TabIndex = 22;
 			this->btnClose->UseVisualStyleBackColor = true;
 			this->btnClose->Click += gcnew System::EventHandler(this, &frmMain::btnClose_Click);
@@ -530,6 +530,7 @@ private:
 	}
 	inline void task_remove_one(int tsk) {
 
+		// Invoke не смог в полиморфизм, поэтому окак
 		task_remove(tsk);
 
 	}
@@ -601,6 +602,62 @@ private:
 		task_remove(tsk, sub);
 
 	}
+
+
+
+
+
+
+
+
+
+	inline void	subtask_swap(int tsk, int sub1, int sub2) {
+		// Лень
+	
+		//bool diap_ind = ind >= 0 && ind < tasks->size();
+		//bool diap_plc = plc >= 0 && plc < tasks->size();
+		//if (!diap_ind || !diap_plc) return;
+		//std::swap(tasks->at(ind), tasks->at(plc));
+	
+	}
+	inline void	subtask_up(int tsk, int sub) {
+
+		bool diap_tsk = tsk > 0 && tsk < tasks->size() - 1;
+		bool diap_sub = sub > 0 && sub < tasks->at(tsk)->get_subtasks_vector().size();
+		if (!diap_sub || !diap_tsk) return;
+		std::swap(
+			*tasks->at(tsk)->get_subtasks_vector().at(sub),
+			*tasks->at(tsk)->get_subtasks_vector().at(sub - 1)
+		);
+
+	}
+	inline void	subtask_dn(int tsk, int sub) {
+	
+		bool diap_tsk = tsk > 0 && tsk < tasks->size() - 1;
+		bool diap_sub = sub >= 0 && sub < tasks->at(tsk)->get_subtasks_vector().size() - 1;
+		if (!diap_sub || !diap_tsk) return;
+		std::swap(
+			*tasks->at(tsk)->get_subtasks_vector().at(sub),
+			*tasks->at(tsk)->get_subtasks_vector().at(sub + 1)
+		);
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	inline bool subtask_get_state(int tsk, int sub) {
 
 		return tasks->at(tsk)->get_subtask(sub)->get_state();			

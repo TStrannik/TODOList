@@ -165,6 +165,7 @@ struct Task {
 
 	}
 
+	/// ÍÀÄÎ ÏĞÈÌÅÍßÒÜ get_subtask
 	Subtask*			   get_subtask(const int& ind) {
 
 		return _subtasks.at(ind);

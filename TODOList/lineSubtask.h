@@ -141,7 +141,7 @@ namespace TODOList {
 			   // 
 			   // [^]
 			   // 
-			   btnU->Text = ""; // L"^";
+			   btnU->Text = "^"; // L"^";
 			   btnU->Name = L"btnX";
 			   btnU->Location = Drawing::Point(238, 6);
 			   btnU->Size = Drawing::Size(20, 20);
@@ -157,7 +157,7 @@ namespace TODOList {
 			   // 
 			   // [v]
 			   // 
-			   btnD->Text = ""; // L"v";
+			   btnD->Text = "v"; // L"v";
 			   btnD->Name = L"btnX";
 			   btnD->Location = Drawing::Point(258, 6);
 			   btnD->Size = Drawing::Size(20, 20);
@@ -241,14 +241,14 @@ namespace TODOList {
 		}
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
 
-			// call_method_main("task_up", { nomber });
-			// call_method_main("update_all", {});
+			call_method_main("subtask_up", { par_nomber, nomber });
+			call_method_main("update_all", {});
 
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {
 
-			// call_method_main("task_dn", { nomber });
-			// call_method_main("update_all", {});
+			call_method_main("subtask_dn", { par_nomber, nomber });
+			call_method_main("update_all", {});
 
 		}
 
