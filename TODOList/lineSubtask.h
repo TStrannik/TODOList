@@ -58,13 +58,13 @@ namespace TODOList {
 			   // 
 			   // THIS (lineSubtask)
 			   // 
-			   Size = Drawing::Size(200, 30);
+			   Size = Drawing::Size(200, 30);	   
 			   MouseDown += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseDown);
 			   MouseMove += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseMove);
 			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseUp);
 			   MouseDoubleClick += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_DoubleClick);
 			   VisibleChanged += gcnew System::EventHandler(this, &lineSubtask::this_VisibleChanged);
-
+			   				   
 
 
 
@@ -424,14 +424,9 @@ namespace TODOList {
 	public:
 		void		update_state() {
 
-			//cbx->Text = header;
 			lbl->Text = header;
 			txt->Text = header;
-
-			//txt->Visible = text_open;
-
 			BackColor = Color::FromArgb(192, 0, 192);
-
 #pragma region repaint
 			btnU->FlatStyle = FlatStyle::Flat;
 			btnD->FlatStyle = FlatStyle::Flat;
@@ -445,11 +440,10 @@ namespace TODOList {
 			btnD->BackColor = BackColor;
 			btnX->BackColor = BackColor;
 
-			btnX->Location = Drawing::Point(310, 11);
-			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
-			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
+			btnX->Location = Drawing::Point(310, 7);
+			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 7);
+			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 7);
 #pragma endregion		^ v X
-
 			cbx->Checked = state;
 
 		}

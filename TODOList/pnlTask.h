@@ -52,7 +52,8 @@ namespace TODOList {
 			BorderStyle						 = Windows::Forms::BorderStyle::FixedSingle;								 
 			Dock							 = Windows::Forms::DockStyle::Top;
 			Size							 = Drawing::Size(140, 44);
-			
+			//BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+
 
 
 			// 

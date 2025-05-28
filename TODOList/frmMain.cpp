@@ -38,7 +38,7 @@ void APPLICATION_END() {
 	system("pause");
 }
 
-/// ver 0.1.1
+/// ver 0.1.0
 int main(array <String^>^ args) {
 	_CrtSetDbgFlag(
 		_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) |
@@ -72,7 +72,8 @@ int main(array <String^>^ args) {
 // (+) Обработчики событий в Subtask
 // -------------------
 // ( ) Проработка компонентов
-// ( ) Коррекция размеров ST
+// ( ) Иконки кнопок ^ v X
+// (+) Коррекция размеров ST
 // ( ) 
 // ( ) При длинном спмске и ЛКМ-е список прыгает
 // ( ) 

@@ -64,11 +64,13 @@ namespace TODOList {
 	private: Windows::Forms::Button^  btnRemSub;
 	private: System::Windows::Forms::Button^ btnClose;
 	private: System::Windows::Forms::Panel^ pnlBlanket;
+	private: System::Windows::Forms::Button^ btnAddTask;
+
 	private: Windows::Forms::TextBox^ textBox1;
 
 
 
-#pragma region Windows Form Designer generated code
+
 		void InitializeComponent(void)
 		{
 			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
@@ -86,6 +88,7 @@ namespace TODOList {
 			this->btnRemSub = (gcnew System::Windows::Forms::Button());
 			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->pnlBlanket = (gcnew System::Windows::Forms::Panel());
+			this->btnAddTask = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// listBox1
@@ -236,11 +239,28 @@ namespace TODOList {
 			this->pnlBlanket->TabIndex = 23;
 			this->pnlBlanket->MouseDoubleClick += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::pnlBlanket_MouseDoubleClick);
 			// 
+			// btnAddTask
+			// 
+			this->btnAddTask->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->btnAddTask->FlatAppearance->BorderSize = 0;
+			this->btnAddTask->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnAddTask->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 24, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->btnAddTask->ForeColor = System::Drawing::Color::White;
+			this->btnAddTask->Location = System::Drawing::Point(434, 439);
+			this->btnAddTask->Name = L"btnAddTask";
+			this->btnAddTask->Size = System::Drawing::Size(60, 55);
+			this->btnAddTask->TabIndex = 24;
+			this->btnAddTask->Text = L"+";
+			this->btnAddTask->UseVisualStyleBackColor = false;
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1000, 600);
+			this->Controls->Add(this->btnAddTask);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->btnRemSub);
 			this->Controls->Add(this->btnRemTask);
@@ -271,7 +291,7 @@ namespace TODOList {
 			this->PerformLayout();
 
 		}
-#pragma endregion
+
 
 		
 
