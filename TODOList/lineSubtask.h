@@ -2,6 +2,7 @@
 #include <array>
 
 
+
 #pragma region void
 
 
@@ -124,7 +125,7 @@ namespace TODOList {
 			   // 
 			   // [X]
 			   // 
-			   btnX->Text = L".";
+			   btnX->Text = L"";
 			   btnX->Name = L"btnX";
 
 			   btnX->Location = Drawing::Point(328, 6);
@@ -141,7 +142,7 @@ namespace TODOList {
 			   // 
 			   // [^]
 			   // 
-			   btnU->Text = "^"; // L"^";
+			   btnU->Text = ""; // L"^";
 			   btnU->Name = L"btnX";
 			   btnU->Location = Drawing::Point(238, 6);
 			   btnU->Size = Drawing::Size(20, 20);
@@ -157,7 +158,7 @@ namespace TODOList {
 			   // 
 			   // [v]
 			   // 
-			   btnD->Text = "v"; // L"v";
+			   btnD->Text = ""; // L"v";
 			   btnD->Name = L"btnX";
 			   btnD->Location = Drawing::Point(258, 6);
 			   btnD->Size = Drawing::Size(20, 20);
@@ -356,7 +357,6 @@ namespace TODOList {
 
 		}
 
-
 		inline void txt_open() {
 
 			txt->Text = header;
@@ -413,15 +413,13 @@ namespace TODOList {
 
 
 
-
 	public:
 		String^ header = gcnew String("");
 		int		nomber;
 		int		par_nomber;
 		bool	state;
 
-		Windows::Forms::Form^ parForm;											/// DELETE ?
-		//public: frmMain^ owner;												/// DELETE ?
+
 
 	public:
 		void		update_state() {
@@ -432,12 +430,9 @@ namespace TODOList {
 
 			//txt->Visible = text_open;
 
-
-			
 			BackColor = Color::FromArgb(192, 0, 192);
 
-
-			/// б ндхм лернд
+#pragma region repaint
 			btnU->FlatStyle = FlatStyle::Flat;
 			btnD->FlatStyle = FlatStyle::Flat;
 			btnX->FlatStyle = FlatStyle::Flat;
@@ -453,11 +448,11 @@ namespace TODOList {
 			btnX->Location = Drawing::Point(310, 11);
 			btnD->Location = Drawing::Point(btnX->Left - btnD->Width, 11);
 			btnU->Location = Drawing::Point(btnD->Left - btnU->Width, 11);
+#pragma endregion		^ v X
 
 			cbx->Checked = state;
 
 		}
-
 
 #pragma region }
 	};

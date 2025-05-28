@@ -71,7 +71,7 @@ namespace TODOList {
 			//lneTask->BackColor				 = Color::FromArgb(212, 42, 148);
 			lneTask->BackColor				 = Color::FromArgb(202, 10, 202);
 			lneTask->ForeColor				 = Color::White;
-			lneTask->parForm				 = parForm;
+
 			
 
 
@@ -116,13 +116,6 @@ public:
 	int					nomber;
 	bool				state;
 	std::vector <bool>* states   = new std::vector <bool>();
-
-
-	/// DELETE ?
-public: System::Windows::Forms::Form^ parForm;
-		  //public: frmMain^					  owner;
-
-	  
 
 
 

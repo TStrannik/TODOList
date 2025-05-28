@@ -375,7 +375,6 @@ namespace TODOList {
 		
 		}
 
-
 		inline void txt_open() {
 
 			txt->Text = header;
@@ -426,6 +425,8 @@ namespace TODOList {
 			
 		}
 
+
+
 	public:
 		String^ header = gcnew String("");
 		int		nomber;
@@ -433,8 +434,7 @@ namespace TODOList {
 		bool	is_subtasks;
 		bool	is_subtasks_hide;
 
-		Windows::Forms::Form^ parForm;											/// DELETE ?
-		//public: frmMain^ owner;												/// DELETE ?
+
 
 	public:
 		void		update_state() {

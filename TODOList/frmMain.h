@@ -683,8 +683,6 @@ private:
 		ptask = (gcnew pnlTask());
 
 
-		ptask->parForm = this;													/// DELETE ?
-
 		ptask->nomber = ptask_counter - 1;
 
 		if (!name.empty()) ptask->header = sts(name);
