@@ -7,7 +7,11 @@ using namespace System;
 using namespace System::Windows::Forms;
 
 [STAThreadAttribute]
+
+
 void CODE() {
+
+	wl("\tВедётся ярая разработка TODOList");
 
 }
 
@@ -15,10 +19,10 @@ void APPLICATION_START() {
 	setlocale(LC_ALL, "RU_ru");
 	system("color 70");
 	std::cout << "\n APPLICATION START\n\n";
-	std::cout << "\tStatistic:\n\n";
+	//std::cout << "\tStatistic:\n\n";
 
 	// Let's code
-	std::cout << "\tInfo of Application here =/\n";
+	//wl("\tВедётся ярая разработка TODOList");
 	CODE();
 
 	std::cout << "\n\n";
@@ -34,8 +38,9 @@ void APPLICATION_END() {
 	system("pause");
 }
 
-/// ver 0.1.0
-int main(array<String^>^ args) {
+
+/// ver 0.1.2
+int main(array <String^>^ args) {
 	_CrtSetDbgFlag(
 		_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) |
 		_CRTDBG_LEAK_CHECK_DF);
@@ -55,12 +60,37 @@ int main(array<String^>^ args) {
 // (+) GIT Connection
 // (+) GIT Make "Develop" branch
 // 
+// (+) pnlTask
+// (+) lineTask
+// (+) lineSutbask
+// (+) Не прёт
+// (+) Логика компонента
+// (+) UI/UX
+// (+) Запоминание state в T
+// (+) Запоминание state в ST
+// (+) Проверить удаление
 // -------------------
-// ( ) Task
+// (+) Обработчики событий в Subtask
 // -------------------
-// ( ) Task
-// ( ) Task
-//
+// ( ) Проработка компонентов
+// ( ) Иконки кнопок ^ v X
+// (+) Коррекция размеров ST
+// ( ) 
+// ( ) При длинном спмске и ЛКМ-е список прыгает
+// ( ) 
+// ( ) 
+// ( ) 
+// ( ) 
+// ( ) struct Subtask : public Task { _subtasks = delete; } или наоборот struct Task : public Subtask
+// ( ) 
+// ( ) 
+// 
+// ver 0.2.0
+// ( ) Drag&Drop
+// ( ) Перемещение компонента
+// ( ) Сохранение состояния T/ST в .json
+// ( ) Передача состояния T/ST
+// 
 //
 /// BUGS:
 //
