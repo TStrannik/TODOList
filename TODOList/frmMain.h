@@ -65,6 +65,7 @@ namespace TODOList {
 	private: System::Windows::Forms::Button^ btnClose;
 	private: System::Windows::Forms::Panel^ pnlBlanket;
 	private: System::Windows::Forms::Button^ btnAddTask;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 	private: Windows::Forms::TextBox^ textBox1;
 
@@ -73,6 +74,7 @@ namespace TODOList {
 
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(frmMain::typeid));
 			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pnlTasks = (gcnew System::Windows::Forms::Panel());
@@ -89,6 +91,8 @@ namespace TODOList {
 			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->pnlBlanket = (gcnew System::Windows::Forms::Panel());
 			this->btnAddTask = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// listBox1
@@ -255,6 +259,17 @@ namespace TODOList {
 			this->btnAddTask->Text = L"+";
 			this->btnAddTask->UseVisualStyleBackColor = false;
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.InitialImage")));
+			this->pictureBox1->Location = System::Drawing::Point(434, 56);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(500, 500);
+			this->pictureBox1->TabIndex = 25;
+			this->pictureBox1->TabStop = false;
+			this->pictureBox1->DoubleClick += gcnew System::EventHandler(this, &frmMain::pictureBox1_DoubleClick);
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -276,6 +291,7 @@ namespace TODOList {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->pnlBlanket);
+			this->Controls->Add(this->pictureBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"frmMain";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
@@ -287,6 +303,7 @@ namespace TODOList {
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseDown);
 			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseMove);
 			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseUp);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -469,7 +486,13 @@ private:
 
 	}
 
+	Void pictureBox1_DoubleClick(Object^ sender, EventArgs^ e) {
 
+		pictureBox1->Parent->Controls->GetChildIndex(pictureBox1) == 0 ?
+			pictureBox1->SendToBack() :
+			pictureBox1->BringToFront();
+
+	}
 	Void pnlBlanket_MouseDoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 		pnlBlanket->Parent->Controls->GetChildIndex(pnlBlanket) == 0 ?
@@ -815,6 +838,7 @@ private:
 
 
 #pragma region }
+
 
 
 }; }
