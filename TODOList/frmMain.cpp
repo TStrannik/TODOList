@@ -38,7 +38,6 @@ void APPLICATION_END() {
 	system("pause");
 }
 
-
 /// ver 0.1.2
 int main(array <String^>^ args) {
 	_CrtSetDbgFlag(
