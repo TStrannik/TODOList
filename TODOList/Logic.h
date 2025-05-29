@@ -196,6 +196,16 @@ struct Task {
 		_state = !_state;
 
 	}
+	void				   set_hidden(const bool& state) {
+
+		_hidden = state;
+
+	}
+	bool				   get_hidden() const {
+
+		return _hidden;
+
+	}
 
 	//int					   get_id() {
 	//
@@ -239,6 +249,7 @@ private:
 	std::string			   _text;
 	std::vector <Subtask*> _subtasks;
 	bool				   _state;
+	bool				   _hidden    = false;
 	//int					   _id = ++_counter;
 #pragma endregion
 

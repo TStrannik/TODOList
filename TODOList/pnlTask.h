@@ -32,7 +32,8 @@ namespace TODOList {
 
 	private:	System::ComponentModel::Container^ components;
 
-#pragma region Windows Form Designer generated code
+
+
 		void InitializeComponent(void) {
 
 			lneTask		= (gcnew lineTask());
@@ -97,7 +98,6 @@ namespace TODOList {
 			PerformLayout();
 
 		}
-#pragma endregion
 
 #pragma endregion main {
 

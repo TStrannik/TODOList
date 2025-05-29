@@ -194,8 +194,15 @@ namespace TODOList {
 		}
 		Void this_MouseClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
-			if (e->Button == Windows::Forms::MouseButtons::Right)
+			if (e->Button == Windows::Forms::MouseButtons::Right) {
+
 				call_method_parent("subtasks_hide_show", {});
+
+				(is_subtasks_hide) ?
+					call_method_main("task_set_hidden", { nomber, true  }) :
+					call_method_main("task_set_hidden", { nomber, false });
+
+			}
 		
 		}
 		Void this_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
