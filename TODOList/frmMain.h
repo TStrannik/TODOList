@@ -272,6 +272,7 @@ namespace TODOList {
 			   this->pbxBack->Size = System::Drawing::Size(500, 500);
 			   this->pbxBack->TabIndex = 25;
 			   this->pbxBack->TabStop = false;
+			   this->pbxBack->Click += gcnew System::EventHandler(this, &frmMain::pbxBack_Click);
 			   this->pbxBack->DoubleClick += gcnew System::EventHandler(this, &frmMain::pbxBack_DoubleClick);
 			   this->pbxBack->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::pbxBack_MouseDown);
 			   this->pbxBack->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::pbxBack_MouseMove);
@@ -505,6 +506,11 @@ namespace TODOList {
 				pbxBack->BringToFront();
 
 		}
+		Void pbxBack_Click(Object^ sender, EventArgs^ e) {
+
+			button2_Click(sender, e);
+
+		}
 		Void pbxBack_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 			/// DRY
@@ -533,7 +539,7 @@ namespace TODOList {
 			if (e->Button == Windows::Forms::MouseButtons::Left) _is_mouse_down = false;
 
 		}
-
+		
 
 		Void pnlBlanket_MouseDoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
@@ -764,10 +770,9 @@ namespace TODOList {
 			ptask->name = L"pnlTask_" + ptask_counter.ToString();
 			ptask->Name = L"pnlTask_" + ptask_counter.ToString();
 			ptask->state = task_get_state(ptask_counter - 1);
+
 			for (auto st : tasks->at(ptask_counter - 1)->get_subtasks_vector())		// Передача states
 				ptask->states->push_back(st->get_state());
-
-
 
 			ptask->Location = Drawing::Point(0, 0);
 			ptask->Size = Drawing::Size(140, 100);
@@ -799,6 +804,11 @@ namespace TODOList {
 
 			ptask->update_state();													// Udpdate
 
+
+			for (const auto& t : *tasks)
+				if (t->get_hidden())
+					ptask->subtasks_hide_showw();
+
 		}
 
 		inline void update_all() {
@@ -826,7 +836,7 @@ namespace TODOList {
 				new Task({
 					"Когтик",
 					{
-						new Subtask("20")
+						new Subtask("Задача 20")
 					}
 					})
 			);
@@ -834,8 +844,8 @@ namespace TODOList {
 				new Task({
 					"Эбука",
 					{
-						new Subtask("30"),
-						new Subtask("31"),
+						new Subtask("Задача 30"),
+						new Subtask("Задача 31"),
 					}
 					})
 			);
@@ -894,7 +904,8 @@ namespace TODOList {
 #pragma region }
 
 
-	};
+
+};
 }
 
 #pragma endregion
