@@ -805,9 +805,8 @@ namespace TODOList {
 			ptask->update_state();													// Udpdate
 
 
-			for (const auto& t : *tasks)
-				if (t->get_hidden())
-					ptask->subtasks_hide_showw();
+			for (int i = 1; i < tasks->size() - 1; ++i)
+				ptask->subtasks_hide_showw(i, tasks->at(i)->get_hidden());
 
 		}
 

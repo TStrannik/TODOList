@@ -180,13 +180,7 @@ public:
 	void subtasks_hide_showw(int tsk, bool state) {
 
 				
-		pnlSubtasks->Controls->Find("lneSubtask_" + tsk.ToString(), 0)[0]->Visible = state;
-		subtasks_visible_counter = 0;
-
-		lneTask->is_subtasks_hide = !lneTask->is_subtasks_hide;
-		lneTask->Invalidate();
-
-		size_reset();
+		// иди най
 
 	}
 
