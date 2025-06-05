@@ -24,8 +24,6 @@ namespace TODOList {
 	public:		pnlTask(void) { InitializeComponent();			   }
 	protected: ~pnlTask()	  { if (components) delete components; }
 
-	
-
 	private:	lineTask^				  lneTask;
 	private:	Windows::Forms::Panel^	  pnlSubtasks;
 	protected:
@@ -109,14 +107,36 @@ private:
 	Windows::Forms::CheckBox^ cbxSubtask			   = gcnew CheckBox();
 	lineSubtask^			  lneSubtask			   = gcnew lineSubtask();
 
+public:
+	void gavka() {
+
+		Console::WriteLine("Gavk");
+
+	}
+
+//public:
+	//property bool			  SubtasksHidden {
+	//	
+	//	bool get() {
+	//
+	//		return lneTask->is_subtasks_hide;
+	//
+	//	}
+	//	void set(bool state) {
+	//
+	//		lneTask->is_subtasks_hide = state;
+	//
+	//	}
+	//
+	//}
 
 public:
-	bool				start    = false;
-	String^				header   = gcnew String ("");
-	String^				name     = gcnew String ("");
-	int					nomber;
-	bool				state;
-	std::vector <bool>* states   = new std::vector <bool>();
+	bool					  start					   = false;
+	String^					  header				   = gcnew String ("");
+	String^					  name					   = gcnew String ("");
+	int						  nomber;				   
+	bool					  state;				   
+	std::vector <bool>*		  states				   = new std::vector <bool>();
 
 
 

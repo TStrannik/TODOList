@@ -800,15 +800,47 @@ namespace TODOList {
 				for (const auto& st : t->get_subtasks_vector())
 					ptask->subtask_add(sts(st->get_text()));
 
+				
+
 			}
 
 			ptask->update_state();													// Udpdate
 
+			
 
-			for (int i = 1; i < tasks->size() - 1; ++i)
-				ptask->subtasks_hide_showw(i, tasks->at(i)->get_hidden());
+			// Смещение
+			// Работает
+			// DRY
+			// Optimize
+			for (int i = 1; i < ptask_counter; ++i) {
+
+				Type^ type = pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0]->GetType();
+
+
+				MethodInfo^ method = type->GetMethod("subtasks_hide_show",
+					BindingFlags::NonPublic | BindingFlags::Instance);
+
+				if (tasks->at(i)->get_hidden()) 
+					method->Invoke(pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0], nullptr);
+							
+
+			}
+				
+
+
+
+
+				//pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0]->SubtasksHidden = false;
+				//pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0]->Height = 250;
+				//pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0]->Visible = false;
+
+			//for (int i = 1; i < tasks->size() - 1; ++i)
+				//ptask->subtasks_hide_showw(i, tasks->at(i)->get_hidden());
 
 		}
+
+
+
 
 		inline void update_all() {
 
