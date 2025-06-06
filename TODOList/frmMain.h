@@ -798,44 +798,32 @@ namespace TODOList {
 
 				ptask_add(t->get_text());
 				for (const auto& st : t->get_subtasks_vector())
-					ptask->subtask_add(sts(st->get_text()));
-
-				
+					ptask->subtask_add(sts(st->get_text()));			
 
 			}
 
 			ptask->update_state();													// Udpdate
 
+
+
 			
-
-			// Смещение
-			// Работает
-			// DRY
-			// Optimize
 			for (int i = 1; i < ptask_counter; ++i) {
+			// Hidden/showed subtasks control
 
-				Type^ type = pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0]->GetType();
+				Panel^ panel =
+					static_cast <Panel^> (
+						pnlTasks->Controls->Find(
+							"pnlTask_" + (i + 1).ToString(), 0)[0]);
 
+				Type^ type = panel->GetType();
 
 				MethodInfo^ method = type->GetMethod("subtasks_hide_show",
 					BindingFlags::NonPublic | BindingFlags::Instance);
 
 				if (tasks->at(i)->get_hidden()) 
-					method->Invoke(pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0], nullptr);
-							
+					method->Invoke(panel, nullptr);
 
 			}
-				
-
-
-
-
-				//pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0]->SubtasksHidden = false;
-				//pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0]->Height = 250;
-				//pnlTasks->Controls->Find("pnlTask_" + i.ToString(), 0)[0]->Visible = false;
-
-			//for (int i = 1; i < tasks->size() - 1; ++i)
-				//ptask->subtasks_hide_showw(i, tasks->at(i)->get_hidden());
 
 		}
 

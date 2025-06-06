@@ -18,6 +18,7 @@ using namespace System::Data;
 using namespace System::Drawing;
 
 
+
 namespace TODOList {
 	public ref class pnlTask : public System::Windows::Forms::Panel {
 
@@ -114,21 +115,7 @@ public:
 
 	}
 
-//public:
-	//property bool			  SubtasksHidden {
-	//	
-	//	bool get() {
-	//
-	//		return lneTask->is_subtasks_hide;
-	//
-	//	}
-	//	void set(bool state) {
-	//
-	//		lneTask->is_subtasks_hide = state;
-	//
-	//	}
-	//
-	//}
+
 
 public:
 	bool					  start					   = false;
@@ -192,17 +179,6 @@ public:
 
 	}
 
-	void subtasks_hide_showw() {
-
-		subtasks_hide_show();
-
-	}
-	void subtasks_hide_showw(int tsk, bool state) {
-
-				
-		// иди най
-
-	}
 
 
 private:

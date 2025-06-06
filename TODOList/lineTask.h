@@ -232,10 +232,11 @@ namespace TODOList {
 		
 			Pen^ pen = gcnew Pen(Color::White);
 			pen->Width = 1;
+			int r = 3;
 
-			g->DrawArc(pen, 35, Height - 12, 2, 2, 180, 360);
-			g->DrawArc(pen, 40, Height - 12, 2, 2, 180, 360);
-			g->DrawArc(pen, 45, Height - 12, 2, 2, 180, 360);
+			g->DrawArc(pen, 35,			Height - 12, r, r, 180, 360);
+			g->DrawArc(pen, 35 + r * 2, Height - 12, r, r, 180, 360);
+			g->DrawArc(pen, 35 + r * 4, Height - 12, r, r, 180, 360);
 			
 
 		}

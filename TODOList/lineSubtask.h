@@ -125,7 +125,7 @@ namespace TODOList {
 			   // 
 			   // [X]
 			   // 
-			   btnX->Text = L"";
+			   btnX->Text = L"+";
 			   btnX->Name = L"btnX";
 
 			   btnX->Location = Drawing::Point(328, 6);
@@ -134,9 +134,10 @@ namespace TODOList {
 			   btnX->TabIndex = 2;
 			   btnX->UseVisualStyleBackColor = true;
 			   btnX->Click += gcnew EventHandler(this, &lineSubtask::btnX_Click);
+			   btnX->Paint += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::btnX_Paint);
 
 
-
+			   
 
 
 			   // 
@@ -158,7 +159,7 @@ namespace TODOList {
 			   // 
 			   // [v]
 			   // 
-			   btnD->Text = ""; // L"v";
+			   btnD->Text = ":"; // L"v";
 			   btnD->Name = L"btnX";
 			   btnD->Location = Drawing::Point(258, 6);
 			   btnD->Size = Drawing::Size(20, 20);
@@ -240,6 +241,23 @@ namespace TODOList {
 			call_method_main("update_all", {});
 
 		}
+		Void btnX_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
+
+			Graphics^ g = e->Graphics;
+
+
+			bool is_hover = false;
+
+			is_hover ? g->Clear(Color::Red) : g->Clear(BackColor);			
+
+			Pen^ penSquare = gcnew Pen(Color::White);
+			penSquare->Width = 2;
+
+			g->DrawLine(penSquare, 6, 6, 13, 13);
+			g->DrawLine(penSquare, 6, 13, 13, 6);
+
+		}
+
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
 
 			call_method_main("subtask_up", { par_nomber, nomber });
