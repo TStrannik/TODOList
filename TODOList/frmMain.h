@@ -375,6 +375,10 @@ namespace TODOList {
 
 
 
+			button6_Click(sender, e);
+			pnlBlanket->BringToFront();
+			pbxBack->BringToFront();
+
 		}
 		Void frmMain_FormClosed(Object^ sender, Windows::Forms::FormClosedEventArgs^ e) {
 

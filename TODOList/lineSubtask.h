@@ -64,7 +64,8 @@ namespace TODOList {
 			   MouseUp += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_MouseUp);
 			   MouseDoubleClick += gcnew Windows::Forms::MouseEventHandler(this, &lineSubtask::this_DoubleClick);
 			   VisibleChanged += gcnew System::EventHandler(this, &lineSubtask::this_VisibleChanged);
-			   				   
+			   MouseEnter += gcnew EventHandler(this, &lineSubtask::this_MouseEnter);
+			   MouseLeave += gcnew EventHandler(this, &lineSubtask::this_MouseLeave);
 
 
 
@@ -135,6 +136,8 @@ namespace TODOList {
 			   btnX->UseVisualStyleBackColor = true;
 			   btnX->Click += gcnew EventHandler(this, &lineSubtask::btnX_Click);
 			   btnX->Paint += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::btnX_Paint);
+			   btnX->MouseEnter += gcnew EventHandler(this, &lineSubtask::btnX_MouseEnter);
+			   btnX->MouseLeave += gcnew EventHandler(this, &lineSubtask::btnX_MouseLeave);
 
 
 			   
@@ -151,7 +154,9 @@ namespace TODOList {
 			   btnU->TabIndex = 2;
 			   btnU->UseVisualStyleBackColor = true;
 			   btnU->Click += gcnew EventHandler(this, &lineSubtask::btnU_Click);
-
+			   btnU->Paint += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::btnU_Paint);
+			   btnU->MouseEnter += gcnew EventHandler(this, &lineSubtask::btnU_MouseEnter);
+			   btnU->MouseLeave += gcnew EventHandler(this, &lineSubtask::btnU_MouseLeave);
 
 
 
@@ -159,7 +164,7 @@ namespace TODOList {
 			   // 
 			   // [v]
 			   // 
-			   btnD->Text = ":"; // L"v";
+			   btnD->Text = ""; // L"v";
 			   btnD->Name = L"btnX";
 			   btnD->Location = Drawing::Point(258, 6);
 			   btnD->Size = Drawing::Size(20, 20);
@@ -167,7 +172,9 @@ namespace TODOList {
 			   btnD->TabIndex = 2;
 			   btnD->UseVisualStyleBackColor = true;
 			   btnD->Click += gcnew EventHandler(this, &lineSubtask::btnD_Click);
-
+			   btnD->Paint += gcnew Windows::Forms::PaintEventHandler(this, &lineSubtask::btnD_Paint);
+			   btnD->MouseEnter += gcnew EventHandler(this, &lineSubtask::btnD_MouseEnter);
+			   btnD->MouseLeave += gcnew EventHandler(this, &lineSubtask::btnD_MouseLeave);
 
 
 
@@ -185,6 +192,23 @@ namespace TODOList {
 
 
 #pragma endregion main {
+
+	private:
+		bool	btnX_visible	= false;
+		bool	btnU_visible	= false;
+		bool	btnD_visible	= false;
+
+		Color	btnX_back_color = Color::FromArgb(192, 0, 192);
+		Color	btnU_back_color = Color::FromArgb(192, 0, 192);		
+		Color	btnD_back_color = Color::FromArgb(192, 0, 192);
+
+	public:
+		String^ header			= gcnew String("");
+		int		nomber;
+		int		par_nomber;
+		bool	state;
+
+
 
 	private:
 		Void this_DoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
@@ -208,6 +232,28 @@ namespace TODOList {
 		Void this_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e) {
 
 
+
+		}
+		Void this_MouseEnter(Object^ sender, System::EventArgs^ e) {
+
+			btnX_visible = true;
+			btnU_visible = true;
+			btnD_visible = true;
+
+			btnX->Invalidate();
+			btnU->Invalidate();
+			btnD->Invalidate();
+
+		}
+		Void this_MouseLeave(Object^ sender, System::EventArgs^ e) {
+
+			btnX_visible = false;
+			btnU_visible = false;
+			btnD_visible = false;
+
+			btnX->Invalidate();
+			btnU->Invalidate();
+			btnD->Invalidate();
 
 		}
 		/// DELETE ?
@@ -235,20 +281,27 @@ namespace TODOList {
 
 		}
 
-		Void btnX_Click(Object^ sender, EventArgs^ e) {
+		
+		
 
-			call_method_main("subtask_remove", { par_nomber, nomber });
-			call_method_main("update_all", {});
+		Void btnX_MouseEnter(Object^ sender, System::EventArgs^ e) {
+
+			btnX_visible = true;
+			btnX_back_color = Color::FromArgb(245, 10, 10);
+
+		}
+		Void btnX_MouseLeave(Object^ sender, System::EventArgs^ e) {
+
+			btnX_visible = false;
+			btnX_back_color = BackColor;
 
 		}
 		Void btnX_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
 
 			Graphics^ g = e->Graphics;
+			g->Clear(btnX_back_color);
 
-
-			bool is_hover = false;
-
-			is_hover ? g->Clear(Color::Red) : g->Clear(BackColor);			
+			if (!btnX_visible) return;
 
 			Pen^ penSquare = gcnew Pen(Color::White);
 			penSquare->Width = 2;
@@ -257,11 +310,70 @@ namespace TODOList {
 			g->DrawLine(penSquare, 6, 13, 13, 6);
 
 		}
+		Void btnX_Click(Object^ sender, EventArgs^ e) {
 
+			call_method_main("subtask_remove", { par_nomber, nomber });
+			call_method_main("update_all", {});
+
+		}
+
+		Void btnU_MouseEnter(Object^ sender, System::EventArgs^ e) {
+
+			btnU_visible = true;
+			btnU_back_color = Color::FromArgb(230, 0, 230);  // 202,10,202
+
+		}
+		Void btnU_MouseLeave(Object^ sender, System::EventArgs^ e) {
+
+			btnU_visible = false;
+			btnU_back_color = BackColor;
+
+		}
+		Void btnU_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
+
+			Graphics^ g = e->Graphics;
+			g->Clear(btnU_back_color);
+
+			if (!btnU_visible) return;
+
+			Pen^ penSquare = gcnew Pen(Color::White);
+			penSquare->Width = 1;
+
+			g->DrawLine(penSquare, 8, 10, 10, 13);
+			g->DrawLine(penSquare, 10, 13, 12, 10);
+
+		}
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
 
 			call_method_main("subtask_up", { par_nomber, nomber });
 			call_method_main("update_all", {});
+
+		}
+
+		Void btnD_MouseEnter(Object^ sender, System::EventArgs^ e) {
+
+			btnD_visible = true;
+			btnD_back_color = Color::FromArgb(230, 0, 230);  // 202,10,202
+
+		}
+		Void btnD_MouseLeave(Object^ sender, System::EventArgs^ e) {
+
+			btnD_visible = false;
+			btnD_back_color = BackColor;
+
+		}
+		Void btnD_Paint(Object^ sender, Windows::Forms::PaintEventArgs^ e) {
+
+			Graphics^ g = e->Graphics;
+			g->Clear(btnD_back_color);
+
+			if (!btnD_visible) return;
+
+			Pen^ penSquare = gcnew Pen(Color::White);
+			penSquare->Width = 1;
+
+			g->DrawLine(penSquare, 8, 10, 10, 6);
+			g->DrawLine(penSquare, 10, 6, 12, 10);
 
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {
@@ -428,14 +540,6 @@ namespace TODOList {
 			call_method_main("subtask_set_state", { par_nomber, nomber, cbx->Checked });
 
 		}
-
-
-
-	public:
-		String^ header = gcnew String("");
-		int		nomber;
-		int		par_nomber;
-		bool	state;
 
 
 
