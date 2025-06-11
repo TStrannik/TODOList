@@ -361,9 +361,11 @@ namespace TODOList {
 			Pen^ penSquare = gcnew Pen(Color::White);
 			penSquare->Width = 1;
 
-			g->DrawLine(penSquare, 8, 10, 10, 13);
-			g->DrawLine(penSquare, 10, 13, 12, 10);
+			g->DrawLine(penSquare, 8, 10, 10, 6);
+			g->DrawLine(penSquare, 10, 6, 12, 10);
 
+			Console::WriteLine("UP");
+			
 		}
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
 
@@ -393,9 +395,9 @@ namespace TODOList {
 
 			Pen^ penSquare = gcnew Pen(Color::White);
 			penSquare->Width = 1;
-				// UD naoborot // UD naoborot // UD naoborot // UD naoborot // UD naoborot // UD naoborot // UD naoborot 
-			g->DrawLine(penSquare, 8, 10, 10, 6);// UD naoborot // UD naoborot // UD naoborot // UD naoborot // UD naoborot 
-			g->DrawLine(penSquare, 10, 6, 12, 10);// UD naoborot // UD naoborot // UD naoborot // UD naoborot 
+				
+			g->DrawLine(penSquare, 8, 10, 10, 13);
+			g->DrawLine(penSquare, 10, 13, 12, 10);
 
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {

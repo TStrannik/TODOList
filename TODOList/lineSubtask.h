@@ -287,12 +287,16 @@ namespace TODOList {
 		Void btnX_MouseEnter(Object^ sender, System::EventArgs^ e) {
 
 			btnX_visible = true;
+			btnU_visible = true;
+			btnD_visible = true;
 			btnX_back_color = Color::FromArgb(245, 10, 10);
 
 		}
 		Void btnX_MouseLeave(Object^ sender, System::EventArgs^ e) {
 
 			btnX_visible = false;
+			btnU_visible = false;
+			btnD_visible = false;
 			btnX_back_color = BackColor;
 
 		}
@@ -319,13 +323,17 @@ namespace TODOList {
 
 		Void btnU_MouseEnter(Object^ sender, System::EventArgs^ e) {
 
+			btnX_visible = true;
 			btnU_visible = true;
+			btnD_visible = true;
 			btnU_back_color = Color::FromArgb(230, 0, 230);  // 202,10,202
 
 		}
 		Void btnU_MouseLeave(Object^ sender, System::EventArgs^ e) {
 
+			btnX_visible = false;
 			btnU_visible = false;
+			btnD_visible = false;
 			btnU_back_color = BackColor;
 
 		}
@@ -338,9 +346,10 @@ namespace TODOList {
 
 			Pen^ penSquare = gcnew Pen(Color::White);
 			penSquare->Width = 1;
-
-			g->DrawLine(penSquare, 8, 10, 10, 13);
-			g->DrawLine(penSquare, 10, 13, 12, 10);
+			
+			g->DrawLine(penSquare, 7, 10, 10, 6 );
+			g->DrawLine(penSquare, 7, 10, 13, 10);
+			g->DrawLine(penSquare, 10, 6, 13, 10);
 
 		}
 		Void btnU_Click(Object^ sender, EventArgs^ e) {
@@ -352,12 +361,16 @@ namespace TODOList {
 
 		Void btnD_MouseEnter(Object^ sender, System::EventArgs^ e) {
 
+			btnX_visible = true;
+			btnU_visible = true;
 			btnD_visible = true;
 			btnD_back_color = Color::FromArgb(230, 0, 230);  // 202,10,202
 
 		}
 		Void btnD_MouseLeave(Object^ sender, System::EventArgs^ e) {
 
+			btnX_visible = false;
+			btnU_visible = false;
 			btnD_visible = false;
 			btnD_back_color = BackColor;
 
@@ -372,8 +385,9 @@ namespace TODOList {
 			Pen^ penSquare = gcnew Pen(Color::White);
 			penSquare->Width = 1;
 
-			g->DrawLine(penSquare, 8, 10, 10, 6);
-			g->DrawLine(penSquare, 10, 6, 12, 10);
+			g->DrawLine(penSquare, 7,  10, 10, 13);
+			g->DrawLine(penSquare, 7,  10, 13, 10);
+			g->DrawLine(penSquare, 10, 13, 13, 10);
 
 		}
 		Void btnD_Click(Object^ sender, EventArgs^ e) {
